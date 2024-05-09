@@ -1,0 +1,242 @@
+{% extends 'website_part/base.html' %}
+{% load static %}
+
+{% block titre %}
+    Accueil | MainDansLaMain
+{% endblock titre %}
+
+
+{% block main %}
+    <!-- main -->
+        <main>
+            <!-- PRESENTATION -->
+            <section class="presentation d-flex align-items-center pt-4">
+                <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="ms-lg-5 ms-md-3">
+                            <h1 class="primary display-3 fw-bold px-3 px-md-1">
+                                Rejoignez-nous dans une aventure <br>
+                                de solidarité et d'impact positif!
+                            </h1>
+                            <h5 class="primary-v display-6 fw-semibold px-3 px-md-1">
+                                Chaque geste compte.
+                                <br>
+                                Ensemble, nous pouvons changer des vies.
+                                <br>
+                                Faites partie du mouvement de solidarité dès aujourd'hui.
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- A PROPOS -->
+            <section class="a-propos">
+                <div class="px-4 py-5 my-5 text-center">
+                    <div class="section-title">
+                        <h2 class="display-3 fw-bold">A PROPOS DE NOUS</h2>
+                    </div>
+                    <div class="col-lg-6 mx-auto">
+                        <p class="mb-4">
+                            <strong class="h4">Main dans la main</strong> est une organisation à but non
+                            lucrative qui a pour mission d'apporter de l'espoir,
+                            du soutien et de la solidarité aux personnes dans le besoin en Guinée.
+                            Nous croyons fermement en la force de la communauté et en la capacité des gens à se soutenir
+                            mutuellement dans les moments difficiles.
+                        </p>
+                        <a href="./a-propos.html" class="btn btn-primary btn-lg border-0 px-4 me-sm-3">En savoir
+                            plus</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NOS ACTIONS -->
+            <section class="nos-actions">
+                <div class="container">
+                    <div class="row px-4 py-5 my-5 text-center">
+                        <div class="text-center">
+                            <div class="section-title">
+                                <h2 class="display-3 fw-bold">SOUTENIR NOS ACTIONS</h2>
+                            </div>
+                        </div>
+                        <!-- action 1 -->
+                        <div class="col-lg-4 action">
+                            <div class="img">
+                                <img src="{% static 'website_part/img/freepik-hand_in_hand_logo.jpg' %}" alt="image nos-actions"
+                                    class="rounded rounded-circle">
+                                <h2 class="mt-3">Collecte de fonds</h2>
+                            </div>
+                            <p class="justify">
+                                Nous avons lancé une campagne de collecte de fonds en ligne
+                                et hors ligne pour mobiliser des ressources financières qui seront
+                                utilisées pour aider les nécessiteux dans divers domaines
+                                tels que l'alimentation, l'éducation et les soins de santé.
+                            </p>
+                            <p>
+                                <a class="btn btn-primary btn-md border-0" href="#">Voir plus &raquo;</a>
+                            </p>
+                        </div>
+                        <!-- action 2 -->
+                        <div class="col-lg-4 action">
+                            <div class="img">
+                                <img src="{% static 'website_part/img/freepik-hand_in_hand_logo.jpg' %}" alt="image nos-actions"
+                                    class="rounded rounded-circle">
+                                <h2 class="mt-3">Distribution de fournitures de première nécessité</h2>
+                            </div>
+                            <p class="justify">
+                                Nous organisons des collectes de vêtements, de denrées alimentaires et d'articles
+                                d'hygiène, puis distribuez-les aux personnes dans le besoin dans les communautés
+                                locales.
+                            </p>
+                            <p><a class="btn btn-primary btn-md border-0" href="#">Voir plus &raquo;</a></p>
+                        </div>
+                        <!-- action 3 -->
+                        <div class="col-lg-4 action">
+                            <div class="img">
+                                <img src="{% static 'website_part/img/freepik-hand_in_hand_logo.jpg' %}" alt="image nos-actions"
+                                    class="rounded rounded-circle">
+                                <h2 class="mt-3">Campagne de sensibilisation</h2>
+                            </div>
+                            <p class="justify">
+                                Nous avons initié des séances d'information et des campagnes
+                                sur les réseaux sociaux pour sensibiliser les gens sur l'importance que nous tous
+                                pouvons avoir dans la vie des plus démunis ou toute autre personne dans
+                                le besoin en Guinée.
+                            </p>
+                            <p><a class="btn btn-primary btn-md border-0" href="#">Voir plus &raquo;</a></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BESOINS -->
+            <section class="besoin">
+                <div class="container">
+                    <div class="row px-4 py-5 my-5">
+                        <div class="col-md-7 order-md-2 d-flex flex-column justify-content-center mb-sm-3">
+                            <h2 class="display-5 fw-bold">
+                                Avez-vous besoin d'aide ?
+                                <span class="text-muted fw-medium">Faite-le savoir.</span>
+                            </h2>
+                            <p>
+                                Vous êtes confronté à des difficultés et vous ne savez vers qui aller. Sachez que
+                                toute une communauté est là et prête à vous aider, alors n'hésitez pas et envoyez-nous
+                                les preuves qui nous aiderons à vous croire ou alors contactez-nous directement.
+                            </p>
+                            <div class="gap-2 gap-md-3">
+                                <a href="./besoins.html"
+                                    class="btn btn-primary btn-md border-0 btn-lg px-4 gap-3">Envoyer</a>
+                                <a href="./contactez-nous.html"
+                                    class="btn btn-outline-secondary btn-md btn-lg px-4">Nous contacter</a>
+                            </div>
+                        </div>
+                        <div class="col-md-5 order-md-1">
+                            <div class="img mt-3">
+                                <img src="{% static 'website_part/img/freepik-hand_in_hand_logo.jpg' %}" alt="" class="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DONATIONS -->
+            <section class="donation">
+                <div class="overlay d-flex flex-column justify-content-center">
+                    <div class="container">
+                        <div class="row px-4 pb-3 my-5">
+                            <div class="col-lg-8 body">
+                                <!-- title -->
+                                <h2 class="display-5 mb-sm-3 mb-sm-0 fw-bold title">Chaque geste compte '
+                                </h2>
+                                <!-- texte -->
+                                <p class="fw-medium text">
+                                    Ensemble, nous avons le pouvoir de transformer des vies,
+                                    de semer des graines d'espoir et d'illuminer l'avenir des plus
+                                    démunis. Chaque geste compte, chaque don fait une différence
+                                    immense. Rejoignez-nous dans cette noble mission en faisant
+                                    un don aujourd'hui.
+                                </p>
+                            </div>
+                            <div class="col-md-4 my-md-auto text-lg-center">
+                                <div class="shake">
+                                    <a href="{% url 'website_part:faire_donation' %}" class="btn btn-lg btn-donation fw-bolder">Faire un
+                                        don</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- S'ABONNER -->
+            <section class="s-abonner d-flex flex-column justify-content-center">
+                <div class="container">
+                    <div class="row px-4 py-5 my-5">
+                        <div class="col-lg-10 mx-auto text-md-center">
+                            <div class="text-center">
+                                <div class="section-title">
+                                    <h2 class="display-3 fw-bold">ABONNEZ-VOUS</h2>
+                                </div>
+                            </div>
+                            <p class="">
+                                Rejoignez-nous dans notre mission de solidarité et d'entraide !
+                                Ensemble, nous pouvons faire une différence dans la vie de
+                                ceux qui en ont le plus besoin. Restez informés sur nos actions,
+                                nos événements communautaires et nos opportunités de bénévolat
+                                en nous suivant. Ensemble, nous pouvons construire un avenir
+                                plus solidaire et soutenir notre communauté dans les moments
+                                difficiles. Rejoignez-nous aujourd'hui et faites partie du
+                                changement positif !
+                            </p>
+                            <span class="mt-sm-5 mt-md-4">
+                                <a href="{% url 'website_part:se_connecter' %}" class="btn btn-lg btn-primary">Je m'abonne</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NOUS SUIVRE -->
+            <section class="nous-suivre">
+                <div class="container">
+                    <div class="row px-4 py-5 my-5 align-items-center">
+                        <div class="col-lg-6">
+                            <h2 class="display-5 fw-bold">
+                                Voulez-vous faire partir de cette aventure ?
+                                <br>
+                                <span class="text-muted fw-medium display-6">N'attendez plus, suivez-nous.</span>
+                            </h2>
+                        </div>
+                        <div class="col-lg-6 mt-md-1 mt-4">
+                            <div class="d-flex justify-content-md-evenly justify-content-between">
+                                <span class="social-box rounded-circle">
+                                    <a href="#" class="social">
+                                        <i class="bi bi-facebook"></i>
+                                    </a>
+                                </span>
+                                <span class="social-box rounded-circle text-center">
+                                    <a href="#" class="social">
+                                        <i class="bi bi-whatsapp"></i>
+                                    </a>
+                                </span>
+                                <span class="social-box rounded-circle">
+                                    <a href="#" class="social">
+                                        <i class="bi bi-youtube"></i>
+                                    </a>
+                                </span>
+                                <span class="social-box rounded-circle">
+                                    <a href="#" class="social">
+                                        <i class="bi bi-tiktok"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            </div>
+        </main>
+{% endblock main %}
+    
+    

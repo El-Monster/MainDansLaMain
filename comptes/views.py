@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http.request import HttpRequest
-from django.http.response import HttpResponse
+from django.http import HttpResponse
+from django.template import loader
 
 # Create your views here.
 def creation_compte(request):

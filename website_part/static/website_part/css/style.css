@@ -1,0 +1,440 @@
+/***********************    FONT   ***********************/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/***********************    VARIABLES   ***********************/
+:root {
+    --color-background: #F5EFFF;
+    --nav-background: #A3ACEE;
+    --nav-background-variant: #a3acee92;
+
+    --color-primary: #111E88;
+    --color-primary-variant: #2081C3;
+    --color-danger: #FF7782;
+    --color-danger-variant: #ff7782a4;
+    --color-success: #2dd881;
+    --color-success-variant: #41F1B6;
+    --color-warning: #F6AE2D;
+    --color-warning-variant: #ffbb55c8;
+
+    --color-dark: #453F3C;
+    --color-light: #797270;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
+
+    --nav-height: 6rem;
+}
+
+
+/***********************    INITIALISATION   ***********************/
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: none;
+    border: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 0.875rem;
+    /* pour le bouton #scroll-to-top-btn */
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Poppins, sans-serif;
+    background: var(--color-background);
+    user-select: none;
+    overflow-x: hidden;
+    color: var(--color-dark);
+}
+
+p,
+form label {
+    color: var(--color-dark);
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+textarea {
+    resize: none;
+}
+
+.primary {
+    color: var(--color-primary);
+}
+
+.primary-v {
+    color: var(--color-primary-variant);
+}
+
+.btn-primary {
+    background-color: var(--color-primary-variant);
+    border-width: 0;
+}
+
+.danger {
+    color: var(--color-danger);
+}
+
+.danger-v {
+    color: var(--color-danger-variant);
+}
+
+.success {
+    color: var(--color-success);
+}
+
+.success-v {
+    color: var(--color-success-variant);
+}
+
+.warning {
+    color: var(--color-warning);
+}
+
+.warning-v {
+    color: var(--color-warning-variant);
+}
+
+.dark {
+    color: var(--color-dark);
+}
+
+.light {
+    color: var(--color-light);
+}
+
+/***********************    NAVBAR   ***********************/
+.scrolled {
+    background-color: var(--nav-background);
+}
+
+nav {
+    height: var(--nav-height);
+    font-size: 1.2rem;
+}
+
+nav .navbar-brand {
+    font-size: 1.5rem;
+}
+
+.nav-item .nav-link {
+    color: white;
+}
+
+.nav-item .nav-link:hover {
+    color: var(--color-primary);
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--color-primary);
+}
+
+.navbar-nav .nav-link.se-connecter.active {
+    background-color: var(--color-background);
+}
+
+li .se-connecter {
+    display: inline-block;
+    padding: 7px 20px;
+    border: 2px solid var(--color-background);
+    border-radius: 20px;
+    color: var(--color-primary-variant);
+}
+
+li .se-connecter:hover {
+    background-color: var(--color-background);
+    transition: all 500ms ease;
+    color: var(--color-primary-variant);
+}
+
+
+
+/***********************    MAIN   ***********************/
+/** PRESENTATION **/
+main .presentation {
+    background-image: url("../img/team-hands_h1080.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 80vh;
+}
+
+/** A PROPOS **/
+.section-title h2 {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    position: relative;
+    color: var(--color-primary);
+}
+
+/* Trait en dessous */
+.section-title h2::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: #ddd;
+    bottom: 1px;
+    left: calc(50% - 60px);
+}
+
+.section-title h2::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--color-primary);
+    bottom: 0;
+    left: calc(50% - 20px);
+}
+
+/** NOS ACTIONS **/
+.nos-actions,
+.nous-suivre,
+.valeurs,
+#actions {
+    background-color: var(--nav-background);
+}
+
+.nos-actions .action {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nos-actions .action .img>img {
+    width: 140px;
+    height: 140px;
+}
+
+/** BESOIN **/
+.besoin .img>img,
+.apropos .img>img,
+.actions .img>img {
+    width: 100%;
+    height: calc(width);
+}
+
+/** DONATION **/
+.donation {
+    position: relative;
+    background-image: url("../img/pexels-safari-consoler-14456845.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 350px;
+}
+
+/* background-color au dessus */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--nav-background-variant);
+}
+
+.donation .body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.donation .title,
+.donation .text {
+    color: white;
+}
+
+.btn-donation {
+    display: inline-block;
+    padding: 15px 30px;
+    border: 2px solid white;
+    border-radius: 30px;
+    color: white;
+}
+
+.btn-donation:hover {
+    background-color: var(--nav-background);
+    border: none;
+    color: white;
+    transition: all 500ms ease;
+}
+
+/** NOUS SUIVRE **/
+.nous-suivre .social {
+    font-size: 3rem;
+    color: var(--color-primary);
+}
+
+span.social-box {
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.social-box:hover {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.social-box {
+    box-shadow: 0px 4px 10px var(--nav-background-variant);
+}
+
+/***********************    FOOTER   ***********************/
+footer {
+    background-color: var(--nav-background);
+}
+
+footer .nav .nav-item>a {
+    color: var(--color-dark);
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+footer .nav .nav-item>a:hover {
+    color: var(--color-background);
+}
+
+#scroll-btn {
+    /* background-color: var(--nav-background-variant); */
+    color: var(--color-primary);
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 99;
+    border: none;
+    /* padding: 10px;
+    border-radius: 10px; */
+}
+
+/*
+*   PAGE A PROPOS
+*************************************/
+.page-section-title {
+    background-color: var(--nav-background-variant);
+    height: 20rem;
+    align-content: end;
+}
+
+/** VALEURS **/
+
+/** MISSIONS **/
+.mission p i {
+    color: var(--color-primary-variant);
+}
+
+/*
+*   PAGE CONTACTEZ-NOUS
+*************************************/
+.form-shadow {
+    box-shadow: var(--box-shadow);
+}
+
+/*
+*   PAGE CONNEXION
+*************************************/
+
+.middle {
+    font-size: 1rem;
+}
+
+/*
+*   PAGE NOS-ACTIONS
+*************************************/
+
+.justify {
+    text-align: justify;
+}
+
+.carousel {
+    display: flex;
+    overflow: hidden;
+}
+
+
+.slide {
+    flex: 0 0 100%;
+    transition: transform 0.5s ease-in-out;
+    display: none;
+}
+
+.slide.active {
+    display: block;
+}
+
+/*
+*   PAGE DONATION
+*************************************/
+.nav-tabs .nav-item .nav-link {
+    color: var(--color-dark);
+}
+
+.nav-tabs .nav-item .nav-link.active {
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 20px;
+    /* Espace entre les méthodes de paiement */
+}
+
+.payment-method img {
+    width: 100px;
+    /* Taille des images */
+    opacity: 0.4;
+    /* Opacité par défaut */
+    cursor: pointer;
+    /* Curseur de la souris */
+}
+
+/* .payment-method input[type="radio"] {
+    display: none;
+    // Cacher les boutons radio
+} */
+
+.payment-method input[type="radio"]:checked+label img {
+    opacity: 1;
+    /* Mettre en valeur l'image sélectionnée */
+}
+
+.img-money-transfert {
+    width: 40px;
+    height: 50px;
+}
+
+
+
+/***********************    MEDIA QUERIES   ***********************/
+
+@media only screen and (max-width: 767px) {
+    .donation {
+        height: 450px;
+    }
+
+    /** NOUS SUIVRE **/
+    .nous-suivre .social {
+        font-size: 2rem;
+    }
+
+    .form-control-lg {
+        font-size: .875rem;
+    }
+}

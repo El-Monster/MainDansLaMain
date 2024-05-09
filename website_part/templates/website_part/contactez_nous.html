@@ -1,0 +1,128 @@
+{% extends 'website_part/base.html' %}
+{% load static %}
+
+{% block titre %}
+    Contactez-nous | MainDansLaMain
+{% endblock titre %}
+
+
+{% block main %}
+    <!-- main -->
+        <main>
+            <!-- titre de la page -->
+            <section class="page-section-title section-title">
+                <div class="container text-center">
+                    <div class="row">
+                        <h2 class="display-3 fw-bold text-uppercase">contactez-nous</h2>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact form -->
+            <section class="contact py-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-11 col-md-9">
+                            <p class="mb-5">
+                                La meilleure façon de nous contacter est d'utiliser notre formulaire de contact
+                                ci-dessous.
+                                Veuillez remplir tous les champs obligatoires et nous vous répondrons dès que possible.
+                            </p>
+                            <h2 class="mb-4 display-5 fw-bold">Envoyez un message</h2>
+
+                            <!-- trait -->
+                            <hr class="mb-5">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row justify-content-lg-center">
+                        <div class="col-12 col-md-9">
+                            <div class="bg-white border rounded rounded-4 form-shadow overflow-hidden">
+                                <form action="#">
+                                    <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
+                                        <div class="col-12">
+                                            <label for="firstname" class="form-label">Prénom(s) <span
+                                                    class="danger">*</span></label>
+                                            <input type="text" class="form-control form-control-lg" id="firstname"
+                                                name="firstname" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="lastname" class="form-label">Nom(s) <span
+                                                    class="danger">*</span></label>
+                                            <input type="text" class="form-control form-control-lg" id="lastname"
+                                                name="lastname" required>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label for="email" class="form-label">Email <span
+                                                    class="danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="bi-at"></i>
+                                                </span>
+                                                <input type="email" class="form-control form-control-lg" id="email"
+                                                    name="email" value="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label for="phone" class="form-label">Téléphone </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="bi-telephone"></i>
+                                                </span>
+                                                <input type="tel" class="form-control form-control-lg" id="phone"
+                                                    name="phone" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="message" class="form-label">Message <span
+                                                    class="danger">*</span></label>
+                                            <textarea class="form-control form-control-lg" id="message" name="message"
+                                                rows="3" required></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-grid">
+                                                <button class="btn btn-primary btn-lg fw-bold"
+                                                    type="submit">Envoyer</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DONATIONS -->
+            <section class="donation mt-5">
+                <div class="overlay d-flex flex-column justify-content-center">
+                    <div class="container">
+                        <div class="row px-4 pb-3 my-5">
+                            <div class="col-lg-8 body">
+                                <!-- title -->
+                                <h2 class="display-5 mb-sm-3 mb-sm-0 fw-bold title">Chaque geste compte '
+                                </h2>
+                                <!-- texte -->
+                                <p class="fw-medium text">
+                                    Ensemble, nous avons le pouvoir de transformer des vies,
+                                    de semer des graines d'espoir et d'illuminer l'avenir des plus
+                                    démunis. Chaque geste compte, chaque don fait une différence
+                                    immense. Rejoignez-nous dans cette noble mission en faisant
+                                    un don aujourd'hui.
+                                </p>
+                            </div>
+                            <div class="col-md-4 my-md-auto text-lg-center">
+                                <div class="shake">
+                                    <a href="{% url 'website_part:faire_donation' %}" class="btn btn-lg btn-donation fw-bolder">Faire un
+                                        don</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+{% endblock main %}

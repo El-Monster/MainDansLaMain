@@ -1,0 +1,219 @@
+{% extends 'website_part/base.html' %}
+{% load static %}
+
+{% block titre %}
+    A propos de nous | MainDansLaMain
+{% endblock titre %}
+
+
+{% block main %}
+    <!-- main -->
+        <main>
+            <!-- titre de la page -->
+            <section class="page-section-title section-title">
+                <div class="container text-center">
+                    <div class="row">
+                        <h2 class="display-3 fw-bold">A PROPOS DE NOUS</h2>
+                    </div>
+                </div>
+            </section>
+
+            <!-- a propos -->
+            <section class="apropos">
+                <div class="container">
+                    <div class="row px-4 py-5 my-5 align-items-center">
+                        <div
+                            class="col-md-7 order-md-2 d-flex flex-column justify-content-center mb-sm-3 border border-2 rounded-2">
+                            <h2 class="display-5 fw-bold pt-3">
+                                &ldquo;Main dans la main&rdquo;
+                            </h2>
+                            <p class="p-3">
+                                <span class="text-uppercase display-6">e</span>st une organisation à but non lucrative
+                                qui a pour mission d'apporter de l'espoir,
+                                du soutien et de la solidarité aux personnes dans le besoin en Guinée.
+                                Nous croyons fermement en la force de la communauté et en la capacité des gens à se
+                                soutenir mutuellement dans les moments difficiles.
+                            </p>
+                            <p class="p-3">
+                                Depuis notre fondation, nous nous sommes engagés à tendre la main à ceux qui sont
+                                confrontés à
+                                des difficultés, que ce soit en raison de la pauvreté, de la maladie, de la violence ou
+                                d'autres
+                                circonstances déchirantes. Notre équipe dévouée travaille sans relâche pour offrir une
+                                assistance pratique, un soutien émotionnel et des ressources essentielles à ceux qui en
+                                ont le plus besoin.
+                            </p>
+                        </div>
+                        <div class="col-md-5 order-md-1">
+                            <div class="img mt-3">
+                                <img src="{% static 'website_part/img/freepik-hand_in_hand_logo.jpg' %}" alt="" class="img-thumbnail">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- nos valeurs -->
+            <section class="valeurs">
+                <div class="container">
+                    <div class="row px-4 pt-5">
+                        <div class="fw-bold display-4 primary">
+                            Nos valeurs
+                        </div>
+                    </div>
+                    <div class="row g-5 px-4 py-5">
+                        <div class="col-md-4">
+                            <div class="h-100 p-5 bg-body-tertiary rounded-3 valeur">
+                                <h2 class="fw-bold mb-4">Empathie</h2>
+                                <p>
+                                    Faire preuve de compassion et de compréhension envers les autres,
+                                    en reconnaissant et en respectant leurs émotions et leurs besoins.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="h-100 p-5 bg-body-tertiary border rounded-3 valeur">
+                                <h2 class="fw-bold mb-4">Transparence</h2>
+                                <p>
+                                    Agir de manière ouverte et transparente dans toutes nos interactions,
+                                    en partageant des informations pertinentes et en favorisant la confiance et la
+                                    crédibilité.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="h-100 p-5 bg-body-tertiary rounded-3 valeur">
+                                <h2 class="fw-bold mb-4">Engagement communautaire</h2>
+                                <p>
+                                    Encourager la participation active et l'engagement des membres de la communauté
+                                    dans la prise de décision et la mise en œuvre des initiatives bénéfiques pour tous.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-5 px-4 py-5 align-items-md-stretch">
+                        <div class="col-md-4">
+                            <div class="h-100 p-5 bg-body-tertiary rounded-3 valeur">
+                                <h2 class="fw-bold mb-4">Soutien mutuel</h2>
+                                <p>
+                                    Offrir un soutien pratique, émotionnel et financier aux membres de la communauté
+                                    qui en ont besoin, en favorisant un environnement d'entraide et de solidarité.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="h-100 p-5 bg-body-tertiary border rounded-3 valeur">
+                                <h2 class="fw-bold mb-4">Inclusion</h2>
+                                <p>
+                                    Créer un espace accueillant et inclusif pour toutes les personnes,
+                                    quel que soit leur origine, leur statut socio-économique, leur culture ou leurs
+                                    croyances.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="h-100 p-5 bg-body-tertiary rounded-3 valeur">
+                                <h2 class="fw-bold mb-4">Innovation sociale</h2>
+                                <p>
+                                    Encourager l'innovation et l'exploration de nouvelles approches pour
+                                    résoudre les problèmes sociaux et améliorer la qualité de vie des gens.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- nos missions -->
+            <section class="missions">
+                <div class="container">
+                    <div class="row px-4 my-5">
+                        <div class="fw-bold display-4 primary">
+                            Nos Missions
+                        </div>
+                    </div>
+                    <div class="row px-4 mt-5">
+                        <p>
+                            Chez "Main dans la Main" nous avons un seul objectif, celui de créer une communauté dans
+                            laquelle
+                            nous nous entraidons tous et pour cela, nos missions sont les suivantes :
+                        </p>
+                    </div>
+                    <div class="row px-4 mb-5 justify-content-center">
+                        <div class="col-md-10">
+                            <div class="mission">
+                                <p>
+                                    <i class="bi-check2-circle me-4 fs-3"></i>
+                                    Offrir une assistance immédiate aux personnes confrontées à des situations
+                                    d'urgence telles que des catastrophes naturelles, des crises sanitaires
+                                    ou des situations de précarité.
+                                </p>
+                            </div>
+                            <div class="mission">
+                                <p>
+                                    <i class="bi-check2-circle me-4 fs-3"></i>
+                                    Mettre en relation les personnes ayant besoin de ressources de base
+                                    telles que la nourriture, le logement, les vêtements et les soins
+                                    de santé avec les organisations, les personnes
+                                    capables de fournir une aide appropriée.
+                                </p>
+                            </div>
+                            <div class="mission">
+                                <p>
+                                    <i class="bi-check2-circle me-4 fs-3"></i>
+                                    Informer le public sur les problèmes sociaux,et d'autres questions pertinentes,
+                                    tout en encourageant la sensibilisation, l'empathie et l'action sociale.
+                                </p>
+                            </div>
+                            <div class="mission">
+                                <p>
+                                    <i class="bi-check2-circle me-4 fs-3"></i>
+                                    Travailler en collaboration avec d'autres organisations, les gouvernements
+                                    locaux et les entreprises pour maximiser l'impact et la portée des
+                                    initiatives sociales et humanitaires.
+                                </p>
+                            </div>
+                            <div class="mission">
+                                <p>
+                                    <i class="bi-check2-circle me-4 fs-3"></i>
+                                    Mobiliser les membres de la communauté pour participer à des initiatives
+                                    de volontariat, de bénévolat et de service social visant à améliorer
+                                    leur environnement et à renforcer les liens sociaux.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DONATIONS -->
+            <section class="donation">
+                <div class="overlay d-flex flex-column justify-content-center">
+                    <div class="container">
+                        <div class="row px-4 pb-3 my-5">
+                            <div class="col-lg-8 body">
+                                <!-- title -->
+                                <h2 class="display-5 mb-sm-3 mb-sm-0 fw-bold title">Chaque geste compte '
+                                </h2>
+                                <!-- texte -->
+                                <p class="fw-medium text">
+                                    Ensemble, nous avons le pouvoir de transformer des vies,
+                                    de semer des graines d'espoir et d'illuminer l'avenir des plus
+                                    démunis. Chaque geste compte, chaque don fait une différence
+                                    immense. Rejoignez-nous dans cette noble mission en faisant
+                                    un don aujourd'hui.
+                                </p>
+                            </div>
+                            <div class="col-md-4 my-md-auto text-lg-center">
+                                <div class="shake">
+                                    <a href="#" class="btn btn-lg btn-donation fw-bolder">Faire un don</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+{% endblock main %}
+    
+    

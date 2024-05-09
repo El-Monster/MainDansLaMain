@@ -1,0 +1,449 @@
+{% extends 'website_part/base.html' %}
+{% load static %}
+
+{% block titre %}
+    Faire un don | MainDansLaMain
+{% endblock titre %}
+
+
+{% block main %}
+    <!-- main -->
+        <main>
+            <!-- titre de la page -->
+            <section class="page-section-title section-title">
+                <div class="container text-center">
+                    <div class="row">
+                        <h2 class="display-3 fw-bold text-uppercase">Faire un don</h2>
+                    </div>
+                </div>
+            </section>
+
+            <!-- message -->
+            <section class="message my-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-11 col-md-9">
+                            <h3 class="fw-bolder">A lire ...</h3>
+                            <p class="mb-5">
+                                Votre présence sur cette page témoigne de votre générosité et de votre engagement
+                                envers ceux qui ont besoin d'aide.
+                                Chaque geste de soutien que vous apportez fait une différence tangible
+                                dans la vie des personnes les plus vulnérables.
+                                Votre don, aussi modeste soit-il, a un impact immense et contribue à bâtir
+                                un avenir meilleur pour notre communauté.
+
+                            <div class="fw-medium">
+                                <p>
+                                    <span class="fw-bold">Note : </span>
+                                    Si vous désirez avoir plus de détails sur la gestion de vos dons,
+                                    abonnez-vous sur la plateforme.
+                                </p>
+                            </div>
+                            </p>
+                            <h2 class="mt-5 display-5 fw-bold">Je fais un don</h2>
+
+                            <!-- trait -->
+                            <hr class="mb-0">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- formulaire -->
+            <section class="donation-form">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-11 col-md-9">
+                            <form action=""
+                                class="row needs-validation bg-white shadow-lg py-md-5 py-4 px-lg-4 rounded rounded-4 justify-content-center"
+                                novalidate>
+                                <!-- coordonnées personnelles -->
+                                <div class="row">
+                                    <h2 class="fw-medium mb-3 mb-md-5">Vos coordonnées</h2>
+                                    <!-- Prénom(s) -->
+                                    <div class="col-md-6 mb-3 mb-md-4">
+                                        <div class="form-group">
+                                            <label for="firstname_validation" class="form-label">Prénom(s)</label>
+                                            <input type="text" class="form-control form-control-lg"
+                                                id="firstname_validation" value="" required>
+
+                                            <div class="invalid-feedback">
+                                                Ce champ est obligatoire!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Nom(s) -->
+                                    <div class="col-md-6 mb-3 mb-md-4">
+                                        <div class="form-group">
+                                            <label for="lastname_validation" class="form-label">Nom(s)</label>
+                                            <input type="text" class="form-control form-control-lg"
+                                                id="lastname_validation" value="" required>
+
+                                            <div class="invalid-feedback">
+                                                Ce champ est obligatoire!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- E-mail -->
+                                    <div class="col-md-6 mb-3 mb-md-4">
+                                        <div class="form-group">
+                                            <label for="email_validation" class="form-label">E-mail</label>
+                                            <input type="email" class="form-control form-control-lg"
+                                                id="email_validation" value="" required>
+                                            <div class="invalid-feedback">
+                                                Ce champ est obligatoire!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Téléphone -->
+                                    <div class="col-md-6 mb-3 mb-md-4">
+                                        <div class="form-group">
+                                            <label for="phone_validation" class="form-label">Téléphone</label>
+                                            <input type="tel" class="form-control form-control-lg" id="phone_validation"
+                                                value="" required>
+                                            <div class="invalid-feedback">
+                                                Ce champ est obligatoire!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Ville -->
+                                    <div class="col-md-4 mb-3 mb-md-4">
+                                        <div class="form-group">
+                                            <label for="city_validation" class="form-label">Ville</label>
+                                            <select class="form-select form-select-lg" id="city_validation" required>
+                                                <option selected disabled value="">ville actuelle</option>
+                                                <option>Bofa</option>
+                                                <option>Boké</option>
+                                                <option>Dabola</option>
+                                                <option>Dalaba</option>
+                                                <option>Conakry</option>
+                                                <option>Farannah</option>
+                                                <option>Fria</option>
+                                                <option>Kankan</option>
+                                                <option>Kindia</option>
+                                                <option>Kissidougou</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Ce champ est obligatoire!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Commune -->
+                                    <div class="col-md-4 mb-3 mb-md-4">
+                                        <div class="form-group">
+                                            <label for="commune_validation" class="form-label">Commune</label>
+                                            <select class="form-select form-select-lg" id="commune_validation" required>
+                                                <option selected disabled value="">commune actuelle</option>
+                                                <option>...</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Ce champ est obligatoire!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Quartier -->
+                                    <div class="col-md-4 mb-3 mb-md-4">
+                                        <div class="form-group">
+                                            <label for="quarter_validation" class="form-label">Quartier</label>
+                                            <select class="form-select form-select-lg" id="quarter_validation" required>
+                                                <option selected disabled value="">quartier actuel</option>
+                                                <option>...</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Ce champ est obligatoire!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Motif -->
+                                <div class="row">
+                                    <div class="my-5">
+                                        <div class="form-group">
+                                            <label for="motif" class="form-label">Motif</label>
+                                            <select class="form-select form-select-lg" id="motif" required>
+                                                <option selected disabled value="">choisissez un motif</option>
+                                                <option>don pour le fonctionnement de l'organisation</option>
+                                                <option>don pour la construction du puit à Kiroti</option>
+                                                <option>don pour collecte de fonds pour situations diverses</option>
+                                                <option>don pour distribution de fournitures de première nécessité
+                                                </option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Ce champ est obligatoire!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="fs-5">
+                                        <ul class="nav nav-tabs" id="donationTabs">
+                                            <li class="nav-item">
+                                                <a href="#financier" class="nav-link active"
+                                                    data-bs-toggle="tab">Financier</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#materiel" class="nav-link" data-bs-toggle="tab">Materiel</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <!-- Don financier -->
+                                            <div class="tab-pane fade show active p-md-3 p-2" id="financier">
+                                                <!-- frequence de payement -->
+                                                <div class="form-group mt-3">
+                                                    <p>Fréquence de payement</p>
+                                                    <div class="btn-group" role="group"
+                                                        aria-label="Basic radio toggle button group">
+                                                        <input type="radio" class="btn-check" name="btnradio"
+                                                            id="btnradio_once" autocomplete="off" checked>
+                                                        <label class="btn btn-outline-primary" for="btnradio_once">Une
+                                                            fois</label>
+
+                                                        <input type="radio" class="btn-check" name="btnradio"
+                                                            id="btnradio_monthly" autocomplete="off">
+                                                        <label class="btn btn-outline-primary"
+                                                            for="btnradio_monthly">Chaque mois</label>
+                                                    </div>
+                                                </div>
+
+                                                <!-- mode de payement -->
+                                                <div class="mt-3">
+                                                    <!-- <div class="col-md-6">
+                                                        <label for="paymentMethod" class="form-label">Méthode de
+                                                            Paiement</label>
+                                                        <div class="d-flex align-items-center">
+                                                            <label class="me-3" for="creditCard">
+                                                                <input type="radio" class="form-check-input"
+                                                                    id="creditCard" name="paymentMethod"
+                                                                    value="creditCard" required>
+                                                                <img src="url_vers_logo_carte_credit.png"
+                                                                    alt="Carte de Crédit" class="img-fluid">
+                                                            </label>
+                                                            <label class="me-3" for="paypal">
+                                                                <input type="radio" class="form-check-input" id="paypal"
+                                                                    name="paymentMethod" value="paypal" required>
+                                                                <img src="url_vers_logo_paypal.png" alt="PayPal"
+                                                                    class="img-fluid">
+                                                            </label>
+                                                            <label for="bankTransfer">
+                                                                <input type="radio" class="form-check-input"
+                                                                    id="bankTransfer" name="paymentMethod"
+                                                                    value="bankTransfer" required>
+                                                                <img src="url_vers_logo_virement.png"
+                                                                    alt="Virement Bancaire" class="img-fluid">
+                                                            </label>
+                                                        </div>
+                                                    </div> -->
+                                                    <div class="col-md-6">
+                                                        <label for="paymentMethod" class="form-label">Méthode de
+                                                            Paiement</label>
+                                                        <div class="payment-methods">
+                                                            <input type="radio" class="form-check-input" id="creditCard"
+                                                                name="paymentMethod" value="creditCard">
+                                                            <label for="creditCard" class="payment-method"> Ria
+                                                                <!-- <img src="./assets/images/money-transfert/ria-money-transfer-logo.png"
+                                                                    alt="Carte de Crédit" class="img-money-transfert"> -->
+                                                            </label>
+
+                                                            <input type="radio" class="form-check-input" id="paypal"
+                                                                name="paymentMethod" value="paypal">
+                                                            <label for="paypal" class="payment-method"> Paypal
+                                                                <!-- <img src="./assets/images/money-transfert/paypal-logo-seeklogo.png"
+                                                                    alt="PayPal" class="img-money-transfert"> -->
+                                                            </label>
+
+                                                            <input type="radio" class="form-check-input"
+                                                                id="bankTransfer" name="paymentMethod"
+                                                                value="bankTransfer">
+                                                            <label for="bankTransfer" class="payment-method"> OM
+                                                                <!-- <img src="./assets/images/money-transfert/orange-money-logo-seeklogo.png"
+                                                                    alt="Virement Bancaire" class="img-money-transfert"> -->
+                                                            </label>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Don matériel -->
+                                            <div class="tab-pane fade p-md-3 p-2" id="materiel">
+                                                <form id="don_form" action="#" method="POST">
+                                                    <!-- nature du don -->
+                                                    <div class="mb-3">
+                                                        <div class="form-group">
+                                                            <label for="nature_don" class="form-label">Nature du
+                                                                don</label>
+                                                            <select class="form-select form-select-lg form-select-sm"
+                                                                id="nature_don" name="nature_don" required>
+                                                                <option value="">Sélectionner la nature du don</option>
+                                                                <option value="nourriture">Nourriture</option>
+                                                                <option value="vetement">Vêtements</option>
+                                                                <option value="hygiene">Produits d'Hygiène</option>
+                                                                <option value="medicament">Produits pharmaceutiques
+                                                                </option>
+                                                                <option value="scolaire">Fournitures Scolaires</option>
+                                                                <option value="autre">Autres ...</option>
+                                                            </select>
+                                                            <div class="invalid-feedback">
+                                                                Veuillez sélectionner la nature du don.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- description du don -->
+                                                    <div class="mb-3 mb-md-4">
+                                                        <div class="form-group">
+                                                            <label for="description_don" class="form-label">Description
+                                                                du don</label>
+                                                            <textarea class="form-control form-control-lg"
+                                                                id="description_don" name="description_don"
+                                                                rows="5"></textarea>
+                                                            <div class="invalid-feedback">
+                                                                Ce champ est obligatoire!
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- quantité -->
+                                                    <div class="mb-3 mb-md-4">
+                                                        <div class="form-group">
+                                                            <label for="quantite_don"
+                                                                class="form-label">Quantité</label>
+                                                            <input type="number" class="form-control form-control-lg"
+                                                                id="quantite_don" name="quantite_don" min="1" required>
+                                                            <div class="invalid-feedback">
+                                                                Veuillez fournir la quantité des articles donnés.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- date de collecte -->
+                                                    <div class="mb-3 mb-md-4">
+                                                        <div class="form-group">
+                                                            <label for="date_disponibilite" class="form-label">Date de
+                                                                disponibilité</label>
+                                                            <input type="date" class="form-control form-control-lg"
+                                                                id="date_disponibilite" name="date_disponibilite"
+                                                                required>
+                                                            <div class="invalid-feedback">
+                                                                Veuillez fournir la date de disponibilité des articles.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- lieu de collecte -->
+                                                    <div class="mb-3 mb-md-4">
+                                                        <div class="form-group">
+                                                            <label for="preference_collecte" class="form-label">Lieu
+                                                                de collecte</label>
+                                                            <select class="form-select form-select-lg"
+                                                                id="preference_collecte" name="preference_collecte"
+                                                                required>
+                                                                <option value="">Sélectionner la préférence de collecte
+                                                                </option>
+                                                                <option value="domicile">Ramassage à domicile</option>
+                                                                <option value="depot_lieu_collecte">Dépôt dans un lieu
+                                                                    de
+                                                                    collecte
+                                                                </option>
+                                                                <option value="autre_lieu_collecte">Autre lieu de
+                                                                    collecte
+                                                                </option>
+                                                            </select>
+                                                            <div class="invalid-feedback">
+                                                                Veuillez sélectionner votre préférence de collecte.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- informations supplémentaires -->
+                                                    <div class="mb-3 mb-md-4">
+                                                        <div class="form-group">
+                                                            <label for="info_sup_don" class="form-label">Informations
+                                                                supplémentaires</label>
+                                                            <textarea class="form-control form-control-lg"
+                                                                id="info_sup_don" name="info_sup_don" rows="3"
+                                                                placeholder="Autre chose à ajouter ?"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <!-- bouton envoyer -->
+                                                    <div class="d-grid col-6 mx-auto mt-5">
+                                                        <button class="btn btn-primary btn-lg fw-bold"
+                                                            type="submit">Envoyer</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- S'ABONNER -->
+            <section class="s-abonner d-flex flex-column justify-content-center">
+                <div class="container">
+                    <div class="row px-4 py-5 my-5">
+                        <div class="col-lg-10 mx-auto text-md-center">
+                            <div class="text-center">
+                                <div class="section-title">
+                                    <h2 class="display-3 fw-bold">ABONNEZ-VOUS</h2>
+                                </div>
+                            </div>
+                            <p class="">
+                                Rejoignez-nous dans notre mission de solidarité et d'entraide !
+                                Ensemble, nous pouvons faire une différence dans la vie de
+                                ceux qui en ont le plus besoin. Restez informés sur nos actions,
+                                nos événements communautaires et nos opportunités de bénévolat
+                                en nous suivant. Ensemble, nous pouvons construire un avenir
+                                plus solidaire et soutenir notre communauté dans les moments
+                                difficiles. Rejoignez-nous aujourd'hui et faites partie du
+                                changement positif !
+                            </p>
+                            <span class="mt-sm-5 mt-md-4">
+                                <a href="./connexion.html" class="btn btn-lg btn-primary">Je m'abonne</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NOUS SUIVRE -->
+            <section class="nous-suivre">
+                <div class="container">
+                    <div class="row px-4 py-5 my-5 align-items-center">
+                        <div class="col-lg-6">
+                            <h2 class="display-5 fw-bold">
+                                Voulez-vous faire partir de cette aventure ?
+                                <br>
+                                <span class="text-muted fw-medium display-6">N'attendez plus, suivez-nous.</span>
+                            </h2>
+                        </div>
+                        <div class="col-lg-6 mt-md-1 mt-4">
+                            <div class="d-flex justify-content-md-evenly justify-content-between">
+                                <span class="social-box rounded-circle">
+                                    <a href="#" class="social">
+                                        <i class="bi bi-facebook"></i>
+                                    </a>
+                                </span>
+                                <span class="social-box rounded-circle text-center">
+                                    <a href="#" class="social">
+                                        <i class="bi bi-whatsapp"></i>
+                                    </a>
+                                </span>
+                                <span class="social-box rounded-circle">
+                                    <a href="#" class="social">
+                                        <i class="bi bi-youtube"></i>
+                                    </a>
+                                </span>
+                                <span class="social-box rounded-circle">
+                                    <a href="#" class="social">
+                                        <i class="bi bi-tiktok"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            </div>
+        </main>
+{% endblock main %}
