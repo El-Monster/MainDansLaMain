@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'comptes',
     'donations',
-    'website_part'
+    'website_part',
+    'Necessiteux'
 ]
 
 MIDDLEWARE = [
@@ -79,9 +80,13 @@ WSGI_APPLICATION = 'main_dans_la_main.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'main_dans_la_main',
+        'HOST':'127.0.0.1',
+        'USER':'root',
+        'PASSWORD':'',
+        'PORT':3306
+    } 
 }
 
 

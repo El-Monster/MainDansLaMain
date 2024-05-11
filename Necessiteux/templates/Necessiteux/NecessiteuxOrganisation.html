@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>page de gestion de necessiteux organisation </title>
+    <link rel="stylesheet" href="{% static 'Necessiteux/css/style.css' %}">
+</head>
+<body>
+
+<h3> BIENVENUE DANS LA PAGE DE GESTION DES NECESSITEUX EN TANT ORGANISATION </h3>
+<!-- my_template.html -->
+<form method="post">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            {{ form.nom.label_tag }}
+            {{ form.nom }}
+            {{ form.numero_matd.label_tag }}
+            {{ form.numero_matd }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form.agrement_maspfe.label_tag }}
+            {{ form.agrement_maspfe }}
+            {{ form.statut_juridique.label_tag }}
+            {{ form.statut_juridique }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {{ form.password }}
+            {{ form.password.label_tag }}
+            
+        </div>
+        <div class="form-group col-md-6">
+            {{ form.pays.label_tag }}
+            {{ form.pays }}
+            {{ form.telephone.label_tag }}
+            {{ form.telephone }}
+           
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            {{ form.date_creation.label_tag }}
+            {{ form.date_creation }}
+            {{ form.type_necessiteux.label_tag }}
+            {{ form.type_necessiteux }}
+        </div>
+        <div class="form-group col-md-6">
+            <button type="submit" class="btn btn-primary">s'inscrire</button>
+        </div>
+    </div>
+</form>
+
+
+    
+</body>
+</html>
