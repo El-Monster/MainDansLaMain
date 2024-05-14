@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'comptes',
     'donations',
-    'website_part'
+    'website_part',
+    'communs'
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,321 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block titre %} Accueil | Main Dans La Main {% endblock %}</title>
+
+        {% comment %} css de bootstrap {% endcomment %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+        {% comment %} icons de bootstrap {% endcomment %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        {% comment %} css pour animate {% endcomment %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+        {% comment %} css de base {% endcomment %}
+        <link rel="stylesheet" href="{% static 'communs/css/base.css' %}">
+
+        {% comment %} css propre au projet {% endcomment %}
+        {% block css %}{% endblock css %}
+
+        {% comment %} js de bootstrap {% endcomment %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"
+            defer></script>
+
+        {% comment %} js de base {% endcomment %}
+        <script src="{% static 'communs/js/base.js' %}" defer></script>
+
+        {% comment %} js propre au projet {% endcomment %}
+        {% block js %}{% endblock js %}
+
+        {% comment %} icon du site {% endcomment %}
+        <link rel="icon" type="image/png" href="{% static 'website_part/img/favicon.ico' %}">
+    </head>
+
+    <body class="w-100 overflow-x-hidden">
+        <div class="w-100">
+            <!-- left -->
+            <div class="left hidden" id="left">
+                <!-- sidebar -->
+                <aside id="sidebar" class="h-100">
+                    <div class="d-flex">
+                        <!-- toggle-btn -->
+                        <button id="toggle-btn" type="button">
+                            <i class="bi bi-grid"></i>
+                        </button>
+                        <!-- sidebar-logo -->
+                        <div class="sidebar-logo">
+                            <a href="" class="text-uppercase fs-5">menu</a>
+                        </div>
+                    </div>
+                    <!-- sidebar-nav -->
+                    <ul class="sidebar-nav">
+                        <!-- la liste des menus du sidebar -->
+                        {% block sidebar_items %}
+                        <!-- profile -->
+                        <li class="sidebar-item">
+                            <!-- sidebar-link -->
+                            <a href="#" class="sidebar-link selected">
+                                <i class="bi bi-person"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+
+                        <!-- task -->
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="bi bi-list-task"></i>
+                                <span>Task</span>
+                            </a>
+                        </li>
+
+                        <!-- Authentification -->
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                                <i class="bi bi-shield-check"></i>
+                                <span>Authentification</span>
+                            </a>
+                            <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Login</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Register</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Multi Level -->
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                                <i class="bi bi-columns"></i>
+                                <span>Multi Level</span>
+                            </a>
+                            <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
+                                        data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
+                                        Two Links
+                                    </a>
+                                    <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
+                                        <li class="sidebar-item">
+                                            <a href="#" class="sidebar-link">Link 1</a>
+                                        </li>
+                                        <li class="sidebar-item">
+                                            <a href="#" class="sidebar-link">Link 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Notifications -->
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="bi bi-bell"></i>
+                                <span>Notifications</span>
+                            </a>
+                        </li>
+
+                        <!-- Settings -->
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="bi bi-gear"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                        {% endblock sidebar_items %}
+                    </ul>
+                    <div class="sidebar-footer">
+                        <a href="#" class="sidebar-link">
+                            <i class="bi bi-box-arrow-left"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </aside>
+            </div>
+            <!-- fin left -->
+            <!-- right -->
+            <div class="right p-0" id="right">
+                <div class="main">
+                    <!-- navbar -->
+                    <nav class="navbar navbar-expand px-4 py-3 d-flex flex-row justify-content-between">
+                        <button class="bg-transparent border-0 d-md-none" type="button" id="toggleLeft">
+                            <h2><i class="bi bi-list"></i><i class="bi bi-x-lg visually-hidden"></i></h2>
+                        </button>
+                        <form action="#" class="d-none d-sm-inline-block mx-5">
+                            <div class="input-group input-group-navbar rounded rounded-4">
+                                <input type="text" class="form-control border-0" placeholder="rechercher ...">
+                                <button class="btn bg-navbar border-0" type="button">Rechercher</button>
+                            </div>
+                        </form>
+                        <div class="app-name">
+                            <span class="text-danger">Main</span><span class="text-warning">DansLa</span><span
+                                class="text-success">Main</span>
+                        </div>
+                        <div class="profil d-flex">
+                            <div class="d-inline">
+                                <div class="navbar-collapse collapse">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item dropdown">
+                                            <a href="" class="nav-icon pe-md-0" data-bs-toggle="dropdown">
+                                                <!-- <i class="bi bi-caret-down fs-5" id="caret"></i> -->
+                                                <img src="
+                                                {% block profil %}{% static 'communs/img/el_monster.png' %}{% endblock profil %}"
+                                                    alt="image profile" class="avatar img-fluid">
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end rounded">
+                                                {% block dropdown_items %}
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="bi bi-person"></i>
+                                                    <span>Profile</span>
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="bi bi-person"></i>
+                                                    <span>Stats</span>
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="bi bi-person"></i>
+                                                    <span>Settings</span>
+                                                </a>
+                                                {% endblock dropdown_items %}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="d-none d-md-inline-block mt-2 ms-2 d-flex flex-column justify-content-center">
+                                <p class="fw-bold m-0">Arnauld Wilfride</p>
+                                <p class="text-muted m-0">Donateur</p>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <!-- content -->
+                    <main class="content px-3 py-4">
+                        <div class="container-fluid">
+                            <div class="mb-3">
+                                {% block content %}
+                                <h3 class="fw-bold fs-4 mb-3 section-title">Admin Dashboard</h3>
+                                <!-- first-row  -->
+                                <div class="row">
+                                    <div class="col-12 col-md-4">
+                                        <!-- card 1 -->
+                                        <div class="card border-0">
+                                            <div class="card-body py-4">
+                                                <h5 class="mb-2 fw-bold">
+                                                    Members Progress
+                                                </h5>
+                                                <p class="mb-2 fw-bold">
+                                                    $72,540
+                                                </p>
+                                                <div class="mb-0">
+                                                    <span class="badge text-badge me-2">
+                                                        +9.0%
+                                                    </span>
+                                                    <span class="fw-bold">
+                                                        Since Last Month
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <!-- card 2 -->
+                                        <div class="card border-0">
+                                            <div class="card-body py-4">
+                                                <h5 class="mb-2 fw-bold">
+                                                    Members Progress
+                                                </h5>
+                                                <p class="mb-2 fw-bold">
+                                                    $72,540
+                                                </p>
+                                                <div class="mb-0">
+                                                    <span class="badge text-badge me-2">
+                                                        +9.0%
+                                                    </span>
+                                                    <span class="fw-bold">
+                                                        Since Last Month
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <!-- card 3 -->
+                                        <div class="card border-0">
+                                            <div class="card-body py-4">
+                                                <h5 class="mb-2 fw-bold">
+                                                    Members Progress
+                                                </h5>
+                                                <p class="mb-2 fw-bold">
+                                                    $72,540
+                                                </p>
+                                                <div class="mb-0">
+                                                    <span class="badge text-badge me-2">
+                                                        +9.0%
+                                                    </span>
+                                                    <span class="fw-bold">
+                                                        Since Last Month
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 class="fw-bold fs-4 my-3">Avg. Agent Earnings</h3>
+                                <!-- second-row  -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <!-- table -->
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr class="highlight">
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">First</th>
+                                                    <th scope="col">Last</th>
+                                                    <th scope="col">Handle</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>Jacob</td>
+                                                    <td>Thornton</td>
+                                                    <td>@fat</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td colspan="2">Larry the Bird</td>
+                                                    <td>@twitter</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                {% endblock content %}
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

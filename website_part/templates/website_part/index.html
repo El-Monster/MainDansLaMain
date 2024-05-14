@@ -44,7 +44,7 @@
                             Nous croyons fermement en la force de la communauté et en la capacité des gens à se soutenir
                             mutuellement dans les moments difficiles.
                         </p>
-                        <a href="./a-propos.html" class="btn btn-primary btn-lg border-0 px-4 me-sm-3">En savoir
+                        <a href="{% url 'website_part:a_propos' %}" class="btn btn-primary btn-lg border-0 px-4 me-sm-3">En savoir
                             plus</a>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                                 tels que l'alimentation, l'éducation et les soins de santé.
                             </p>
                             <p>
-                                <a class="btn btn-primary btn-md border-0" href="#">Voir plus &raquo;</a>
+                                <a class="btn btn-primary btn-md border-0" href="{% url 'website_part:nos_actions' %}#actions">Voir plus &raquo;</a>
                             </p>
                         </div>
                         <!-- action 2 -->
@@ -88,7 +88,7 @@
                                 d'hygiène, puis distribuez-les aux personnes dans le besoin dans les communautés
                                 locales.
                             </p>
-                            <p><a class="btn btn-primary btn-md border-0" href="#">Voir plus &raquo;</a></p>
+                            <p><a class="btn btn-primary btn-md border-0" href="{% url 'website_part:nos_actions' %}#actions">Voir plus &raquo;</a></p>
                         </div>
                         <!-- action 3 -->
                         <div class="col-lg-4 action">
@@ -103,7 +103,7 @@
                                 pouvons avoir dans la vie des plus démunis ou toute autre personne dans
                                 le besoin en Guinée.
                             </p>
-                            <p><a class="btn btn-primary btn-md border-0" href="#">Voir plus &raquo;</a></p>
+                            <p><a class="btn btn-primary btn-md border-0" href="{% url 'website_part:nos_actions' %}#actions">Voir plus &raquo;</a></p>
                         </div>
                     </div>
                 </div>
@@ -124,10 +124,8 @@
                                 les preuves qui nous aiderons à vous croire ou alors contactez-nous directement.
                             </p>
                             <div class="gap-2 gap-md-3">
-                                <a href="./besoins.html"
-                                    class="btn btn-primary btn-md border-0 btn-lg px-4 gap-3">Envoyer</a>
-                                <a href="./contactez-nous.html"
-                                    class="btn btn-outline-secondary btn-md btn-lg px-4">Nous contacter</a>
+                                <a href="{% url 'website_part:envoyer_besoin' %}" class="btn btn-primary btn-md border-0 btn-lg px-4 gap-3">Envoyer</a>
+                                <a href="{% url 'website_part:contactez_nous' %}" class="btn btn-outline-secondary btn-md btn-lg px-4">Nous contacter</a>
                             </div>
                         </div>
                         <div class="col-md-5 order-md-1">
@@ -210,7 +208,7 @@
                         <div class="col-lg-6 mt-md-1 mt-4">
                             <div class="d-flex justify-content-md-evenly justify-content-between">
                                 <span class="social-box rounded-circle">
-                                    <a href="#" class="social">
+                                    <a href="https://www.facebook.com/arnaud.blaze" class="social">
                                         <i class="bi bi-facebook"></i>
                                     </a>
                                 </span>

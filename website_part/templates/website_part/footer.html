@@ -1,0 +1,128 @@
+{% load static %}
+<footer class="py-3 mt-5">
+            <div class="container">
+                <div
+                    class="row gap-3 d-flex justify-content-between align-items-center text-center py-3 my-4 border-top">
+                    <p class="col-md-5 mb-0">&copy; 2024 Copyright, Tous droits reservés.</p>
+                    <a href="/"
+                        class="col-md-2 mb-0 d-flex align-items-center justify-content-md-start justify-content-center mb-md-0 me-md-auto text-decoration-none">
+                        <img src="{% static 'website_part/img/freepik-hand_in_hand_logo.jpg' %}"
+                            alt="logo main-dans-la-main" width="50" height="50">
+                    </a>
+                    <ul class="nav col-md-4 justify-content-md-end justify-content-center">
+                        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="left"
+                            title="Contacter par mail">
+                            <a href="mailto:baxel335@gmail.com"><i class="bi-envelope"></i></a>
+                        </li>
+                        <span class="mx-2 mx-sm-2 mx-md-3">.</span>
+                        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="left"
+                            title="Contacter par téléphone">
+                            <a href="tel:+224627200803"><i class="bi-phone"></i></a>
+                        </li>
+                        <span class="mx-2 mx-sm-2 mx-md-3">.</span>
+                        {% comment %} politiques et mentions légales {% endcomment %}
+                        <!-- Button trigger modal -->
+                        <li class="nav-item">
+                            <a href="#" class="btn text-decoration-none m-0 p-0" role="button" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop">Politiques et mentions légales</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <button type="button">
+                <i class="bi-arrow-up-circle-fill" style="font-size: 3rem;" onclick="scrollToTopFunction()"
+                    id="scroll-btn"></i>
+            </button>
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-10">
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5 text-uppercase" id="staticBackdropLabel">Politiques et mentions
+                                            légales</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate odio
+                                            consectetur iusto, tempore harum inventore deserunt dolore, cumque, odit
+                                            maxime
+                                            fuga voluptatem. Doloremque, nam laboriosam repellendus tempore a
+                                            necessitatibus
+                                            cum quae illo provident expedita nihil porro accusamus placeat. Sed harum ea
+                                            eaque fugit. Expedita quasi quibusdam ab dolores consequuntur, consectetur
+                                            repellendus veritatis voluptatibus harum perspiciatis porro consequatur
+                                            saepe
+                                            adipisci alias cumque, a architecto unde voluptatem, inventore eius error.
+                                            Et,
+                                            ducimus hic eius corporis veritatis ut provident porro recusandae? Molestiae
+                                            iusto perspiciatis, nam pariatur culpa voluptas corporis eveniet neque non
+                                            aperiam! Pariatur velit et perferendis enim in inventore sint maxime. Est
+                                            itaque
+                                            reiciendis cupiditate vitae explicabo fugit eum, voluptatibus ducimus
+                                            delectus
+                                            corporis exercitationem ab ipsa! Temporibus minus accusantium soluta
+                                            quisquam
+                                            voluptas veritatis alias odit rerum aliquid, maxime officiis nulla autem
+                                            facere
+                                            quas porro in dignissimos repudiandae quaerat? Laudantium, temporibus et
+                                            officia
+                                            vitae ab recusandae obcaecati delectus soluta iure culpa minus accusantium
+                                            veniam id beatae placeat officiis perspiciatis eligendi a blanditiis maxime
+                                            dolorem est? Explicabo, quidem nam? Asperiores eligendi hic soluta?
+                                            Praesentium
+                                            veniam dolores at consectetur temporibus eaque tenetur accusamus ullam,
+                                            debitis
+                                            adipisci sequi dolorum? Nesciunt voluptas repellendus voluptatibus neque.
+                                            Qui,
+                                            architecto dolore? Laboriosam nisi asperiores doloremque? Eum, excepturi.
+                                            Nostrum pariatur incidunt id maxime delectus totam reprehenderit
+                                            perspiciatis
+                                            excepturi itaque culpa, laborum tenetur dolorum autem nihil nulla fugiat
+                                            dolorem
+                                            maiores quod. Animi quas inventore minus magnam fugiat dolorem in. Ut nam ea
+                                            quas, modi amet eveniet repudiandae saepe. Quas expedita quibusdam impedit
+                                            corrupti, eum neque accusantium natus! Sint, voluptatum. Repudiandae,
+                                            impedit
+                                            voluptatum. Quia ea voluptatibus earum perspiciatis voluptatum? Corporis,
+                                            libero
+                                            velit maxime nihil impedit cupiditate enim molestias sunt magnam itaque
+                                            incidunt
+                                            adipisci veniam placeat eligendi explicabo atque ipsam perferendis dolores
+                                            assumenda rerum ullam neque. Deleniti maiores voluptas deserunt sed? Error
+                                            dicta
+                                            sit dignissimos, amet cumque labore aperiam quas id cupiditate tempora
+                                            voluptatibus recusandae adipisci perspiciatis necessitatibus accusamus!
+                                            Nihil
+                                            magni sequi commodi deleniti, expedita reiciendis iusto debitis accusamus
+                                            necessitatibus! Nobis debitis amet ipsum nulla, cupiditate officiis fuga
+                                            adipisci possimus eos corporis, veniam deserunt, minima voluptas pariatur
+                                            laborum? Aliquam iusto nisi similique sint neque perspiciatis laborum
+                                            dolorum
+                                            cupiditate accusantium placeat. Aspernatur recusandae consequuntur magni
+                                            consequatur libero molestias facere et, voluptas assumenda sed molestiae
+                                            sapiente explicabo fuga deleniti corporis alias veniam nulla. Dignissimos
+                                            sint
+                                            vel distinctio. Ipsum illum ipsam nulla iste adipisci laboriosam beatae
+                                            quasi
+                                            qui dolor voluptatum asperiores delectus facere natus ad, in tempora hic
+                                            quia
+                                            laudantium vitae ab suscipit voluptates nesciunt. Voluptatum, harum.
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-dismiss="modal">Fermer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
