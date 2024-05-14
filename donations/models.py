@@ -33,7 +33,7 @@ class DonateurEntreprise(Donateur):
         verbose_name_plural = "Donateurs Entreprise"
 # classe donateur ent tant que organisation 
 class DonateurOrganisation(Donateur):
-    numero_matricule = models.CharField(max_length=100)
+    numero_fiscal = models.CharField(max_length=100)
     statut_juridique = models.CharField(max_length=100)
     date_creation = models.DateField()
 

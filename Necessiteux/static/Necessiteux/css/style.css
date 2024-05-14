@@ -28,8 +28,9 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="tel"],
+input[type="password"]
 select {
-    width: 30%;
+    width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -38,7 +39,7 @@ select {
 
 /* Style pour les champs de saisie de type date */
 input[type="date"] {
-    width: 30%;
+    width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;

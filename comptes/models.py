@@ -45,7 +45,7 @@ class UtilisateurPersonnalise(AbstractBaseUser):
     statut_verification = models.BooleanField(default=False)
     date_creation_compte = models.DateTimeField(auto_now_add=True)
     role = models.CharField(max_length=100, blank=True, null=True)
-    photo = models.ImageField(upload_to='profile_photos/', blank=True, null=True)
+    photo = models.ImageField(upload_to='media/', blank=True, null=True)
     bibliographie = models.TextField(blank=True, null=True)
 
     # Champs de l'authentification
@@ -56,7 +56,7 @@ class UtilisateurPersonnalise(AbstractBaseUser):
     # Champ requis pour l'authentification
     NOM_UTILISATEUR = 'email'
     # Aucun champ requis supplémentaire lors de la création d'un utilisateur
-    CHAMPS_REQUIS = []
+    USERNAME_FIELD = 'email'
 
     # Utiliser le gestionnaire de modèle personnalisé
     objets = GestionnaireUtilisateur()
