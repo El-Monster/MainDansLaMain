@@ -23,36 +23,28 @@ Connexion | MainDansLaMain
         <div class="container">
             <div class="row justify-content-lg-center">
                 <div class="col-12 col-lg-6">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}"> {{ message }}</div>
+                    {% endfor %}
+                    {% endif %}
                     <div class="bg-white border rounded form-shadow overflow-hidden">
-                        <form method="POST" action="{% url 'comptes:login_page' %}" class="needs-validation" novalidate>
+                        <form method="POST" action="{% url 'website_part:se_connecter' %}" class="needs-validation" novalidate>
                             {% csrf_token %}
                             <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="username" class="form-label">
-                                            Nom d'utilisateur
-                                            <span class="danger">*</span>
-                                        </label>
-                                        <div class="input-group">
-                                            <span class="input-group-text">
-                                                <i class="bi-person-circle"></i>
-                                            </span>
-                                            <input type="username" class="form-control form-control-lg" id="username"
-                                                name="username" value="" required>
+                                        {{ form.email.label_tag }}
+                                        {{ form.email }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <label for="password" class="form-label">
-                                        Mot de passe
-                                        <span class="danger">*</span>
-                                    </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">
-                                            <i class="bi-eye-slash-fill"></i>
-                                        </span>
-                                        <input type="password" class="form-control form-control-lg" id="password"
-                                            name="password" value="" required>
+                                    <div class="form-group">
+                                        {{ form.password.label_tag }}
+                                        {{ form.password }}
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-md-6">

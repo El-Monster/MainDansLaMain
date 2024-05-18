@@ -1,15 +1,14 @@
 {% load static %}
 <form method="post" action="{% url 'donations:donateurEntreprise_compte' %}" enctype="multipart/form-data">
     {% csrf_token %}
-   
     <div class="row">
         <div class=" col-md-6">
             {{ form.nom.label_tag }} <br>
             {{ form.nom }}<br>
-            {{ form.email.label_tag }}<br>
-            {{ form.email }}<br>
-            {{ form.pays.label_tag }}<br>
-            {{ form.pays }}<br>
+            {{ userForm.email.label_tag }}<br>
+            {{ userForm.email }}<br>
+            {{ userForm.pays.label_tag }}<br>
+            {{ userForm.pays }}<br>
             {{ form.statut_juridique.label_tag }}<br>
             {{ form.statut_juridique }}<br>
             {{ form.type_donateur.label_tag }}<br>
@@ -18,16 +17,16 @@
         <div class="col-md-6">
             {{ form.numero_fiscal.label_tag }}<br>
             {{ form.numero_fiscal }}<br>
-            {{ form.password.label_tag }}<br>
-            {{ form.password }}<br>
-            {{ form.ville.label_tag }}<br>
-            {{ form.ville }}<br>
+            {{ userForm.password.label_tag }}<br>
+            {{ userForm.password }}<br>
+            {{ userForm.ville.label_tag }}<br>
+            {{ userForm.ville }}<br>
             {{ form.date_creation.label_tag }}<br>
             {{ form.date_creation }}<br>
-            {{ form.telephone.label_tag }}<br>
-            {{ form.telephone }}<br>
-            {{ form.photo.label_tag }}
-            {{ form.photo }}
+            {{ userForm.telephone.label_tag }}<br>
+            {{ userForm.telephone }}<br>
+            {{ userForm.photo.label_tag }}
+            {{ userForm.photo }}
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Enregistrer</button>

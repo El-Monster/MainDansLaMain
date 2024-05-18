@@ -16,12 +16,15 @@ from .models import DonateurEntreprise
 class DonateurEntrepriseForm(forms.ModelForm):
     class Meta:
         model = DonateurEntreprise
-        fields = ['photo','nom', 'numero_fiscal', 'statut_juridique', 'date_creation', 
-                  'email', 'telephone', 'pays', 'ville', 'type_donateur',
-                   'password']
+        fields = [
+            'type_donateur',
+            'preferences_besoins',
+            'statut',
+            'numero_fiscal',
+            'statut_juridique',
+            'date_creation',
+        ]
 
         widgets = {
-            'date_creation': forms.DateInput(attrs={'type': 'date'}),
-            'password': forms.PasswordInput(),
-            
+            'date_creation': forms.DateInput(attrs={'type': 'date'}),            
         }

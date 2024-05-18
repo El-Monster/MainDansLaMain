@@ -6,11 +6,14 @@ from .models import DonateurOrganisation
 class DonateurOrganisationForm(forms.ModelForm):
     class Meta:
         model = DonateurOrganisation
-        fields = ['photo','nom', 'numero_fiscal', 'statut_juridique', 'date_creation', 
-                  'email', 'telephone', 'pays', 'ville', 'type_donateur', 
-                  'preferences_besoins', 'password']
+        fields = [
+            'numero_MATD',
+            'statut_juridique',
+            'date_creation',
+            'type_donateur',
+            'preferences_besoins',
+        ]
 
         widgets = {
-            'date_creation': forms.DateInput(attrs={'type': 'date'}),
-            'password': forms.PasswordInput(),
+            'date_creation': forms.DateInput(attrs={'type': 'date'})
         }

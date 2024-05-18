@@ -15,8 +15,8 @@
     {% csrf_token %}
     <div class="form-row">
         <div class="form-group col-md-6">
-            {{ form.nom.label_tag }}
-            {{ form.nom }}
+            {{ userForm.nom.label_tag }}
+            {{ userForm.nom }}
             {{ form.numero_matd.label_tag }}
             {{ form.numero_matd }}
         </div>
@@ -29,17 +29,17 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            {{ form.email.label_tag }}
-            {{ form.email }}
-            {{ form.password }}
-            {{ form.password.label_tag }}
+            {{ userForm.email.label_tag }}
+            {{ userForm.email }}
+            {{ userForm.password }}
+            {{ userForm.password.label_tag }}
             
         </div>
         <div class="form-group col-md-6">
-            {{ form.pays.label_tag }}
-            {{ form.pays }}
-            {{ form.telephone.label_tag }}
-            {{ form.telephone }}
+            {{ userForm.pays.label_tag }}
+            {{ userForm.pays }}
+            {{ userForm.telephone.label_tag }}
+            {{ userForm.telephone }}
            
         </div>
     </div>

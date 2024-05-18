@@ -2,16 +2,16 @@ from django.db import models
 from comptes.models import UtilisateurPersonnalise
 
 # Cette classe du donateur 
-class Donateur(UtilisateurPersonnalise):
-    nom = models.CharField(max_length=100)
+class Donateur(models.Model):
     TYPE_DONATEUR_CHOICES = [
         ('individu', 'Individu'),
         ('entreprise', 'Entreprise'),
         ('organisation', 'Organisation'),
     ]
     type_donateur = models.CharField(max_length=100, choices=TYPE_DONATEUR_CHOICES)
-    preferences_besoins = models.CharField(max_length=255)
-    statut = models.CharField(max_length=100)
+    preferences_besoins = models.CharField(max_length=255, blank=True, null=True)
+    statut = models.CharField(max_length=100, blank=True, null=True)
+    user = models.ForeignKey(UtilisateurPersonnalise, on_delete=models.CASCADE)
     class Meta:
         abstract = True
 
@@ -22,7 +22,6 @@ class DonateurPersonne(Donateur):
     prenom = models.CharField(max_length=50)
     genre = models.CharField(max_length=10, choices=CHOIX_GENRE)
     date_naissance = models.DateField()
-    type_donateur = 'Personne'
     class Meta:
         verbose_name = "Donateur Personne"
         verbose_name_plural = "Donateurs Personnes"
@@ -41,7 +40,7 @@ class DonateurEntreprise(Donateur):
         
 # classe donateur ent tant que organisation 
 class DonateurOrganisation(Donateur):
-    numero_fiscal = models.CharField(max_length=100)
+    numero_MATD = models.CharField(max_length=100)
     statut_juridique = models.CharField(max_length=100)
     date_creation = models.DateField()
 

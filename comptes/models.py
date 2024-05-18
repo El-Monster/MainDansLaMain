@@ -65,27 +65,28 @@ class UtilisateurPersonnalise(AbstractBaseUser):
     def __str__(self):
         return self.email
 
-    class Meta:
-        abstract = True  # Définit cette classe comme une classe abstraite
+    # class Meta:
+    #     abstract = True  # Définit cette classe comme une classe abstraite
 
 # Définition du modèle d'administrateur
-class Administrateur(UtilisateurPersonnalise):
+class Administrateur(models.Model):
     prenom=models.CharField(max_length=20 ,default='')
     genre = models.CharField(max_length=10, choices=[('M', 'Masculin'), ('F', 'Féminin'), ('Autre', 'Autre')], blank=True, null=True)
     date_naissance = models.DateField(blank=True, null=True)
     role_administratif = models.CharField(max_length=100)
     date_debut_administration = models.DateField()
+    user = models.ForeignKey(UtilisateurPersonnalise, on_delete=models.CASCADE)
     class Meta:
         verbose_name = "Administrateur"
         verbose_name_plural = "Administrateurs"
         
-class Benevole(UtilisateurPersonnalise):
-    prenom = models.CharField(max_length=20, default='')
-    genre = models.CharField(max_length=10, choices=[('M', 'Masculin'), ('F', 'Féminin'), ('Autre', 'Autre')], blank=True, null=True)
-    date_naissance = models.DateField(blank=True, null=True)
-    statut_disponibilite = models.BooleanField(default=False)
-    domaines_de_competences = models.TextField(max_length=255, blank=True, null=True)
+# class Benevole(UtilisateurPersonnalise):
+#     prenom = models.CharField(max_length=20, default='')
+#     genre = models.CharField(max_length=10, choices=[('M', 'Masculin'), ('F', 'Féminin'), ('Autre', 'Autre')], blank=True, null=True)
+#     date_naissance = models.DateField(blank=True, null=True)
+#     statut_disponibilite = models.BooleanField(default=False)
+#     domaines_de_competences = models.TextField(max_length=255, blank=True, null=True)
 
-    class Meta:
-        verbose_name = "Bénévole"
-        verbose_name_plural = "Bénévoles"
+#     class Meta:
+#         verbose_name = "Bénévole"
+#         verbose_name_plural = "Bénévoles"

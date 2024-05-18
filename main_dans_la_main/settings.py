@@ -76,7 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'main_dans_la_main.wsgi.application'
 
-# AUTH_USER_MODEL = 'comptes.UtilisateurPersonnalise'
+AUTH_USER_MODEL = 'comptes.UtilisateurPersonnalise'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'main_dans_la_main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'main_dans_la_main',
+        'NAME': 'mains_dans_les_mains',
         'HOST':'127.0.0.1',
         'USER':'root',
         'PASSWORD':'',
@@ -139,3 +139,8 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Role dans l'app
+
+PERSONNE_DONATEUR = "PersoneDonateur"

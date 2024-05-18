@@ -3,30 +3,30 @@
     {% csrf_token %}
     <div class="row">
         <div class=" col-md-6">
-            {{ form.nom.label_tag }} <br>
-            {{ form.nom }}<br>
-            {{ form.email.label_tag }}<br>
-            {{ form.email }}<br>
-            {{ form.pays.label_tag }}<br>
-            {{ form.pays }}<br>
+            {{ userForm.nom.label_tag }} <br>
+            {{ userForm.nom }}<br>
+            {{ userForm.email.label_tag }}<br>
+            {{ userForm.email }}<br>
+            {{ userForm.pays.label_tag }}<br>
+            {{ userForm.pays }}<br>
             {{ form.statut_juridique.label_tag }}<br>
             {{ form.statut_juridique }}<br>
             {{ form.type_donateur.label_tag }}<br>
             {{ form.type_donateur }}
         </div>
         <div class="col-md-6">
-            {{ form.numero_fiscal.label_tag }}<br>
-            {{ form.numero_fiscal }}<br>
-            {{ form.password.label_tag }}<br>
-            {{ form.password }}<br>
-            {{ form.ville.label_tag }}<br>
-            {{ form.ville }}<br>
+            {{ form.numero_MATD.label_tag }}<br>
+            {{ form.numero_MATD }}<br>
+            {{ userForm.password.label_tag }}<br>
+            {{ userForm.password }}<br>
+            {{ userForm.ville.label_tag }}<br>
+            {{ userForm.ville }}<br>
             {{ form.date_creation.label_tag }}<br>
             {{ form.date_creation }}<br>
-            {{ form.telephone.label_tag }}<br>
-            {{ form.telephone }}<br>
-            {{ form.photo.label_tag }}<br>
-           {{ form.photo }}
+            {{ userForm.telephone.label_tag }}<br>
+            {{ userForm.telephone }}<br>
+            {{ userForm.photo.label_tag }}<br>
+           {{ userForm.photo }}
            
          
         </div>

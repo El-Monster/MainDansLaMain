@@ -5,7 +5,14 @@ class NecessiteuxPersonneForm(forms.ModelForm):
     
     class Meta:
         model = NecessiteuxPersonne
-        fields = ['nom', 'prenom', 'email', 'telephone', 'pays', 'ville', 'genre', 'date_naissance', 'photo','type_necessiteux']
+        fields = [
+            'nom',
+            'type_necessiteux',
+            'user',
+            'prenom',
+            'genre',
+            'date_naissance',
+        ]
         widgets = {
             'date_naissance': forms.DateInput(attrs={'type': 'date'})
         }

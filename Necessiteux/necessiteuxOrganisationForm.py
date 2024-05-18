@@ -5,12 +5,16 @@ class NecessiteuxOrganisationForm(forms.ModelForm):
     
     class Meta:
         model = NecessiteuxOrganisation
-        fields = ['nom', 'numero_matd', 'agrement_maspfe', 
-                  'statut_juridique', 'date_creation', 'email','password',
-                  'telephone', 'pays', 'ville', 'type_necessiteux']
+        fields = [
+            'nom',
+            'type_necessiteux',
+            'numero_matd',
+            'agrement_maspfe',
+            'statut_juridique',
+            'date_creation',
+        ]
         widgets = {
-            'date_creation': forms.DateInput(attrs={'type': 'date'}),
-            'password': forms.PasswordInput()
+            'date_creation': forms.DateInput(attrs={'type': 'date'})
         }
           
         labels = {

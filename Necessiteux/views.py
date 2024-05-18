@@ -1,4 +1,6 @@
 from django.shortcuts import render,redirect
+
+from comptes.forms import UtilisateurForm
 from .necessiteuxPersonneForm import NecessiteuxPersonneForm
 from .necessiteuxOrganisationForm import NecessiteuxOrganisationForm
 # Create your views here.
@@ -6,13 +8,15 @@ from .necessiteuxOrganisationForm import NecessiteuxOrganisationForm
 def necessiteuxPersonne(request):
     if request.method == 'POST':
         form = NecessiteuxPersonneForm(request.POST)
+        userForm = UtilisateurForm(request.POST)
         if form.is_valid():
             necessiteux_personne = form.save()
             # Redirection vers une autre vue ou une autre URL après avoir enregistré le nécessiteux
             return redirect('')
     else:
+        userForm = UtilisateurForm()
         form = NecessiteuxPersonneForm()
-    return render(request, 'Necessiteux/NecessiteuxPersonne.html', {'form': form})
+    return render(request, 'Necessiteux/NecessiteuxPersonne.html', {'form': form,"userForm":userForm})
 
 def necessiteuxOrganisation(request):
     if request.method == 'POST':
