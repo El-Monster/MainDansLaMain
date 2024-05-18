@@ -1,30 +1,121 @@
+{% extends 'website_part/base.html' %}
+{% load static %}
+
+{% block titre %}
+Création de compte | MainDansLaMain
+{% endblock titre %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'comptes/css/comptes.css' %}">
+{% endblock css %}
+
+{% block js %}
+<script src="{% static 'comptes/js/comptes.js' %}" defer></script>
+{% endblock js %}
 
 
+{% block main %}
+<!-- main -->
+<main>
+    <!-- titre de la page -->
+    <section class="page-section-title section-title">
+        <div class="container text-center">
+            <div class="row">
+                <h2 class="display-3 fw-bold text-uppercase">Créer un compte</h2>
+            </div>
+        </div>
+    </section>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Création form -->
+    <section class="creation py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-11 col-md-9">
+                    <p class="mb-5">
+                        Merci de rejoindre notre communauté dédiée à faire la différence.
+                        <br>
+                        Créons un impact positif, main dans la main!
+                    </p>
+                    <h2 class="mb-4 display-5 fw-bold">Je crée mon compte</h2>
 
-   
-</head>
-<body>
-  
-    <div class="container">
-        <h2>Création de compte</h2>
-        <form method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <button type="submit" class="btn btn-primary">Enregistrer</button>
-        </form>
-        
-        
-    </div>
-    <br>
-    
-</body>
-</html>
+                    <!-- trait -->
+                    <hr class="mb-5">
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-lg-center">
+                <div class="col-12 col-md-9">
+                    <div
+                        class="bg-white shadow-lg gy-4 gy-xl-5 p-4 p-xl-5 justify-content-center border rounded rounded-4 form-shadow overflow-hidden">
+                        <!-- choix du type de formulaire à afficher -->
+                        <div class="row">
+                            {% include 'comptes/type_compte.html' %}
+                        </div>
+                        <!-- LES FORMULAIRES : seul le formulaire correspondant sera affiché -->
+                        <!-- formulaire pour une personne -->
+                        <!-- donateur -->
+                        <div id="form-personne-donateur">
+                            {% include 'donations/donateurPersonne.html' %}
+                        </div>
+                        <!-- nécéssiteux -->
+                        <div id="form-personne-necessiteux">
+                            {% comment %} {% include 'necessiteux/necessiteuxPersonne.html' %} {% endcomment %}
+                        </div>
+                        <!-- bénévole -->
+                        <div id="form-personne-benevole">
+                            {% comment %} {% include 'benevoles/benevolesPersonne.html' %} {% endcomment %}
+                        </div>
+                        <!-- formulaire pour organisation -->
+                        <!-- donateur -->
+                        <div id="form-organisation-donateur">
+                            {% include 'donations/donateurOrganisation.html' %}
+                        </div>
+                        <!-- nécéssiteux -->
+                        <div id="form-organisation-necessiteux">
+                            {% comment %} {% include 'necessiteux/necessiteuxOrganisation.html' %} {% endcomment %}
+                        </div>
+
+                        <!-- formulaire pour entreprise -->
+                        <!-- donateur -->
+                        <div id="form-entreprise-donateur">
+                            {% include 'donations/donateurEntreprise.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DONATIONS -->
+    <section class="donation mt-5">
+        <div class="overlay d-flex flex-column justify-content-center">
+            <div class="container">
+                <div class="row px-4 pb-3 my-5">
+                    <div class="col-lg-8 body">
+                        <!-- title -->
+                        <h2 class="display-5 mb-sm-3 mb-sm-0 fw-bold title">Chaque geste compte '
+                        </h2>
+                        <!-- texte -->
+                        <p class="fw-medium text">
+                            Ensemble, nous avons le pouvoir de transformer des vies,
+                            de semer des graines d'espoir et d'illuminer l'avenir des plus
+                            démunis. Chaque geste compte, chaque don fait une différence
+                            immense. Rejoignez-nous dans cette noble mission en faisant
+                            un don aujourd'hui.
+                        </p>
+                    </div>
+                    <div class="col-md-4 my-md-auto text-lg-center">
+                        <div class="shake">
+                            <a href="{% url 'website_part:faire_donation' %}"
+                                class="btn btn-lg btn-donation fw-bolder">Faire un
+                                don</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock main %}

@@ -3,19 +3,33 @@ from .donateurPersonneForm import DonateurPersonneForm
 from .donateurOrganisationForm import DonateurOrganisationForm
 from .donateurEntrepriseForm import DonateurEntrepriseForm
 from django.http import HttpResponse
-from .models import DonateurEntreprise
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 
 # Create your views here.
 #creation de la vue pour la page de don
+
 def donateurPersonne(request):
     if request.method == 'POST':
-        form = DonateurPersonneForm(request.POST)
+        print('EEEEE')
+        form = DonateurPersonneForm(request.POST, request.FILES)
         if form.is_valid():
-            donateur_personne = form.save()
-            # Redirection vers une autre vue ou une autre URL après avoir enregistré le donateur
-            return redirect('')
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            User = get_user_model()
+            
+            # Vérifier si le compte email existe déjà dans la base de données
+            if User.objects.filter(email=email).exists():
+                messages.error(request, 'Cet email a déjà un compte.')
+            elif not is_secure_password(password):
+                messages.error(request, 'Le mot de passe ne correspond pas aux critères de sécurité.')
+            else:
+                form.save()
+                messages.success(request, 'Votre compte a été créé avec succès.')
+                return redirect('website_part:index')
+        else:
+            # Si le formulaire est invalide, renvoyer le formulaire avec les erreurs
+            return render(request, 'donations/donateurPersonne.html', {'form': form})
     else:
         form = DonateurPersonneForm()
     return render(request, 'donations/donateurPersonne.html', {'form': form})
@@ -50,6 +64,9 @@ def is_secure_password(password):
         has_digit and
         has_special
     )
+
+
+
 def donateurEntreprise(request):
     error_message = None  # Initialisez le message d'erreur à None
 

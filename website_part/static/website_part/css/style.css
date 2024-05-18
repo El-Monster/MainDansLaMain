@@ -420,6 +420,12 @@ footer .nav .nav-item>a:hover {
     height: 50px;
 }
 
+/*
+*   PAGE CONNEXION
+*************************************/
+.message-erreur {
+    color: var(--color-danger);
+}
 
 
 /***********************    MEDIA QUERIES   ***********************/

@@ -1,0 +1,28 @@
+<!-- Propriétaire -->
+<div class="col-md-6 mb-3 mb-md-4 text-start">
+    <div class="form-group">
+        <label for="type_utilisateur" class="form-label fs-5">Vous êtes :</label>
+        <select class="form-select form-select-lg" id="type_utilisateur" name="type_utilisateur" required>
+            <option value="">Choisissez...</option>
+            <option value="personne">Personne</option>
+            <option value="organisation">Organisation</option>
+            <option value="entreprise">Entreprise</option>
+        </select>
+        <div id="erreur_utilisateur" class="message-erreur"></div>
+        <div class="invalid-feedback">Veuillez choisir une entité.</div>
+    </div>
+</div>
+<!-- Type compte -->
+<div class="col-md-6 mb-3 mb-md-4 text-start">
+    <div class="form-group">
+        <label for="type_compte" class="form-label fs-5">Créer un compte de type :</label>
+        <select class="form-select form-select-lg" id="type_compte" name="type_compte" required>
+            <option value="">Choisissez...</option>
+            <option value="donateur">Donateur</option>
+            <option value="necessiteux">Nécessiteux</option>
+            <option value="benevole">Bénévole</option>
+        </select>
+        <div id="erreur_compte" class="message-erreur"></div>
+        <div class="invalid-feedback">Veuillez sélectionner le type de compte.</div>
+    </div>
+</div>

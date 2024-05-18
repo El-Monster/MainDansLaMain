@@ -1,17 +1,4 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page de gestion de DonateurOrganisation</title>
-    <link rel="stylesheet" href="{% static 'Necessiteux/css/style.css' %}">
-    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
-</head>
-<body>
-
-<h3>BIENVENUE DANS LA PAGE DE GESTION DES DONATEURS ORGANISATION</h3>
 <form method="post">
     {% csrf_token %}
     <div class="row">
@@ -41,20 +28,10 @@
             {{ form.photo.label_tag }}<br>
            {{ form.photo }}
            
-           <!-- Champ de fichier Filepond pour la photo -->
-           <input type="file" class="filepond" name="photo">
+         
         </div>
        
     </div>
-    <!-- Ajoutez les autres rangées de formulaire de la même manière -->
+ 
     <button type="submit" class="btn btn-primary">Enregistrer</button>
 </form>
-<!-- Initialiser Filepond -->
-<script>
-    const inputElement = document.querySelector('input[type="file"]');
-    FilePond.create(inputElement);
-</script>
-
-
-</body>
-</html>

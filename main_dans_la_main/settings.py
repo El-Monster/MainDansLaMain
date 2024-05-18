@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+APPEND_SLASH = True
 
 # Application definition
 
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_countries',
     'comptes',
     'donations',
     'website_part',
@@ -74,6 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'main_dans_la_main.wsgi.application'
 
+# AUTH_USER_MODEL = 'comptes.UtilisateurPersonnalise'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -128,7 +131,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'main_dans_la_main/static')    
 ]
-STATICFILES_DIRS=['static']
+
 MEDIA_URLS='media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
 
