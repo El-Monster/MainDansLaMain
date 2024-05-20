@@ -6,13 +6,21 @@ class NecessiteuxPersonneForm(forms.ModelForm):
     class Meta:
         model = NecessiteuxPersonne
         fields = [
-            'nom',
-            'type_necessiteux',
-            'user',
+            #'type_necessiteux',
             'prenom',
             'genre',
             'date_naissance',
         ]
+        
         widgets = {
-            'date_naissance': forms.DateInput(attrs={'type': 'date'})
+            'prenom': forms.TextInput(attrs={'class': 'form-control'}),
+            'genre': forms.Select(attrs={'class': 'form-select'}),
+            'date_naissance': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
         }
+        
+        labels = {
+            'prenom': 'Prénom',
+            'genre': 'Genre',
+            'date_naissance': 'Date de naissance',
+        }
+        

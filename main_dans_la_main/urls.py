@@ -25,6 +25,8 @@ urlpatterns = [
     path('', include('donations.urls')),
     path('', include('website_part.urls')),
     path('', include('Necessiteux.urls')),
+    path('', include('benevole.urls')),
+
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL,
