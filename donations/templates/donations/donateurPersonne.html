@@ -163,32 +163,3 @@ Création de compte | MainDansLaMain
     </div>
 </main>
 {% endblock main %}
-
-<script>
-    $(document).ready(function() {
-    $('#id_pays').change(function() {
-        var countryCode = $(this).val();
-        if (countryCode) {
-            $.ajax({
-                url: '{% url "charger_villes" %}',
-                data: {
-                    'country_code': countryCode
-                },
-                dataType: 'json',
-                success: function(data) {
-                    var select = $('#id_villes');
-                    select.empty();
-                    select.append($('<option>').text('Sélectionnez une ville').attr('value', ''));
-                    $.each(data, function(index, value) {
-                        select.append($('<option>').text(value).attr('value', value));
-                    });
-                }
-            });
-        } else {
-            alert('Null');
-            $('#id_villes').empty();
-            $('#id_villes').append($('<option>').text('Sélectionnez une ville').attr('value', ''));
-        }
-    });
-});
-</script>

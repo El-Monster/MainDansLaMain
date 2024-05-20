@@ -1,5 +1,3 @@
-
-
 {% extends 'website_part/base.html' %}
 {% load static %}
 
@@ -29,14 +27,24 @@ Création de compte | MainDansLaMain
                 {% endfor %}
                 {% endif %}
 
-                <form method="post" action="{% url 'Necessiteux:necessiteuxOrganisation_compte' %}" enctype="multipart/form-data"
+                <form method="post" action="{% url 'benevole:benevolePersonne_compte' %}" enctype="multipart/form-data"
                     class="needs-validation bg-white shadow-lg gy-4 gy-xl-5 p-4 p-xl-5 rounded rounded-4 justify-content-center"
                     novalidate>
                     {% csrf_token %}
                     <!-- coordonnées personnelles -->
                     <div class="row">
                         <h2 class="fw-medium mb-3 mb-md-5">Vos coordonnées</h2>
-                        <!-- Nom de l'organisation -->
+                        <!-- Prénom(s) -->
+                        <div class="col-md-6 mb-3 mb-md-4">
+                            <div class="form-group">
+                                {{ form.prenom.label_tag }}
+                                {{ form.prenom }}
+                                <div class="invalid-feedback">
+                                    Ce champ est obligatoire!
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Nom(s) -->
                         <div class="col-md-6 mb-3 mb-md-4">
                             <div class="form-group">
                                 {{ userForm.nom.label_tag }}
@@ -46,73 +54,36 @@ Création de compte | MainDansLaMain
                                 </div>
                             </div>
                         </div>
-                        <!-- statut juridique -->
                         <div class="col-md-6 mb-3 mb-md-4">
                             <div class="form-group">
-                                {{ form.statut_juridique.label_tag }}
-                                {{ form.statut_juridique }}
+                                {{ form.date_naissance.label_tag }}
+                                {{ form.date_naissance }}
                                 <div class="invalid-feedback">
                                     Ce champ est obligatoire!
                                 </div>
                             </div>
                         </div>
-                         <!-- numero de MATD -->
                         <div class="col-md-6 mb-3 mb-md-4">
                             <div class="form-group">
-                                {{ form.numero_matd.label_tag }}
-                                {{ form.numero_matd }}
+                                {{ form.genre.label_tag }}
+                                {{ form.genre }}
                                 <div class="invalid-feedback">
                                     Ce champ est obligatoire!
                                 </div>
                             </div>
-                            {% if form.numero_matd.errors %}
-                            <span class="text-muted text-danger">{{ form.numero_matd.errors }}</span>
+                        </div>
+                        <!-- E-mail -->
+                        <div class="col-md-6 mb-3 mb-md-4">
+                            <div class="form-group">
+                                {{ userForm.email.label_tag }}
+                                {{ userForm.email }}
+                                <div class="invalid-feedback">
+                                    Ce champ est obligatoire!
+                                </div>
+                            </div>
+                            {% if userForm.email.errors %}
+                            <span class="text-muted text-danger">{{ userForm.email.errors }}</span>
                             {% endif %}
-                        </div>
-                         <!-- numero de MASFE -->
-                         <div class="col-md-6 mb-3 mb-md-4">
-                            <div class="form-group">
-                                {{ form.agrement_maspfe.label_tag }}
-                                {{ form.agrement_maspfe }}
-                                <div class="invalid-feedback">
-                                    Ce champ est obligatoire!
-                                </div>
-                            </div>
-                            {% if form.numero_matd.errors %}
-                            <span class="text-muted text-danger">{{ form.numero_matd.errors }}</span>
-                            {% endif %}
-                        </div>
-                    
-                         <!-- Date de creation -->
-                        <div class="col-md-6 mb-3 mb-md-4">
-                            <div class="form-group">
-                                {{ form.date_creation.label_tag }}
-                                {{ form.date_creation }}
-                                <div class="invalid-feedback">
-                                    Ce champ est obligatoire!
-                                </div>
-                            </div>
-                        </div>
-                       <!-- Pays -->
-                       <div class="col-md-6 mb-3 mb-md-4">
-                        <div class="form-group">
-                            {% comment %} <label for="city_validation" class="form-label">Ville</label> {%endcomment %}
-                            {{ userForm.pays.label_tag }}
-                            {{ userForm.pays }}
-                            <div class="invalid-feedback">
-                                Ce champ est obligatoire!
-                            </div>
-                        </div>
-                    </div>
-                        <!-- Ville -->
-                        <div class="col-md-6 mb-3 mb-md-4">
-                            <div class="form-group">
-                                {{ userForm.ville.label_tag }}
-                                {{ userForm.ville }}
-                                <div class="invalid-feedback">
-                                    Ce champ est obligatoire!
-                                </div>
-                            </div>
                         </div>
                         <!-- Téléphone -->
                         <div class="col-md-6 mb-3 mb-md-4">
@@ -124,23 +95,42 @@ Création de compte | MainDansLaMain
                                 </div>
                             </div>
                         </div>
-                            <!-- Email -->
-                            <div class="col-md-6 mb-3 mb-md-4">
-                                <div class="form-group">
-                                    {{ userForm.email.label_tag }}
-                                    {{ userForm.email }}
-                                    <div class="invalid-feedback">
-                                        Ce champ est obligatoire!
-                                    </div>
-                                </div>
-                                {% if userForm.email.errors %}
-                                <span class="text-muted text-danger">{{ userForm.email.errors }}</span>
-                                {% endif %}
-                            </div>
+
+                      
+                        <!-- Pays -->
                         <div class="col-md-6 mb-3 mb-md-4">
+                            <div class="form-group">
+                                {% comment %} <label for="city_validation" class="form-label">Ville</label> {%endcomment %}
+                                {{ userForm.pays.label_tag }}
+                                {{ userForm.pays }}
+                                <div class="invalid-feedback">
+                                    Ce champ est obligatoire!
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Ville -->
+                        <div class="col-md-6 mb-3 mb-md-4">
+                            <div class="form-group">
+                                {{ userForm.ville.label_tag }}
+                                {{ userForm.ville }}
+                                <div class="invalid-feedback">
+                                    Ce champ est obligatoire!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3 mb-md-4">
                             <div class="form-group">
                                 {{ userForm.photo.label_tag }}
                                 {{ userForm.photo }}
+                                <div class="invalid-feedback">
+                                    Ce champ est obligatoire!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3 mb-md-4">
+                            <div class="form-group">
+                                {{ form.domaines_de_competences.label_tag }}
+                                {{ form.domaines_de_competences}}
                                 <div class="invalid-feedback">
                                     Ce champ est obligatoire!
                                 </div>
@@ -156,6 +146,8 @@ Création de compte | MainDansLaMain
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="col-md-6 mb-3 mb-md-4">
                             <div class="form-group">
                                 {{ userForm.password_confirmation.label_tag }}
@@ -168,6 +160,8 @@ Création de compte | MainDansLaMain
                             <span class="text-muted text-danger">{{ userForm.password.errors }}</span>
                             {% endif %}
                         </div>
+                        
+                        
                     </div>
                     <div class="d-grid col-6 mx-auto mt-5">
                         <button class="btn btn-primary btn-lg fw-bold" type="submit">Envoyer</button>
@@ -178,15 +172,3 @@ Création de compte | MainDansLaMain
     </div>
 </main>
 {% endblock main %}
-
-
-
-
-
-
-
-
-
-
-
-

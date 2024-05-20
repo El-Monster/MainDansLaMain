@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'comptes',
     'donations',
     'website_part',
-    'Necessiteux'
+    'Necessiteux',
+    'benevole',
 ]
 
 MIDDLEWARE = [
@@ -143,4 +144,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Role dans l'app
 
-PERSONNE_DONATEUR = "PersoneDonateur"
+PERSONNE_DONATEUR = "PersonneDonateur"
+ENTREPRISE_DONATEUR="EntrepriseDonateur"
+PERSONNE_NECESSITEUX="PersonneNecessiteux"
+ORGANISATION_NECESSITEUX="OrganisationNecessiteux"
+BENEVOLE="Benevole"
