@@ -41,7 +41,7 @@ function chargerVilles() {
         console.log(data);
         data.forEach(ville => {
             const option = document.createElement('option');
-            option.value = ville.iso2;
+            option.value = ville.name;
             option.textContent = ville.name;
             villeSelect.appendChild(option);
         })
