@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from django_countries.fields import CountryField
 
 # Définition du gestionnaire de modèle personnalisé pour les utilisateurs
 class GestionnaireUtilisateur(BaseUserManager):
@@ -35,11 +34,11 @@ class GestionnaireUtilisateur(BaseUserManager):
 # Définition du modèle utilisateur personnalisé
 class UtilisateurPersonnalise(AbstractBaseUser):
     # Champs de l'utilisateur
-    nom=models.CharField(max_length=20 ,default='')
+    nom = models.CharField(max_length=20 , default='')
     id = models.AutoField(primary_key=True)
     email = models.EmailField(unique=True)
     telephone = models.CharField(max_length=15, blank=True, null=True)
-    pays = CountryField(blank_label="Votre pays", blank=True, null=True)
+    pays = models.CharField(max_length=100, blank=True, null=True)
     ville = models.CharField(max_length=100, blank=True, null=True)
     statut = models.CharField(max_length=100, blank=True, null=True)
     statut_verification = models.BooleanField(default=False)

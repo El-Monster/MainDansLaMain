@@ -6,6 +6,11 @@ Création de compte | MainDansLaMain
 {% endblock titre %}
 
 
+{% block js %}
+    <script src="{% static 'comptes/js/comptes.js' %}" defer></script>
+{% endblock js %}
+    
+
 {% block main %}
 <main>
     <!-- titre de la page -->
@@ -96,21 +101,10 @@ Création de compte | MainDansLaMain
                             </div>
                         </div>
 
-                        <!-- Type donateur -->
-                        <!-- <div class="col-md-6 mb-3 mb-md-4">
-                            <div class="form-group">
-                                {{ form.type_donateur.label_tag }}
-                                {{ form.type_donateur }}
-                                <div class="invalid-feedback">
-                                    Ce champ est obligatoire!
-                                </div>
-                            </div>
-                        </div> -->
-
                         <!-- Pays -->
                         <div class="col-md-6 mb-3 mb-md-4">
                             <div class="form-group">
-                                {% comment %} <label for="city_validation" class="form-label">Ville</label> {%endcomment %}
+                                {% comment %} <label for="city_validation" class="form-label">Ville</label> {% endcomment %}
                                 {{ userForm.pays.label_tag }}
                                 {{ userForm.pays }}
                                 <div class="invalid-feedback">
@@ -169,46 +163,32 @@ Création de compte | MainDansLaMain
     </div>
 </main>
 {% endblock main %}
-<!-- 
-<form method="post">
-    {% csrf_token %}
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            {{ form.nom.label_tag }}
-            {{ form.nom }}
-            {{ form.prenom.label_tag }}
-            {{ form.prenom }}
-        </div>
-        <div class="form-group col-md-6">
-            Ajoutez les autres champs de la même manière
-            {{ form.email.label_tag }}
-            {{ form.email }}
-            {{ form.password.label_tag }}
-            {{ form.password }}
 
-
-        </div>
-        <div class="form-group col-md-6"></div>
-        {{ form.pays.label_tag }}
-        {{ form.pays }}
-        {{ form.ville.label_tag }}
-        {{ form.ville }}
-    </div>
-    <div class="form-group col-md-6">
-        {{ form.genre.label_tag }}
-        {{ form.genre }}
-        {{ form.date_naissance.label_tag }}
-        {{ form.date_naissance }}
-    </div>
-    <div class="form-group col-md-6">
-        Ajoutez les autres champs de la même manière
-        {{ form.type_donateur.label_tag }}
-        {{ form.type_donateur }}
-        {{ form.telephone.label_tag }}
-        {{ form.telephone }}
-
-    </div>
-    </div>
-    Ajoutez les autres rangées de formulaire de la même manière
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
-</form> -->
+<script>
+    $(document).ready(function() {
+    $('#id_pays').change(function() {
+        var countryCode = $(this).val();
+        if (countryCode) {
+            $.ajax({
+                url: '{% url "charger_villes" %}',
+                data: {
+                    'country_code': countryCode
+                },
+                dataType: 'json',
+                success: function(data) {
+                    var select = $('#id_villes');
+                    select.empty();
+                    select.append($('<option>').text('Sélectionnez une ville').attr('value', ''));
+                    $.each(data, function(index, value) {
+                        select.append($('<option>').text(value).attr('value', value));
+                    });
+                }
+            });
+        } else {
+            alert('Null');
+            $('#id_villes').empty();
+            $('#id_villes').append($('<option>').text('Sélectionnez une ville').attr('value', ''));
+        }
+    });
+});
+</script>

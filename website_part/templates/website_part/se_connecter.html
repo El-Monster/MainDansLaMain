@@ -5,6 +5,9 @@
 Connexion | MainDansLaMain
 {% endblock titre %}
 
+{% block js %}
+    <script src="{% static 'website_part/js/se_connecter.js' %}" defer></script>
+{% endblock js %}
 
 {% block main %}
 <!-- main -->
@@ -110,10 +113,8 @@ Connexion | MainDansLaMain
                                         <a href="{% url 'Necessiteux:necessiteuxPersonne_compte' %}"
                                             class="btn btn-primary creation" id="necessiteux-personne">Continuer</a>
                                         <!-- benevole -->
-                                        {% comment %}
-                                        <a href="{% url 'donations:benevolePersonne_compte' %}"
-                                            class="btn btn-primary creation" id="benevole-personne">Continuer</a>
-                                        {% endcomment %}
+                                        {% comment %} <a href="{% url 'benevole:benevolePersonne_compte' %}"
+                                            class="btn btn-primary creation" id="benevole-personne">Continuer</a> {% endcomment %}
 
                                         <!-- ORGANISATION -->
                                         <!-- donateur -->

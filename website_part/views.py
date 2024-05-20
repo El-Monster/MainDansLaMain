@@ -51,7 +51,10 @@ def se_connecter(request: HttpRequest) -> HttpResponse:
             messages.error(request, 'Veuillez corriger les erreurs ci-dessous.')
     else:
         form = LoginForm()
-
-    return render(request, 'website_part/se_connecter.html', {'form': form})
-    # context = {'active_page': 'se_connecter'} 
+        context = {
+            'active_page': 'se_connecter',
+            'form': form
+        }
+    return render(request, 'website_part/se_connecter.html', context)
+    # return render(request, 'website_part/se_connecter.html', {'form': form}) 
     # return render(request, 'website_part/se_connecter.html', context)
