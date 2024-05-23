@@ -3,7 +3,11 @@ from .models import DonateurPersonne
 from django_countries.widgets import CountrySelectWidget
 
 class DonateurPersonneForm(forms.ModelForm):
-    class Meta:
+     password_confirmation = forms.CharField(
+     widget=forms.PasswordInput(attrs={'class': 'form-control form-control-lg'}),
+     label='Confirmer le mot de passe'
+     )
+     class Meta:
         model = DonateurPersonne
         
         widgets = {
@@ -11,24 +15,38 @@ class DonateurPersonneForm(forms.ModelForm):
             'prenom': forms.TextInput(attrs={'class': 'form-control'}),
             'genre': forms.Select(attrs={'class': 'form-select'}),
             'date_naissance': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            # 'type_donateur': forms.Select(attrs={'class': 'form-select'}),
+            'nom': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'telephone': forms.TextInput(attrs={'class': 'form-control'}),
+            'pays': forms.Select(attrs={'class': 'form-select'}),
+            'ville': forms.TextInput(attrs={'class': 'form-control'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
+            'photo': forms.FileInput(attrs={'class': 'form-control-file'}),
+            'password_confirmation': forms.PasswordInput(attrs={'class': 'form-control'})
         }
         
         labels = {
             'prenom': 'Prénom',
             'genre': 'Genre',
             'date_naissance': 'Date de naissance',
-            # 'type_donateur': 'Type de donateur',
-            'preferences_besoins':"Preferences Besoins"
+            'preferences_besoins':"Preferences Besoins",
+            'email': 'Adresse e-mail',
+            'telephone': 'Téléphone',
+            'pays': 'Pays',
+            'ville': 'Ville',
+            'photo': 'Photo de profil',
+            'nom':"Nom",
+            'password':"Mot de pass"
         }
         
         fields = [
-            # 'type_donateur',
+            
             'preferences_besoins',
             'prenom',
             'genre',
             'date_naissance',
-            # 'type_donateur'
+             'email', 'telephone', 'pays',
+             'ville', 'photo','nom','password'
         ]
         
     # def clean(self):

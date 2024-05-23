@@ -1,41 +1,38 @@
-from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
+from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django_countries.fields import CountryField
 
-# Définition du gestionnaire de modèle personnalisé pour les utilisateurs
+
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+from django_countries.fields import CountryField
+
 class GestionnaireUtilisateur(BaseUserManager):
-    # Méthode pour créer un utilisateur standard
     def create_user(self, email, password=None, **extra_fields):
         if not email:
-            raise ValueError("L'adresse e-mail doit être spécifiée")
+            raise ValueError(_("L'adresse e-mail doit être spécifiée"))
         email = self.normalize_email(email)
-        # Création d'une instance utilisateur avec les champs fournis
         utilisateur = self.model(email=email, **extra_fields)
-        # Définition du mot de passe pour l'utilisateur
         utilisateur.set_password(password)
-        # Sauvegarde de l'utilisateur dans la base de données
         utilisateur.save(using=self._db)
         return utilisateur
 
-    # Méthode pour créer un superutilisateur
     def create_superuser(self, email, password=None, **extra_fields):
-        # Assurer que le superutilisateur a les privilèges appropriés
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
-        # Vérification des privilèges du superutilisateur
         if extra_fields.get('is_staff') is not True:
-            raise ValueError("Le superutilisateur doit avoir is_staff=True.")
+            raise ValueError(_("Le superutilisateur doit avoir is_staff=True."))
         if extra_fields.get('is_superuser') is not True:
-            raise ValueError("Le superutilisateur doit avoir is_superuser=True.")
+            raise ValueError(_("Le superutilisateur doit avoir is_superuser=True."))
 
-        # Création de l'utilisateur avec les privilèges de superutilisateur
         return self.create_user(email, password, **extra_fields)
 
-# Définition du modèle utilisateur personnalisé
-class UtilisateurPersonnalise(AbstractBaseUser):
-    # Champs de l'utilisateur
-    nom=models.CharField(max_length=20 ,default='')
+class UtilisateurPersonnalise(AbstractBaseUser, PermissionsMixin):
+    nom = models.CharField(max_length=20, default='')
     id = models.AutoField(primary_key=True)
     email = models.EmailField(unique=True)
     telephone = models.CharField(max_length=15, blank=True, null=True)
@@ -48,24 +45,21 @@ class UtilisateurPersonnalise(AbstractBaseUser):
     photo = models.ImageField(upload_to='media/', blank=True, null=True)
     bibliographie = models.TextField(blank=True, null=True)
 
-    # Champs de l'authentification
-    est_actif = models.BooleanField(default=True)
-    est_personnel = models.BooleanField(default=False)
-    est_superutilisateur = models.BooleanField(default=False)
+    is_active = models.BooleanField(_('active'), default=True)
+    is_staff = models.BooleanField(_('staff status'), default=False,
+                                   help_text=_('Designates whether the user can log into this admin site.'))
+    is_superuser = models.BooleanField(_('superuser status'), default=False,
+                                   help_text=_('Designates that this user has all permissions without explicitly assigning them.'))
 
-    # Champ requis pour l'authentification
-    NOM_UTILISATEUR = 'email'
-    # Aucun champ requis supplémentaire lors de la création d'un utilisateur
     USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
-    # Utiliser le gestionnaire de modèle personnalisé
-    objets = GestionnaireUtilisateur()
+    objects = GestionnaireUtilisateur()
 
-    # Fonction pour obtenir une représentation en chaîne de l'utilisateur
     def __str__(self):
         return self.email
 
-    # class Meta:
+
     #     abstract = True  # Définit cette classe comme une classe abstraite
 
 # Définition du modèle d'administrateur

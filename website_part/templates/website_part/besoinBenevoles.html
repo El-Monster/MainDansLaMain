@@ -1,0 +1,126 @@
+{% extends 'website_part/base.html' %}
+{% load static %}
+
+{% block titre %}
+    Envoyer un besoin de bénévoles | MainDansLaMain
+{% endblock titre %}
+
+{% block main %}
+    <main>
+        <!-- titre de la page -->
+        <section class="page-section-title section-title">
+            <div class="container text-center">
+                <div class="row">
+                    <h2 class="display-3 fw-bold text-uppercase">Envoyer un besoin de bénévoles</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form -->
+        <section class="form py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-11 col-md-9">
+                        <p class="mb-5">
+                            Veuillez remplir le formulaire ci-dessous pour nous aider à mieux comprendre votre
+                            situation et à vous fournir une assistance appropriée.
+                        </p>
+                        <h2 class="mb-4 display-5 fw-bold">Détails du besoin</h2>
+                        <!-- trait -->
+                        <hr class="mb-5">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-11 col-md-9">
+                        {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <form method="post" enctype="multipart/form-data"
+                              class="needs-validation bg-white shadow-lg gy-4 gy-xl-5 p-4 p-xl-5 rounded rounded-4 justify-content-center"
+                              novalidate>
+                            {% csrf_token %}
+                            <div class="col-md-12 mb-3 mb-md-4">
+                                <div class="form-group">
+                                    {{ form.necessiteux.label_tag }}
+                                    {{ form.necessiteux }}
+                                    <div class="invalid-feedback">
+                                        Ce champ est obligatoire!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-3 mb-md-4">
+                                    <div class="form-group">
+                                        {{ form.titre.label_tag }}
+                                        {{ form.titre }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-3 mb-md-4">
+                                    <div class="form-group">
+                                        {{ form.description.label_tag }}
+                                        {{ form.description }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3 mb-md-4">
+                                    <div class="form-group">
+                                        {{ form.degre_urgence.label_tag }}
+                                        {{ form.degre_urgence }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3 mb-md-4">
+                                    <div class="form-group">
+                                        {{ form.duree.label_tag }}
+                                        {{ form.duree }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-3 mb-md-4">
+                                    <div class="form-group">
+                                        {{ form.nombre_de_benevoles.label_tag }}
+                                        {{ form.nombre_de_benevoles }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-3 mb-md-4">
+                                    <div class="form-group">
+                                        {{ form.competences_demandees.label_tag }}
+                                        {{ form.competences_demandees }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-grid col-6 mx-auto mt-5">
+                                <button class="btn btn-primary btn-lg fw-bold" type="submit">Envoyer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock main %}

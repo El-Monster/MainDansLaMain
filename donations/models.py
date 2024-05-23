@@ -1,8 +1,7 @@
 from django.db import models
 from comptes.models import UtilisateurPersonnalise
 
-# Cette classe du donateur 
-class Donateur(models.Model):
+class Donateur(UtilisateurPersonnalise):
     TYPE_DONATEUR_CHOICES = [
         ('individu', 'Individu'),
         ('entreprise', 'Entreprise'),
@@ -10,40 +9,41 @@ class Donateur(models.Model):
     ]
     type_donateur = models.CharField(max_length=100, choices=TYPE_DONATEUR_CHOICES)
     preferences_besoins = models.CharField(max_length=255, blank=True, null=True)
-    statut = models.CharField(max_length=100, blank=True, null=True)
-    user = models.ForeignKey(UtilisateurPersonnalise, on_delete=models.CASCADE)
+    statut_donateur = models.CharField(max_length=100, blank=True, null=True)  # Renommage du champ pour éviter le conflit
+
     class Meta:
-        abstract = True
+        db_table = 'donateur'
+        verbose_name = "Donateur"
+        verbose_name_plural = "Donateurs"
 
 
-#la classe en tant que donateur personne
 class DonateurPersonne(Donateur):
     CHOIX_GENRE = [('M', 'Masculin'),('F', 'Féminin'),('Autre', 'Autre')]
     prenom = models.CharField(max_length=50)
     genre = models.CharField(max_length=10, choices=CHOIX_GENRE)
     date_naissance = models.DateField()
+
     class Meta:
+        db_table = 'donateur_personne'
         verbose_name = "Donateur Personne"
         verbose_name_plural = "Donateurs Personnes"
 
-
-#classe du donateur en tant entreprise     
 class DonateurEntreprise(Donateur):
     numero_fiscal = models.CharField(max_length=100)
     statut_juridique = models.CharField(max_length=100)
     date_creation = models.DateField()
 
     class Meta:
+        db_table = 'donateur_entreprise'
         verbose_name = "Donateur Entreprise"
-        verbose_name_plural = "Donateurs Entreprise"
+        verbose_name_plural = "Donateurs Entreprises"
 
-        
-# classe donateur ent tant que organisation 
 class DonateurOrganisation(Donateur):
     numero_MATD = models.CharField(max_length=100)
     statut_juridique = models.CharField(max_length=100)
     date_creation = models.DateField()
 
     class Meta:
+        db_table = 'donateur_organisation'
         verbose_name = "Donateur Organisation"
-        verbose_name_plural = "Donateurs Organisation"
+        verbose_name_plural = "Donateurs Organisations"

@@ -39,8 +39,8 @@ Création de compte | MainDansLaMain
                         <!-- Nom de l'organisation -->
                         <div class="col-md-6 mb-3 mb-md-4">
                             <div class="form-group">
-                                {{ userForm.nom.label_tag }}
-                                {{ userForm.nom }}
+                                {{ form.nom.label_tag }}
+                                {{ form.nom }}
                                 <div class="invalid-feedback">
                                     Ce champ est obligatoire!
                                 </div>
@@ -84,8 +84,8 @@ Création de compte | MainDansLaMain
                        <div class="col-md-6 mb-3 mb-md-4">
                         <div class="form-group">
                             {% comment %} <label for="city_validation" class="form-label">Ville</label> {%endcomment %}
-                            {{ userForm.pays.label_tag }}
-                            {{ userForm.pays }}
+                            {{ form.pays.label_tag }}
+                            {{ form.pays }}
                             <div class="invalid-feedback">
                                 Ce champ est obligatoire!
                             </div>
@@ -114,20 +114,20 @@ Création de compte | MainDansLaMain
                             <!-- Email -->
                             <div class="col-md-6 mb-3 mb-md-4">
                                 <div class="form-group">
-                                    {{ userForm.email.label_tag }}
-                                    {{ userForm.email }}
+                                    {{ form.email.label_tag }}
+                                    {{ form.email }}
                                     <div class="invalid-feedback">
                                         Ce champ est obligatoire!
                                     </div>
                                 </div>
-                                {% if userForm.email.errors %}
-                                <span class="text-muted text-danger">{{ userForm.email.errors }}</span>
+                                {% if form.email.errors %}
+                                <span class="text-muted text-danger">{{ form.email.errors }}</span>
                                 {% endif %}
                             </div>
                         <div class="col-md-12 mb-3 mb-md-4">
                             <div class="form-group">
-                                {{ userForm.photo.label_tag }}
-                                {{ userForm.photo }}
+                                {{ form.photo.label_tag }}
+                                {{ form.photo }}
                                 <div class="invalid-feedback">
                                     Ce champ est obligatoire!
                                 </div>
@@ -151,8 +151,8 @@ Création de compte | MainDansLaMain
                                     Ce champ est obligatoire!
                                 </div>
                             </div>
-                            {% if userForm.password.errors %}
-                            <span class="text-muted text-danger">{{ userForm.password.errors }}</span>
+                            {% if form.password.errors %}
+                            <span class="text-muted text-danger">{{form.password.errors }}</span>
                             {% endif %}
                         </div>
                     </div>

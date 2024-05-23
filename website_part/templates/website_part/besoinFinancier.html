@@ -17,7 +17,9 @@
                     </div>
                 </div>
             </section>
-
+            
+           
+            
             <!-- Form -->
             <section class="form py-5">
                 <div class="container">
@@ -55,6 +57,17 @@
                             <!-- coordonnées personnelles -->
                             <div class="row">
                                 <h2 class="fw-medium mb-3 mb-md-5">Page d'envoi des besoins materiels</h2>
+                                 <!-- necessiteux  -->
+                                 <div class="col-md-12 mb-3 mb-md-4">
+                                    <div class="form-group">
+                                        {{ form.necessiteux.label_tag }}
+                                        {{ form.necessiteux }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <!-- Titre -->
                                 <div class="col-md-12 mb-3 mb-md-4">
                                     <div class="form-group">
@@ -78,7 +91,7 @@
                                     </div>
                                 </div>
                                 <!-- degre  -->
-                                <div class="col-md-12 mb-3 mb-md-4">
+                                <div class="col-md-6 mb-3 mb-md-4">
                                     <div class="form-group">
                                         {{ form.degre_urgence.label_tag }}
                                         {{ form.degre_urgence }}
@@ -89,29 +102,10 @@
                                 </div>
 
                                 <!-- categorie  -->
-                                <div class="col-md-12 mb-3 mb-md-4">
+                                <div class="col-md-6 mb-3 mb-md-4">
                                     <div class="form-group">
-                                        {{ form.categorie.label_tag }}
-                                        {{ form.categorie }}
-                                        <div class="invalid-feedback">
-                                            Ce champ est obligatoire!
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- quantite  -->
-                                <div class="col-md-12 mb-3 mb-md-4">
-                                    <div class="form-group">
-                                        {{ form.quantite.label_tag }}
-                                        {{ form.quantite }}
-                                        <div class="invalid-feedback">
-                                            Ce champ est obligatoire!
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-3 mb-md-4">
-                                    <div class="form-group">
-                                        {{ form.necessiteux.label_tag }}
-                                        {{ form.necessiteux }}
+                                        {{ form.montant_souhaite.label_tag }}
+                                        {{ form.montant_souhaite }}
                                         <div class="invalid-feedback">
                                             Ce champ est obligatoire!
                                         </div>
