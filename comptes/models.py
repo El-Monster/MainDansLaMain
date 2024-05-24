@@ -74,13 +74,3 @@ class Administrateur(models.Model):
         verbose_name = "Administrateur"
         verbose_name_plural = "Administrateurs"
         
-# class Benevole(UtilisateurPersonnalise):
-#     prenom = models.CharField(max_length=20, default='')
-#     genre = models.CharField(max_length=10, choices=[('M', 'Masculin'), ('F', 'Féminin'), ('Autre', 'Autre')], blank=True, null=True)
-#     date_naissance = models.DateField(blank=True, null=True)
-#     statut_disponibilite = models.BooleanField(default=False)
-#     domaines_de_competences = models.TextField(max_length=255, blank=True, null=True)
-
-#     class Meta:
-#         verbose_name = "Bénévole"
-#         verbose_name_plural = "Bénévoles"
