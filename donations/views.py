@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth.hashers import make_password
 from comptes.forms import UtilisateurForm
@@ -68,12 +69,12 @@ def donateurPersonne(request):
             
             
             donateur = form.save(commit=False)
-            donateur.type_donateur = 'individu'
+            donateur.type_donateur = 'personne'
             donateur.user = user
             print(donateur)
             donateur.save()
             messages.success(request, 'Votre compte a été créé avec succès.')
-            return redirect('website_part:index')
+            return redirect('website_part:se_connecter')
         else:
             # Si le formulaire est invalide, renvoyer le formulaire avec les erreurs
             return render(request, 'donations/donateurPersonne.html', {'form': form})
@@ -186,3 +187,8 @@ def donateurOrganisation(request):
 # cette vue permet d'afficher la page d'accueil pour la creation des comptes des differents donateurs
 def donateurcompte(request):
         return render(request,'donations/donateurcompte.html')
+
+# La vue qui génère le 'tableauBord' du donateur 
+def donateur_tableauBord(request: HttpRequest) -> HttpResponse:
+    context = {'active_page': 'tableauBord'}
+    return render(request, 'donations/app/tableauBord.html', context)

@@ -5,5 +5,5 @@ from .views import *
 app_name = 'comptes'
 
 urlpatterns = [
-    path('login/', register, name = 'login_page')
+    path('login/', register, name = 'login_page'),
 ]

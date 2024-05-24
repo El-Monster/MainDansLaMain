@@ -48,13 +48,29 @@ def se_connecter(request: HttpRequest) -> HttpResponse:
             if user is not None:
                 login(request, user)
                 messages.success(request, 'Vous êtes connecté avec succès.')
+                context = {
+                    'active_menu': 'tableauBord',
+                    'user': user
+                }
                 if(user.role == settings.PERSONNE_DONATEUR):
-                    return redirect('website_part:contactez_nous')
+                    return redirect('donations:donateur_tableauBord')
                 return redirect('website_part:index')
             else:
-                messages.error(request, 'Email ou mot de passe incorrect.')
+                form = LoginForm()
+                context = {
+                    'active_page': 'se_connecter',
+                    'form': form
+                }
+                messages.warning(request, 'Email ou mot de passe incorrect.')
+                return render(request, 'website_part/se_connecter.html', context)
         else:
-            messages.error(request, 'Veuillez corriger les erreurs ci-dessous.')
+            form = LoginForm()
+            context = {
+                'active_page': 'se_connecter',
+                'form': form
+            }
+            messages.warning(request, 'Veuillez corriger les erreurs ci-dessous.')
+            return render(request, 'website_part/se_connecter.html', context)
     else:
         form = LoginForm()
     return render(request, 'website_part/se_connecter.html', {'form': form})

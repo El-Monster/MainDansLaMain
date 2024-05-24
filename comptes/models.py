@@ -36,7 +36,7 @@ class UtilisateurPersonnalise(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key=True)
     email = models.EmailField(unique=True)
     telephone = models.CharField(max_length=15, blank=True, null=True)
-    pays = CountryField(blank_label="Votre pays", blank=True, null=True)
+    pays = models.CharField(max_length=100, blank=True, null=True)
     ville = models.CharField(max_length=100, blank=True, null=True)
     statut = models.CharField(max_length=100, blank=True, null=True)
     statut_verification = models.BooleanField(default=False)
