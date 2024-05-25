@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+APPEND_SLASH = True
 
 # Application definition
 
@@ -38,12 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_countries',
+    'admin_interface',
+    'colorfield',
+    'communs',
     'comptes',
     'donations',
     'website_part',
-    'communs'
+    'Necessiteux',
+    'benevole',
 ]
-
+X_FRAME_OPTIONS='SAMEORIGIN'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -59,7 +65,7 @@ ROOT_URLCONF = 'main_dans_la_main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [ os.path.join(BASE_DIR, 'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,15 +80,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'main_dans_la_main.wsgi.application'
 
+AUTH_USER_MODEL = 'comptes.UtilisateurPersonnalise'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mains_dans_les_mains',
+        'HOST':'127.0.0.1',
+        'USER':'root',
+        'PASSWORD':'',
+        'PORT':3306
+    } 
 }
 
 
@@ -125,7 +136,19 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'main_dans_la_main/static')    
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Role dans l'app
+
+PERSONNE_DONATEUR = "PersonneDonateur"
+ENTREPRISE_DONATEUR="EntrepriseDonateur"
+PERSONNE_NECESSITEUX="PersonneNecessiteux"
+ORGANISATION_NECESSITEUX="OrganisationNecessiteux"
+BENEVOLE="Benevole"

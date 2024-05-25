@@ -1,0 +1,19 @@
+<!-- besoins_en_attente.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Besoins en attente de validation</title>
+</head>
+<body>
+    <h1>Besoins en attente de validation</h1>
+    <ul>
+        {% for besoin in besoins %}
+            <li>{{ besoin.titre }}</li>
+            <!-- Affichez d'autres détails du besoin matériel -->
+        {% endfor %}
+    </ul>
+</body>
+</html>

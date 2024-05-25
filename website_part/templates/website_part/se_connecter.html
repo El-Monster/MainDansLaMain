@@ -2,97 +2,142 @@
 {% load static %}
 
 {% block titre %}
-    Connexion | MainDansLaMain
+Connexion | MainDansLaMain
 {% endblock titre %}
 
+{% block js %}
+<script src="{% static 'website_part/js/se_connecter.js' %}" defer></script>
+{% endblock js %}
 
 {% block main %}
-    <!-- main -->
-        <main>
-            <!-- titre de la page -->
-            <section class="page-section-title section-title">
-                <div class="container text-center">
-                    <div class="row">
-                        <h2 class="display-3 fw-bold text-uppercase">connexion</h2>
-                    </div>
-                </div>
-            </section>
+<!-- main -->
+<main>
+    <!-- titre de la page -->
+    <section class="page-section-title section-title">
+        <div class="container text-center">
+            <div class="row">
+                <h2 class="display-3 fw-bold text-uppercase">connexion</h2>
+            </div>
+        </div>
+    </section>
 
-            <!-- Contact form -->
-            <section class="connexion py-3 py-md-5">
-                <div class="container">
-                    <div class="row justify-content-lg-center">
-                        <div class="col-12 col-lg-6">
-                            <div class="bg-white border rounded form-shadow overflow-hidden">
-                                <form action="#">
-                                    <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="username" class="form-label">
-                                                    Nom d'utilisateur
-                                                    <span class="danger">*</span>
+    <!-- Contact form -->
+    <section class="connexion py-3 py-md-5">
+        <div class="container">
+            <div class="row justify-content-lg-center">
+                <div class="col-12 col-lg-6">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}" role="alert"> {{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="bg-white border rounded form-shadow overflow-hidden">
+                        <form method="POST" action="{% url 'website_part:se_connecter' %}" class="needs-validation"
+                            novalidate>
+                            {% csrf_token %}
+                            <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        {{ form.email.label_tag }}
+                                        {{ form.email }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        {{ form.password.label_tag }}
+                                        {{ form.password }}
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input " type="checkbox" value=""
+                                                    id="remember_be">
+                                                <label class="form-check-label middle" for="remember_be">
+                                                    Se rappeler de moi
                                                 </label>
-                                                <div class="input-group">
-                                                    <span class="input-group-text">
-                                                        <i class="bi-person-circle"></i>
-                                                    </span>
-                                                    <input type="username" class="form-control form-control-lg"
-                                                        id="username" name="username" value="" required>
-                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <label for="password" class="form-label">
-                                                Mot de passe
-                                                <span class="danger">*</span>
-                                            </label>
-                                            <div class="input-group">
-                                                <span class="input-group-text">
-                                                    <i class="bi-eye-slash-fill"></i>
-                                                </span>
-                                                <input type="password" class="form-control form-control-lg"
-                                                    id="password" name="password" value="" required>
-                                            </div>
-                                            <div class="row mt-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input " type="checkbox" value=""
-                                                            id="remember_be">
-                                                        <label class="form-check-label middle" for="remember_be">
-                                                            Se rappeler de moi
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 text-start text-md-end">
-                                                    <div class="form-check">
-                                                        <p class="middle">
-                                                            <a href="#">Mot de passe oublié?</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="d-grid">
-                                                <button class="btn btn-primary btn-lg fw-bold" type="submit">Se
-                                                    connecter</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="mt-3 mt-md-0 text-center">
-                                                <p>
-                                                    Vous n'avez pas de compte? <a href="./inscription.html"
-                                                        class="">S'inscrire</a>
+                                        <div class="col-md-6 text-start text-md-end">
+                                            <div class="form-check">
+                                                <p class="middle">
+                                                    <a href="#">Mot de passe oublié?</a>
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-grid">
+                                        <button class="btn btn-primary btn-lg fw-bold" type="submit">Se
+                                            connecter</button>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mt-3 mt-md-0 text-center">
+                                        <p>
+                                            Vous n'avez pas de compte?
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn text-decoration-underline text-primary"
+                                                data-bs-toggle="modal" data-bs-target="#modalInscription">
+                                                S'inscrire
+                                            </button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Modal -->
+                        <div class="modal fade" id="modalInscription" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="modalInscriptionLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title fs-5" id="modalInscriptionLabel">Choisir
+                                            le type de compte</h3>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            {% include 'website_part/type_compte.html' %}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!-- PERSONNE -->
+                                        <!-- donateur -->
+                                        <a href="{% url 'donations:donateurPersonne_compte' %}"
+                                            class="btn btn-primary creation" id="donateur-personne">Continuer</a>
+                                        <!-- necessiteux -->
+                                        <a href="{% url 'Necessiteux:necessiteuxPersonne_compte' %}"
+                                            class="btn btn-primary creation" id="necessiteux-personne">Continuer</a>
+                                        <!-- benevole -->
+                                        <a href="{% url 'benevole:benevolePersonne_compte' %}"
+                                            class="btn btn-primary creation" id="benevole-personne">Continuer</a>
 
+                                        <!-- ORGANISATION -->
+                                        <!-- donateur -->
+                                        <a href="{% url 'donations:donateurOrganisation_compte' %}"
+                                            class="btn btn-primary creation" id="donateur-organisation">Continuer</a>
+                                        <!-- necessiteux -->
+                                        <a href="{% url 'Necessiteux:necessiteuxOrganisation_compte' %}"
+                                            class="btn btn-primary creation" id="necessiteux-organisation">Continuer</a>
+                                        <!-- ENTREPRISE -->
+                                        <!-- donateur -->
+                                        <a href="{% url 'donations:donateurEntreprise_compte' %}"
+                                            class="btn btn-primary creation" id="donateur-entreprise">Continuer</a>
+                                        <button type="button" class="btn btn-primary"
+                                            id="btn_modal_inscription">Continuer</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </main>
+            </div>
+        </div>
+    </section>
+</main>
 {% endblock main %}

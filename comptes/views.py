@@ -1,14 +1,20 @@
-from django.shortcuts import render
-from django.http.request import HttpRequest
-from django.http import HttpResponse
-from django.template import loader
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout, authenticate
+from django.contrib import messages
+from django.http import HttpRequest, HttpResponse, JsonResponse
 
-# Create your views here.
-def creation_compte(request):
-    return render(request, 'comptes/creation_compte.html')
-def compte_necessiteux(request):
-    return render(request, 'comptes/compte_necessiteux.html')
-def compte_donateur(request):
-    return render(request, 'comptes/compte_donateur.html')
-def compte_benevole(request):
-    return render(request, 'comptes/compte_benevole.html')
+from comptes.models import UtilisateurPersonnalise
+
+
+def register(request: HttpRequest) -> HttpResponse:
+	if request.method == 'POST':
+		email = request.POST.get('username')
+		password = request.POST.get('password')
+		user = authenticate(request, username=email, password=password)
+		if user is not None:
+			login(request, user)
+			print('LOGGED')
+			return redirect('website_part:index')
+		else:
+			print('NO LOGGED')
+			return render(request, 'website_part/contactez_nous.html')

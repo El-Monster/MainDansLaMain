@@ -33,220 +33,133 @@
                         </div>
                     </div>
                 </div>
+                
+                {% if messages %}
+                <div class="messages col-md-4">
+                    {% for message in messages %}
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
 
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-11 col-md-9">
-                            <form
-                                class="row needs-validation bg-white shadow-lg py-md-5 py-4 px-lg-4 rounded rounded-4 justify-content-center"
-                                novalidate>
+                            <form method="post"
+                            class="needs-validation bg-white shadow-lg gy-4 gy-xl-5 p-4 p-xl-5 rounded rounded-4 justify-content-center"
+                            novalidate>
+                            {% csrf_token %}
 
-                                <!-- coordonnées personnelles -->
-                                <div class="row">
-                                    <h2 class="fw-medium mb-3 mb-md-5">Vos coordonnées</h2>
-                                    <!-- Prénom(s) -->
-                                    <div class="col-md-6 mb-3 mb-md-4">
-                                        <div class="form-group">
-                                            <label for="firstname_validation" class="form-label">Prénom(s)</label>
-                                            <input type="text" class="form-control form-control-lg"
-                                                id="firstname_validation" value="" required>
-
-                                            <div class="invalid-feedback">
-                                                Ce champ est obligatoire!
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Nom(s) -->
-                                    <div class="col-md-6 mb-3 mb-md-4">
-                                        <div class="form-group">
-                                            <label for="lastname_validation" class="form-label">Nom(s)</label>
-                                            <input type="text" class="form-control form-control-lg"
-                                                id="lastname_validation" value="" required>
-
-                                            <div class="invalid-feedback">
-                                                Ce champ est obligatoire!
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- E-mail -->
-                                    <div class="col-md-6 mb-3 mb-md-4">
-                                        <div class="form-group">
-                                            <label for="email_validation" class="form-label">E-mail</label>
-                                            <input type="email" class="form-control form-control-lg"
-                                                id="email_validation" value="" required>
-                                            <div class="invalid-feedback">
-                                                Ce champ est obligatoire!
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Téléphone -->
-                                    <div class="col-md-6 mb-3 mb-md-4">
-                                        <div class="form-group">
-                                            <label for="phone_validation" class="form-label">Téléphone</label>
-                                            <input type="tel" class="form-control form-control-lg" id="phone_validation"
-                                                value="" required>
-                                            <div class="invalid-feedback">
-                                                Ce champ est obligatoire!
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Ville -->
-                                    <div class="col-md-4 mb-3 mb-md-4">
-                                        <div class="form-group">
-                                            <label for="city_validation" class="form-label">Ville</label>
-                                            <select class="form-select form-select-lg" id="city_validation" required>
-                                                <option selected disabled value="">ville actuelle</option>
-                                                <option>Bofa</option>
-                                                <option>Boké</option>
-                                                <option>Dabola</option>
-                                                <option>Dalaba</option>
-                                                <option>Conakry</option>
-                                                <option>Farannah</option>
-                                                <option>Fria</option>
-                                                <option>Kankan</option>
-                                                <option>Kindia</option>
-                                                <option>Kissidougou</option>
-                                            </select>
-                                            <div class="invalid-feedback">
-                                                Ce champ est obligatoire!
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Commune -->
-                                    <div class="col-md-4 mb-3 mb-md-4">
-                                        <div class="form-group">
-                                            <label for="commune_validation" class="form-label">Commune</label>
-                                            <select class="form-select form-select-lg" id="commune_validation" required>
-                                                <option selected disabled value="">commune actuelle</option>
-                                                <option>...</option>
-                                            </select>
-                                            <div class="invalid-feedback">
-                                                Ce champ est obligatoire!
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Quartier -->
-                                    <div class="col-md-4 mb-3 mb-md-4">
-                                        <div class="form-group">
-                                            <label for="quarter_validation" class="form-label">Quartier</label>
-                                            <select class="form-select form-select-lg" id="quarter_validation" required>
-                                                <option selected disabled value="">quartier actuel</option>
-                                                <option>...</option>
-                                            </select>
-                                            <div class="invalid-feedback">
-                                                Ce champ est obligatoire!
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- détails besoins -->
-                                <div class="row">
-                                    <h2 class="fw-medium mb-3 mb-md-5 mt-4 mt-md-4">Détails du besoin</h2>
-
-                                    <!-- Champ nature du besoin -->
-                                    <div class="col-md-12 mb-3 mb-md-4">
-                                        <div class="form-group">
-                                            <label for="need_nature_validation" class="form-label">Nature du
-                                                besoin</label>
-                                            <textarea name="need_nature_validation" id="need_nature_validation"
-                                                class="form-control form-control-lg" rows="5"
-                                                placeholder="Décrivez en détail votre besoin" required></textarea>
-                                        </div>
-                                    </div>
-
-                                    <!-- Champ situation actuelle -->
-                                    <div class="col-md-12 mb-3 mb-md-4">
-                                        <div class="form-group">
-                                            <label for="now_situation_validation" class="form-label">Situation
-                                                actuelle</label>
-                                            <textarea name="now_situation_validation" id="now_situation_validation"
-                                                class="form-control form-control-lg" rows="3"
-                                                placeholder="Décrivez votre situation actuelle"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <!-- Champ ressources disponibles -->
-                                    <div class="col-md-12 mb-3 mb-md-4">
-                                        <div class="form-group">
-                                            <label for="ressources_validation" class="form-label">Ressources
-                                                disponibles</label>
-                                            <textarea name="ressources_validation" id="ressources_validation"
-                                                class="form-control form-control-lg" rows="3"
-                                                placeholder="Décrivez les ressources dont vous disposez actuellement"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <!-- Champ degré d'urgence -->
-                                    <div class="col-md-12 mb-3 mb-md-4">
-                                        <div class="form-group">
-                                            <label for="emergence_validation" class="form-label">Degré d'urgence</label>
-                                            <select class="form-select form-select-lg" id="emergence_validation"
-                                                required>
-                                                <option selected value="faible">Faible</option>
-                                                <option value="moyen">Moyen</option>
-                                                <option value="élevé">Élevé</option>
-                                            </select>
-                                            <div class="invalid-feedback">
-                                                Ce champ est obligatoire!
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Champ autres informations -->
-                                    <div class="col-md-12 mb-3 mb-md-4">
-                                        <div class="form-group">
-                                            <label for="otherinformations_validation" class="form-label">Autres
-                                                informations
-                                                pertinentes</label>
-                                            <textarea name="otherinformations_validation"
-                                                id="otherinformations_validation" class="form-control form-control-lg"
-                                                rows="3"
-                                                placeholder="Entrez toute autre information pertinente"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- ajouter des fichiers -->
-                                <div class="row">
-                                    <h2 class="fw-medium mb-3 mb-md-5 mt-4 mt-md-4">Ajouter des documents</h2>
-                                    <!-- Ajout de champs pour les images -->
-                                    <div class="form-group mb-3 mb-md-4">
-                                        <label for="images">Images (JPG, PNG)</label>
-                                        <input type="file" class="form-control form-control-lg" id="images"
-                                            name="images[]" multiple accept="image/jpeg, image/png">
-                                    </div>
-
-                                    <!-- Ajout de champs pour les vidéos -->
-                                    <div class="form-group mb-3 mb-md-4">
-                                        <label for="videos">Vidéos (MP4)</label>
-                                        <input type="file" class="form-control form-control-lg" id="videos"
-                                            name="videos[]" multiple accept="video/mp4">
-                                    </div>
-
-                                    <!-- Ajout de champs pour les documents -->
-                                    <div class="form-group mb-3 mb-md-4">
-                                        <label for="documents">Documents (PDF/WORD)</label>
-                                        <input type="file" class="form-control form-control-lg" id="documents"
-                                            name="documents[]" multiple accept="application/pdf, .docx, .doc">
-                                    </div>
-
-                                    <!-- Utiliser les coordonnées  -->
+                            <!-- coordonnées personnelles -->
+                            <div class="row">
+                                <h2 class="fw-medium mb-3 mb-md-5">Page d'envoi des besoins materiels</h2>
+                                <!-- Titre -->
+                                <div class="col-md-12 mb-3 mb-md-4">
                                     <div class="form-group">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="use_informations">
-                                            <label class="form-check-label" for="use_informations">
-                                                Utiliser vos coordonnées lors du partage.
-                                            </label>
+                                        {{ form.titre.label_tag }}
+                                         {{ form.titre }}
+
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Description  -->
+                                <div class="col-md-12 mb-3 mb-md-4">
+                                    <div class="form-group">
+                                        {{ form.description.label_tag }}
+                                        {{ form.description }}
+
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- degre  -->
+                                <div class="col-md-12 mb-3 mb-md-4">
+                                    <div class="form-group">
+                                        {{ form.degre_urgence.label_tag }}
+                                        {{ form.degre_urgence }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="d-grid col-6 mx-auto mt-5">
-                                    <button class="btn btn-primary btn-lg fw-bold" type="submit">Envoyer</button>
+                                <!-- categorie  -->
+                                <div class="col-md-12 mb-3 mb-md-4">
+                                    <div class="form-group">
+                                        {{ form.categorie.label_tag }}
+                                        {{ form.categorie }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>
+                                <!-- quantite  -->
+                                <div class="col-md-12 mb-3 mb-md-4">
+                                    <div class="form-group">
+                                        {{ form.quantite.label_tag }}
+                                        {{ form.quantite }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-3 mb-md-4">
+                                    <div class="form-group">
+                                        {{ form.necessiteux.label_tag }}
+                                        {{ form.necessiteux }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                               
+                            <!-- détails besoins -->
+                            <div class="row">
+                                
+                            <!-- ajouter des fichiers -->
+                            <div class="row">
+                                <h2 class="fw-medium mb-3 mb-md-5 mt-4 mt-md-4">Ajouter des documents</h2>
+                                <!-- Ajout de champs pour les images -->
+                                <div class="form-group mb-3 mb-md-4">
+                                    {{ form.image.label_tag }}
+                                    {{ form.image }}
+                                </div>
+
+                                <!-- Ajout de champs pour les vidéos -->
+                                <div class="form-group mb-3 mb-md-4">
+                                    {{ form.video.label_tag }}
+                                     {{ form.video }}
+                                </div>
+
+                                <!-- Ajout de champs pour les documents -->
+                                <div class="form-group mb-3 mb-md-4">
+                                    {{ form.document.label_tag }}
+                                    {{ form.document }}
+                                </div>
+
+                                <!-- Utiliser les coordonnées  -->
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="use_informations">
+                                        <label class="form-check-label" for="use_informations">
+                                            Utiliser vos coordonnées lors du partage.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-grid col-6 mx-auto mt-5">
+                                <button class="btn btn-primary btn-lg fw-bold" type="submit">Envoyer</button>
+                            </div>
+                        </form>
+
                         </div>
                     </div>
                 </div>

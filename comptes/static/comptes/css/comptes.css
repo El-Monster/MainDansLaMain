@@ -1,0 +1,8 @@
+#form-personne-donateur,
+#form-personne-necessiteux,
+form-personne-benevole,
+form-organisation-donateur,
+form-organisation-necessiteux,
+form-entreprise-donateur {
+    display: none;
+}

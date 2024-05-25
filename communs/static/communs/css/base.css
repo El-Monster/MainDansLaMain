@@ -290,7 +290,15 @@ a.sidebar-link.selected {
     min-width: 0;
 }
 
-.section-title {
+.sous-titre-page,
+.titre-page {
+    color: var(--color-primary);
+}
+
+.titre-page {
+    font-size: 3rem;
+    text-decoration: underline;
+    text-underline-offset: 10px;
     color: var(--color-primary);
 }
 
