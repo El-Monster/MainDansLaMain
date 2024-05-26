@@ -4,6 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.shortcuts import render, redirect
+
+from Necessiteux.models import Necessiteux, NecessiteuxOrganisation, NecessiteuxPersonne
+from benevole.models import Benevole
+from donations.models import Donateur, DonateurEntreprise, DonateurOrganisation, DonateurPersonne
 from .besoinForm import BesoinMaterielForm, BesoinFinancierForm,BesoinDeBenevolesForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -12,6 +16,7 @@ from django.conf import settings
 from website_part.forms import LoginForm
 
 # Create your views here.
+
 def index(request: HttpRequest) -> HttpResponse:
     context = {'active_page': 'index'}
     return render(request, 'website_part/index.html', context)
@@ -37,7 +42,10 @@ def contactez_nous(request: HttpRequest) -> HttpResponse:
     context = {'active_page': 'contactez_nous'} 
     return render(request, 'website_part/contactez_nous.html', context)
 
-#cette vue permet l'authentifiaction
+
+'''
+    Cette vue permet l'authentifiaction'
+'''
 def se_connecter(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -50,11 +58,48 @@ def se_connecter(request: HttpRequest) -> HttpResponse:
                 messages.success(request, 'Vous êtes connecté avec succès.')
                 context = {
                     'active_menu': 'tableauBord',
-                    'user': user
                 }
-                if(user.role == settings.PERSONNE_DONATEUR):
-                    return redirect('donations:donateur_tableauBord')
-                return redirect('website_part:index')
+
+                # Si 'DONATEUR'
+                if user.role == settings.DONATEUR:
+                    # Récupération du donateur 
+                    donateur = Donateur.objects.get(id = user.id)
+                    
+                    if donateur.type_donateur == settings.PERSONNE:
+                        donateur_personne = DonateurPersonne.objects.get(id = user.id)
+                        context['utilisateur'] = donateur_personne
+                    elif donateur.type_donateur == settings.ORGANISATION:
+                        donateur_organisation = DonateurOrganisation.objects.get(id = user.id)
+                        context['utilisateur'] = donateur_organisation
+                    else:
+                        donateur_entreprise = DonateurEntreprise.objects.get(id = user.id)
+                        context['utilisateur'] = donateur_entreprise
+                        
+                    return render(request, 'donations/app/tableauBord.html', context)
+                # Si 'NECESSITEUX'
+                elif user.role == settings.NECESSITEUX:
+                    necessiteux = Necessiteux.objects.get(id = user.id)
+
+                    if necessiteux.type_necessiteux == settings.personne:
+                        necessiteux_personne = NecessiteuxPersonne.objects.get(id = user.id)
+                        context['necessiteux'] = necessiteux_personne
+                    else:
+                        necessiteux_organisation = NecessiteuxOrganisation.objects.get(id = user.id)
+                        context['necessiteux'] = necessiteux_organisation
+                    
+                    return render(request, 'Necessiteux/app/tableauBord.html', context)
+                # Si 'BENEVOLE'
+                elif user.role == settings.BENEVOLE:
+                    benevole = Benevole.objects.get(id = user.id)
+                    context['benevole'] = benevole
+
+                # Si 'AGENT DE COLLECTE'
+                elif user.role == settings.AGENT_COLLECTE:
+                    print('Agent de collecte')
+                
+                else:
+                    print('')
+                    # return render(request, '404.html', context)
             else:
                 form = LoginForm()
                 context = {
@@ -108,6 +153,7 @@ def creer_besoin_financier(request):
     else:
         form = BesoinFinancierForm()
     return render(request, 'website_part/besoinFinancier.html', {'form': form})
+
 #cette vue permet de lister les besoins de en attente
 def besoins_en_attente(request):
     besoins = BesoinMateriel.objects.filter(statut='En attente')
@@ -115,8 +161,7 @@ def besoins_en_attente(request):
         messages.info(request, 'Il n\'y a pas de besoins matériels en attente.')
     return render(request, 'website_part/besoins_en_attente.html', {'besoins': besoins})
 
-#cette vue permet d'envoyer un besoin de benevoles
-
+#cette vue permet d'envoyer un besoin de benevolat
 def creer_besoin_benevoles(request):
     if request.method == 'POST':
         form = BesoinDeBenevolesForm(request.POST)

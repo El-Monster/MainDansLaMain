@@ -3,7 +3,7 @@ from comptes.models import UtilisateurPersonnalise
 
 class Donateur(UtilisateurPersonnalise):
     TYPE_DONATEUR_CHOICES = [
-        ('individu', 'Individu'),
+        ('personne', 'Personne'),
         ('entreprise', 'Entreprise'),
         ('organisation', 'Organisation'),
     ]

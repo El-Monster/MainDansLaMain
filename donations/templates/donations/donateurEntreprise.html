@@ -7,6 +7,9 @@
 Création de compte | MainDansLaMain
 {% endblock titre %}
 
+{% block js %}
+    <script src="{% static 'comptes/js/comptes.js' %}" defer></script>
+{% endblock js %}
 
 {% block main %}
 <main>
@@ -83,7 +86,7 @@ Création de compte | MainDansLaMain
                        <!-- Pays -->
                        <div class="col-md-6 mb-3 mb-md-4">
                         <div class="form-group">
-                            {% comment %} <label for="city_validation" class="form-label">Ville</label> {%endcomment %}
+                            {% comment %} <label for="city_validation" class="form-label">Ville</label> {% endcomment %}
                             {{ form.pays.label_tag }}
                             {{ form.pays }}
                             <div class="invalid-feedback">
@@ -94,8 +97,8 @@ Création de compte | MainDansLaMain
                         <!-- Ville -->
                         <div class="col-md-6 mb-3 mb-md-4">
                             <div class="form-group">
-                                {{ userForm.ville.label_tag }}
-                                {{ userForm.ville }}
+                                {{ form.ville.label_tag }}
+                                {{ form.ville }}
                                 <div class="invalid-feedback">
                                     Ce champ est obligatoire!
                                 </div>
@@ -104,8 +107,8 @@ Création de compte | MainDansLaMain
                         <!-- Téléphone -->
                         <div class="col-md-6 mb-3 mb-md-4">
                             <div class="form-group">
-                                {{ userForm.telephone.label_tag }}
-                                {{ userForm.telephone }}
+                                {{ form.telephone.label_tag }}
+                                {{ form.telephone }}
                                 <div class="invalid-feedback">
                                     Ce champ est obligatoire!
                                 </div>
@@ -136,8 +139,8 @@ Création de compte | MainDansLaMain
                         <!-- Mot de passe -->
                         <div class="col-md-6 mb-3 mb-md-4">
                             <div class="form-group">
-                                {{ userForm.password.label_tag }}
-                                {{ userForm.password }}
+                                {{ form.password.label_tag }}
+                                {{ form.password }}
                                 <div class="invalid-feedback">
                                     Ce champ est obligatoire!
                                 </div>
@@ -145,8 +148,8 @@ Création de compte | MainDansLaMain
                         </div>
                         <div class="col-md-6 mb-3 mb-md-4">
                             <div class="form-group">
-                                {{ userForm.password_confirmation.label_tag }}
-                                {{ userForm.password_confirmation }}
+                                {{ form.password_confirmation.label_tag }}
+                                {{ form.password_confirmation }}
                                 <div class="invalid-feedback">
                                     Ce champ est obligatoire!
                                 </div>

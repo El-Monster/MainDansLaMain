@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_countries',
-    'admin_interface',
-    'colorfield',
+    # 'admin_interface',
+    # 'colorfield',
     'communs',
     'comptes',
     'donations',
@@ -88,7 +88,7 @@ AUTH_USER_MODEL = 'comptes.UtilisateurPersonnalise'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mains_dans_les_mains',
+        'NAME': 'main_dans_la_main',
         'HOST':'127.0.0.1',
         'USER':'root',
         'PASSWORD':'',
@@ -144,11 +144,21 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+'''
 # Role dans l'app
-
 PERSONNE_DONATEUR = "PersonneDonateur"
 ENTREPRISE_DONATEUR="EntrepriseDonateur"
 PERSONNE_NECESSITEUX="PersonneNecessiteux"
 ORGANISATION_NECESSITEUX="OrganisationNecessiteux"
 BENEVOLE="Benevole"
+'''
+# Types des utilisateurs
+PERSONNE = 'personne'
+ORGANISATION = 'organisation'
+ENTREPRISE = 'entreprise'
+
+# Rôles des utilisateurs
+DONATEUR = 'donateur'
+NECESSITEUX = 'necessiteux'
+BENEVOLE = 'benevole'
+AGENT_COLLECTE = 'agent_collecte'

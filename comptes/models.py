@@ -32,7 +32,7 @@ class GestionnaireUtilisateur(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 class UtilisateurPersonnalise(AbstractBaseUser, PermissionsMixin):
-    nom = models.CharField(max_length=20, default='')
+    nom = models.CharField(max_length=255, default='')
     id = models.AutoField(primary_key=True)
     email = models.EmailField(unique=True)
     telephone = models.CharField(max_length=15, blank=True, null=True)
@@ -64,12 +64,13 @@ class UtilisateurPersonnalise(AbstractBaseUser, PermissionsMixin):
 
 # Définition du modèle d'administrateur
 class Administrateur(models.Model):
-    prenom=models.CharField(max_length=20 ,default='')
+    prenom = models.CharField(max_length=20 ,default='')
     genre = models.CharField(max_length=10, choices=[('M', 'Masculin'), ('F', 'Féminin'), ('Autre', 'Autre')], blank=True, null=True)
     date_naissance = models.DateField(blank=True, null=True)
     role_administratif = models.CharField(max_length=100)
     date_debut_administration = models.DateField()
     user = models.ForeignKey(UtilisateurPersonnalise, on_delete=models.CASCADE)
+    
     class Meta:
         verbose_name = "Administrateur"
         verbose_name_plural = "Administrateurs"

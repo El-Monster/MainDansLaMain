@@ -1,6 +1,7 @@
 
 from django.db import models
 from comptes.models import UtilisateurPersonnalise
+
 # Creation du model benevole   
 class Benevole(models.Model):
     prenom = models.CharField(max_length=20, default='')

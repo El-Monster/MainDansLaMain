@@ -46,13 +46,13 @@ Dashboard | MainDansLaMain
 {% endblock sidebar_items %}
 
 {% comment %} chemin de la photo de profil {% endcomment %}
-{% block profil %}/media/{{ user.photo }}{% endblock profil %}
+{% block profil %}/media/{{ utilisateur.photo }}{% endblock profil %}
 
 {% comment %} nom de l'utilisateur {% endcomment %}
-{% block nom_utilisateur %}{{ user.prenom|upper }}{{ user.nom|upper }}{% endblock nom_utilisateur %}
+{% block nom_utilisateur %}{{ utilisateur.prenom|upper }}{{ utilisateur.nom|upper }}{% endblock nom_utilisateur %}
 
 {% comment %} role de l'utilisateur {% endcomment %}
-{% block role_utilisateur %}{{ user.role|upper }}{% endblock role_utilisateur %}
+{% block role_utilisateur %}{{ utilisateur.role|upper }}{% endblock role_utilisateur %}
 
 {% block content %}
 <!-- dernieres contributions  -->
@@ -128,11 +128,11 @@ Dashboard | MainDansLaMain
     <div class="col-12 col-md-4">
         <div class="card">
             <div class="card-body d-flex flex-row">
-                <img src="/media/{{ user.photo }}" class="rounded-circle me-3" height="50px" width="50px"
+                <img src="/media/{{ utilisateur.photo }}" class="rounded-circle me-3" height="50px" width="50px"
                     alt="profil nécéssiteux" />
                 <div>
-                    <h5 class="card-title font-weight-bold mb-2">{{ user.nom }}</h5>
-                    <p class="card-text"><i class="bi bi-clock-history pe-2"></i>{{ user.date_creation_compte|date }}</p>
+                    <h5 class="card-title font-weight-bold mb-2">{{ utilisateur.nom }}</h5>
+                    <p class="card-text"><i class="bi bi-clock-history pe-2"></i>{{ utilisateur.date_creation_compte|date }}</p>
                 </div>
             </div>
             <div class="bg-image hover-overlay rounded-0">

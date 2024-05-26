@@ -12,66 +12,37 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 
 # Create your views here.
-#creation de la vue pour la page de don
 
-# def donateurPersonne(request):
-#     if request.method == 'POST':
-#         print('EEEEE')
-#         form = DonateurPersonneForm(request.POST)
-#         userForm = UtilisateurForm(request.POST, request.FILES)
-#         if form.is_valid() and form.is_valid():
-#             email = userForm.cleaned_data.get('email')
-#             password = userForm.cleaned_data.get('password')
-#             User = get_user_model()
-            
-#             # Vérifier si le compte email existe déjà dans la base de données
-#             if User.objects.filter(email=email).exists():
-#                 messages.error(request, 'Cet email a déjà un compte.')
-#             elif not is_secure_password(password):
-#                 messages.error(request, 'Le mot de passe ne correspond pas aux critères de sécurité.')
-#             else:
-#                 user = userForm.save()
-#                 if(form.is_valid()):
-#                     donateur = form.save(commit=False)
-#                     donateur.user.pk = user.pk
-#                     donateur.save()
-#                 messages.success(request, 'Votre compte a été créé avec succès.')
-#                 return redirect('website_part:index')
-#         else:
-#             # Si le formulaire est invalide, renvoyer le formulaire avec les erreurs
-#             return render(request, 'donations/donateurPersonne.html', {'form': form})
-#     else:
-#         userForm = UtilisateurForm()
-#         form = DonateurPersonneForm()
-#     return render(request, 'donations/donateurPersonne.html', {'form': form, "userForm":userForm})
-
-
+#creation de la vue pour la page
 def donateurPersonne(request):
     if request.method == 'POST':
         form = DonateurPersonneForm(request.POST,request.FILES)
-        #userForm = UtilisateurForm(request.POST, request.FILES)
-        print(form.is_valid())
         if form.is_valid() :
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
             User = get_user_model()
             # Vérifier si le compte email existe déjà dans la base de données
-            # if User.objects.filter(email=email).exists():
-            #     messages.error(request, 'Cet email a déjà un compte.')
-            # elif not is_secure_password(password):
-            #     messages.error(request, 'Le mot de passe ne correspond pas aux critères de sécurité.')
-            # else:
+            if User.objects.filter(email=email).exists():
+                messages.error(request, 'Cet email a déjà un compte.')
+                return render(request, 'donations/donateurPersonne.html', {'form': form})
+            
+            # Vérifier si le mot de passe est sécurisé
+            if not is_secure_password(password):
+                messages.error(request, 'Le mot de passe ne correspond pas aux critères de sécurité.')
+                return render(request, 'donations/donateurPersonne.html', {'form': form})
+            
             hashed_password = make_password(password)
             user = form.save(commit=False)
             user.password = hashed_password
-            # Attribution du role
-            user.role = settings.PERSONNE_DONATEUR
             
+            # Attribution du role
+            user.role = settings.DONATEUR
             
             donateur = form.save(commit=False)
-            donateur.type_donateur = 'personne'
+            
+            # Attribution du type
+            donateur.type_donateur = settings.PERSONNE
             donateur.user = user
-            print(donateur)
             donateur.save()
             messages.success(request, 'Votre compte a été créé avec succès.')
             return redirect('website_part:se_connecter')
@@ -79,13 +50,8 @@ def donateurPersonne(request):
             # Si le formulaire est invalide, renvoyer le formulaire avec les erreurs
             return render(request, 'donations/donateurPersonne.html', {'form': form})
     else:
-        
         form = DonateurPersonneForm()
-        
-    return render(request, 'donations/donateurPersonne.html', {'form': form})
-
-
-
+        return render(request, 'donations/donateurPersonne.html', {'form': form})
 
 
 # cette fonction permet de mettre de la secrité dans le mot de pass
@@ -118,31 +84,36 @@ def donateurEntreprise(request):
             password = form.cleaned_data.get('password')
             User = get_user_model()
             # Vérifier si le compte email existe déjà dans la base de données
-            # if User.objects.filter(email=email).exists():
-            #     messages.error(request, 'Cet email a déjà un compte.')
-            # elif not is_secure_password(password):
-            #     messages.error(request, 'Le mot de passe ne correspond pas aux critères de sécurité.')
-            # else:
+            if User.objects.filter(email=email).exists():
+                messages.error(request, 'Cet email a déjà un compte.')
+                return render(request, 'donations/donateurEntreprise.html', {'form': form})
+            
+            # Vérifier si le mot de passe est sécurisé
+            if not is_secure_password(password):
+                messages.error(request, 'Le mot de passe ne correspond pas aux critères de sécurité.')
+                return render(request, 'donations/donateurEntreprise.html', {'form': form})
+            
             hashed_password = make_password(password)
             user = form.save(commit=False)
             user.password = hashed_password
+            
             # Attribution du role
-            user.role = settings.ENTREPRISE_DONATEUR
+            user.role = settings.DONATEUR
+
             donateur = form.save(commit=False)
-            donateur.type_donateur = 'Entreprise'
+            
+            # Attribution du type
+            donateur.type_donateur = settings.ENTREPRISE
             donateur.user = user
-            print(donateur)
             donateur.save()
             messages.success(request, 'Votre compte a été créé avec succès.')
-            return redirect('website_part:index')
+            return redirect('website_part:se_connecter')
         else:
             # Si le formulaire est invalide, renvoyer le formulaire avec les erreurs
             return render(request, 'donations/donateurEntreprise.html', {'form': form})
     else:
-        
         form = DonateurEntrepriseForm()
-        
-    return render(request, 'donations/donateurEntreprise.html', {'form': form})
+        return render(request, 'donations/donateurEntreprise.html', {'form': form})
 
 
 def donateurOrganisation(request):
@@ -154,39 +125,37 @@ def donateurOrganisation(request):
             password = form.cleaned_data.get('password')
             User = get_user_model()
             # Vérifier si le compte email existe déjà dans la base de données
-            # if User.objects.filter(email=email).exists():
-            #     messages.error(request, 'Cet email a déjà un compte.')
-            # elif not is_secure_password(password):
-            #     messages.error(request, 'Le mot de passe ne correspond pas aux critères de sécurité.')
-            # else:
+            if User.objects.filter(email=email).exists():
+                messages.error(request, 'Cet email a déjà un compte.')
+                return render(request, 'donations/donateurOrganisation.html', {'form': form})
+            
+            if not is_secure_password(password):
+                messages.error(request, 'Le mot de passe ne correspond pas aux critères de sécurité.')
+                return render(request, 'donations/donateurOrganisation.html', {'form': form})
+            
             hashed_password = make_password(password)
             user = form.save(commit=False)
             user.password = hashed_password
-            # Attribution du role
-            user.role = settings.ENTREPRISE_DONATEUR
             
-           
+            # Attribution du role
+            user.role = settings.DONATEUR
+            
             donateur = form.save(commit=False)
+            
             #attribution de type
-            donateur.type_donateur = 'Organisation'
+            donateur.type_donateur = settings.ORGANISATION
+
             donateur.user = user
-            print(donateur)
             donateur.save()
             messages.success(request, 'Votre compte a été créé avec succès.')
-            return redirect('website_part:index')
+            return redirect('website_part:se_connecter')
         else:
             # Si le formulaire est invalide, renvoyer le formulaire avec les erreurs
             return render(request, 'donations/donateurOrganisation.html', {'form': form})
     else:
-        userForm = UtilisateurForm()
         form = DonateurOrganisationForm()
-        
-    return render(request, 'donations/donateurOrganisation.html', {'form': form})
+        return render(request, 'donations/donateurOrganisation.html', {'form': form})
 
-
-# cette vue permet d'afficher la page d'accueil pour la creation des comptes des differents donateurs
-def donateurcompte(request):
-        return render(request,'donations/donateurcompte.html')
 
 # La vue qui génère le 'tableauBord' du donateur 
 def donateur_tableauBord(request: HttpRequest) -> HttpResponse:
