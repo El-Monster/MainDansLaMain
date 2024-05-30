@@ -53,6 +53,17 @@ body {
     color: var(--color-dark);
 }
 
+p,
+form label {
+    color: var(--color-dark);
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+textarea {
+    resize: none;
+}
+
 a {
     text-decoration: none;
 }
@@ -303,7 +314,7 @@ a.sidebar-link.selected {
 }
 
 /* card */
-.card {
+.card.top {
     background-color: var(--color-background);
     transition: .4s;
     cursor: pointer;
@@ -311,7 +322,7 @@ a.sidebar-link.selected {
     margin-bottom: 1rem;
 }
 
-.card:hover {
+.card.top:hover {
     background-color: var(--nav-background);
     color: #FFF;
     transform: translateY(-10.5px);

@@ -13,8 +13,6 @@ def register(request: HttpRequest) -> HttpResponse:
 		user = authenticate(request, username=email, password=password)
 		if user is not None:
 			login(request, user)
-			print('LOGGED')
 			return redirect('website_part:index')
 		else:
-			print('NO LOGGED')
 			return render(request, 'website_part/contactez_nous.html')

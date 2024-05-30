@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Besoin, BesoinMateriel, BesoinFinancier,BesoinDeBenevoles
+from Necessiteux.models import Besoin, BesoinMateriel, BesoinFinancier,BesoinDeBenevoles
 
 # Classe admin pour le modèle Besoin
 class BesoinAdmin(admin.ModelAdmin):

@@ -1,3 +1,8 @@
+import smtplib
+from django.core.mail import send_mail
+from django.core.mail import send_mail, BadHeaderError
+from django.core.mail.backends.base import BaseEmailBackend
+
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render,get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -8,12 +13,10 @@ from django.shortcuts import render, redirect
 from Necessiteux.models import Necessiteux, NecessiteuxOrganisation, NecessiteuxPersonne
 from benevole.models import Benevole
 from donations.models import Donateur, DonateurEntreprise, DonateurOrganisation, DonateurPersonne
-from .besoinForm import BesoinMaterielForm, BesoinFinancierForm,BesoinDeBenevolesForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import BesoinMateriel,BesoinFinancier
 from django.conf import settings
-from website_part.forms import LoginForm
+from website_part.forms import LoginForm, MessageForm
 
 # Create your views here.
 
@@ -39,8 +42,46 @@ def donations(request: HttpRequest) -> HttpResponse:
     return render(request, 'website_part/faire_donation.html', context)
 
 def contactez_nous(request: HttpRequest) -> HttpResponse:
-    context = {'active_page': 'contactez_nous'} 
-    return render(request, 'website_part/contactez_nous.html', context)
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            # form.save()
+
+            # Préparer l'email
+            subject = 'Nouveau message de contact'
+            message = f"""
+                Prénom: {form.cleaned_data['prenom']}
+                Nom: {form.cleaned_data['nom']}
+                Email: {form.cleaned_data['email']}
+                Téléphone: {form.cleaned_data['telephone']}
+                Message: {form.cleaned_data['message']}
+            """
+            # from_email = settings.DEFAULT_FROM_EMAIL
+            from_email = form.cleaned_data['email']
+            recipient_list = settings.DEFAULT_TO_EMAIL
+
+            print('envoyeur : ', from_email, 'receveur : ', recipient_list)
+
+            # Envoyer l'email
+            try:
+                send_mail(subject, message, from_email, recipient_list)
+                messages.success(request, 'Votre message a été envoyé avec succès.')
+            except BadHeaderError:
+                messages.error(request, 'Entête d\'email invalide détectée.')
+            except smtplib.SMTPException as e:
+                messages.error(request, f'Échec de l\'envoi de l\'email :\n{str(e)}')
+                print(f'erreur : {str(e)}')
+            except Exception as e:
+                messages.error(request, f'Une erreur est survenue : {str(e)}')
+            
+            return redirect('website_part:contactez_nous')
+    else:
+        form = MessageForm()
+        context = {
+            'active_page': 'contactez_nous',
+            'form': form
+        }
+        return render(request, 'website_part/contactez_nous.html', context)
 
 
 '''
@@ -56,9 +97,7 @@ def se_connecter(request: HttpRequest) -> HttpResponse:
             if user is not None:
                 login(request, user)
                 messages.success(request, 'Vous êtes connecté avec succès.')
-                context = {
-                    'active_menu': 'tableauBord',
-                }
+                context = {}
 
                 # Si 'DONATEUR'
                 if user.role == settings.DONATEUR:
@@ -67,31 +106,40 @@ def se_connecter(request: HttpRequest) -> HttpResponse:
                     
                     if donateur.type_donateur == settings.PERSONNE:
                         donateur_personne = DonateurPersonne.objects.get(id = user.id)
-                        context['utilisateur'] = donateur_personne
+                        context['utilisateur_id'] = donateur_personne.id
                     elif donateur.type_donateur == settings.ORGANISATION:
                         donateur_organisation = DonateurOrganisation.objects.get(id = user.id)
-                        context['utilisateur'] = donateur_organisation
+                        context['utilisateur_id'] = donateur_organisation.id
                     else:
                         donateur_entreprise = DonateurEntreprise.objects.get(id = user.id)
-                        context['utilisateur'] = donateur_entreprise
-                        
-                    return render(request, 'donations/app/tableauBord.html', context)
+                        context['utilisateur_id'] = donateur_entreprise.id
+                    
+                    # Stocker le contexte dans la session
+                    request.session['context'] = context
+
+                    return redirect('donations:donateurTableauBord')
+                
                 # Si 'NECESSITEUX'
                 elif user.role == settings.NECESSITEUX:
                     necessiteux = Necessiteux.objects.get(id = user.id)
 
-                    if necessiteux.type_necessiteux == settings.personne:
+                    context['utilisateur_type'] = necessiteux.type_necessiteux
+
+                    if necessiteux.type_necessiteux == settings.PERSONNE:
                         necessiteux_personne = NecessiteuxPersonne.objects.get(id = user.id)
-                        context['necessiteux'] = necessiteux_personne
+                        context['utilisateur_id'] = necessiteux_personne.id
                     else:
                         necessiteux_organisation = NecessiteuxOrganisation.objects.get(id = user.id)
-                        context['necessiteux'] = necessiteux_organisation
+                        context['utilisateur_id'] = necessiteux_organisation.id
+
+                    # Stocker le contexte dans la session
+                    request.session['context'] = context
                     
-                    return render(request, 'Necessiteux/app/tableauBord.html', context)
+                    return redirect('Necessiteux:appNecessiteuxTableauBord')
                 # Si 'BENEVOLE'
                 elif user.role == settings.BENEVOLE:
                     benevole = Benevole.objects.get(id = user.id)
-                    context['benevole'] = benevole
+                    context['benevole_id'] = benevole.id
 
                 # Si 'AGENT DE COLLECTE'
                 elif user.role == settings.AGENT_COLLECTE:
@@ -119,63 +167,13 @@ def se_connecter(request: HttpRequest) -> HttpResponse:
     else:
         form = LoginForm()
     return render(request, 'website_part/se_connecter.html', {'form': form})
-#cette vue permet de creer u n besoin materiel
 
-
-def creer_besoin_materiel(request):
-    if request.method == 'POST':
-        form = BesoinMaterielForm(request.POST, request.FILES)
-        if form.is_valid():
-            besoin_materiel = form.save(commit=False)
-            besoin_materiel.statut = 'En attente'
-            besoin_materiel.type = 'Materiel'
-            besoin_materiel.save()
-            messages.success(request, 'Votre besoin matériel a été soumis avec succès et est en attente de validation.')
-            return redirect('website_part:besoinMateriel_page')
-        else:
-            messages.error(request, 'Il y a eu une erreur dans le formulaire. Veuillez corriger les erreurs ci-dessous.')
-    else:
-        form = BesoinMaterielForm()
-    return render(request, 'website_part/envoyer_besoin.html', {'form': form})
-
-def creer_besoin_financier(request):
-    if request.method == 'POST':
-        form = BesoinFinancierForm(request.POST, request.FILES)
-        if form.is_valid():
-            besoin_financier = form.save(commit=False)
-            besoin_financier.statut = 'En attente'
-            besoin_financier.type = 'Financier'
-            besoin_financier.save()
-            messages.success(request, 'Votre besoin financier a été soumis avec succès et est en attente de validation.')
-            return redirect('website_part:besoinFinancier_page')
-        else:
-            messages.error(request, 'Il y a eu une erreur dans le formulaire. Veuillez corriger les erreurs ci-dessous.')
-    else:
-        form = BesoinFinancierForm()
-    return render(request, 'website_part/besoinFinancier.html', {'form': form})
-
-#cette vue permet de lister les besoins de en attente
-def besoins_en_attente(request):
-    besoins = BesoinMateriel.objects.filter(statut='En attente')
-    if not besoins:
-        messages.info(request, 'Il n\'y a pas de besoins matériels en attente.')
-    return render(request, 'website_part/besoins_en_attente.html', {'besoins': besoins})
-
-#cette vue permet d'envoyer un besoin de benevolat
-def creer_besoin_benevoles(request):
-    if request.method == 'POST':
-        form = BesoinDeBenevolesForm(request.POST)
-        if form.is_valid():
-            besoin_benevoles = form.save(commit=False)
-            besoin_benevoles.statut = 'En attente'
-            besoin_benevoles.type = 'Bénévoles'
-            besoin_benevoles.save()
-            messages.success(request, 'Votre besoin de bénévoles a été soumis avec succès et est en attente de validation.')
-            return redirect('website_part:besoinBenevoles_page')
-        else:
-            messages.error(request, 'Il y a eu une erreur dans le formulaire. Veuillez corriger les erreurs ci-dessous.')
-    else:
-        
-        form = BesoinDeBenevolesForm()
-    return render(request, 'website_part/besoinBenevoles.html', {'form': form})
-
+'''
+    Cette vue permet la deconnexion 
+'''
+def se_deconnecter(request: HttpRequest) -> HttpResponse:
+    try:
+        del request.session["utilisateur_id"]
+    except KeyError:
+        pass
+    return redirect('website_part:se_connecter')

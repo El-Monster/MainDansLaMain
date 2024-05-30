@@ -1,0 +1,40 @@
+<!-- tableau de bord -->
+<li class="sidebar-item">
+    <!-- sidebar-link -->
+    <a href="{% url 'Necessiteux:appNecessiteuxTableauBord' %}" class="sidebar-link {% if page_active == 'tableauBord' %}selected{% endif %}">
+        <i class="bi bi-columns"></i>
+        <span>Tableau de bord</span>
+    </a>
+</li>
+<!-- besoins -->
+<li class="sidebar-item">
+    <!-- sidebar-link -->
+    <a href="{% url 'Necessiteux:appNecessiteuxBesoins' %}" class="sidebar-link {% if page_active == 'besoins' %}selected{% endif %}">
+        <i class="bi bi-person-wheelchair"></i>
+        <span>Besoins</span>
+    </a>
+</li>
+<!-- donations -->
+<li class="sidebar-item">
+    <!-- sidebar-link -->
+    <a href="#" class="sidebar-link {% if page_active == 'donations' %}selected{% endif %}">
+        <i class="bi bi-cash-coin"></i>
+        <span>Donations</span>
+    </a>
+</li>
+<!-- Messagerie -->
+<li class="sidebar-item">
+    <!-- sidebar-link -->
+    <a href="" class="sidebar-link {% if page_active == 'messagerie' %}selected{% endif %}">
+        <i class="bi bi-chat-left-text"></i>
+        <span>Messagerie</span>
+    </a>
+</li>
+<!-- Notifications -->
+<li class="sidebar-item">
+    <!-- sidebar-link -->
+    <a href="#" class="sidebar-link {% if page_active == 'notifications' %}selected{% endif %}">
+        <i class="bi bi-bell"></i>
+        <span>Notifications</span>
+    </a>
+</li>

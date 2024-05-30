@@ -27,26 +27,30 @@ class DonateurPersonneForm(forms.ModelForm):
         
         labels = {
             'prenom': 'Prénom',
+            'nom':'Nom',
             'genre': 'Genre',
             'date_naissance': 'Date de naissance',
-            'preferences_besoins':"Preferences Besoins",
+            'preferences_besoins': 'Preferences Besoins',
             'email': 'Adresse e-mail',
             'telephone': 'Téléphone',
             'pays': 'Votre pays d\'origine',
             'ville': 'Votre ville d\'origine',
             'photo': 'Choisissez votre photo de profil',
-            'nom':"Nom",
-            'password':"Mot de passe"
+            'password': 'Mot de passe'
         }
         
         fields = [
-            
             'preferences_besoins',
             'prenom',
             'genre',
             'date_naissance',
-             'email', 'telephone', 'pays',
-             'ville', 'photo','nom','password'
+            'email', 
+            'telephone', 
+            'pays',
+            'ville', 
+            'photo',
+            'nom',
+            'password'
         ]
         
     # def clean(self):

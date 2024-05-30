@@ -1,0 +1,303 @@
+{% extends 'Necessiteux/app/besoins.html' %}
+{% load static %}
+
+{% block titre %}
+Nouveaux besoins | App - MainDansLaMain
+{% endblock titre %}
+
+{% comment %} Titre de la page {% endcomment %}
+{% block titre_page %}{% endblock titre_page %}
+
+{% comment %} Contenu de la page {% endcomment %}
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-11 col-md-9">
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} mb-5" role="alert">
+                        {% if message.tags == 'success' %}
+                        <h4 class="alert-heading">Merci pour votre confiance!</h4>
+                        {% elif message.tags == 'error' %}
+                        <h4 class="alert-heading">Un problème a été rencontré!</h4>
+                        {% else %}
+                        <h4 class="alert-heading">Atention! des informations manquent.</h4>
+                        {% endif %}
+                        <p>
+                            {{ message }}
+                        </p>
+                        {% if message.tag != 'error' %}
+                        <hr>
+                        <p class="mb-0">Vous recevrez une notification pour la décision finale</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                <h2 class="mb-4 display-5 fw-bold">Envoyer un besoin</h2>
+                <p class="mb-5">
+                    Veuillez remplir le formulaire ci-dessous pour nous aider à mieux comprendre votre
+                    situation et à vous fournir une assistance appropriée.
+                </p>
+                <!-- trait -->
+                <hr class="mb-5">
+
+                <ul class="nav nav-tabs" id="besoin" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="financier-tab" data-bs-toggle="tab"
+                            data-bs-target="#financier-tab-pane" type="button" role="tab"
+                            aria-controls="financier-tab-pane" aria-selected="true">Financier</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="materiel-tab" data-bs-toggle="tab"
+                            data-bs-target="#materiel-tab-pane" type="button" role="tab"
+                            aria-controls="materiel-tab-pane" aria-selected="false">Matériel</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="benevolat-tab" data-bs-toggle="tab"
+                            data-bs-target="#benevolat-tab-pane" type="button" role="tab"
+                            aria-controls="benevolat-tab-pane" aria-selected="false">Bénévolat</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="besoinContent">
+                    <div class="tab-pane fade p-md-3 p-2 show active" id="financier-tab-pane" role="tabpanel"
+                        aria-labelledby="financier-tab" tabindex="0">
+                        <form method="post" action="{% url 'Necessiteux:appNecessiteuxBesoinsNouveau' %}"
+                            class="needs-validation" enctype="multipart/form-data" novalidate>
+                            {% csrf_token %}
+                            <fieldset class="form-group border">
+                                <div class="text-center">
+                                    <legend class="pt-5 px-5">Besoin financier</legend>
+                                </div>
+
+                                <div class="row gy-4 gy-xl-5 px-4 px-xl-5">
+                                    {% comment %} titre {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinFinancier.titre.label_tag }}
+                                        {{ formBesoinFinancier.titre }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} description {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinFinancier.description.label_tag }}
+                                        {{ formBesoinFinancier.description }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} quantité {% endcomment %}
+                                    <div class="col-12 col-md-6 mt-4">
+                                        {{ formBesoinFinancier.montant_souhaite.label_tag }}
+                                        {{ formBesoinFinancier.montant_souhaite }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} degré d'urgence {% endcomment %}
+                                    <div class="col-12 col-md-6 mt-4">
+                                        {{ formBesoinFinancier.degre_urgence.label_tag }}
+                                        {{ formBesoinFinancier.degre_urgence }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} image {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinFinancier.image.label_tag }}
+                                        {{ formBesoinFinancier.image }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} document {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinFinancier.document.label_tag }}
+                                        {{ formBesoinFinancier.document }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} video {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinFinancier.video.label_tag }}
+                                        {{ formBesoinFinancier.video }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} bouton {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        <div class="d-grid">
+                                            <button class="btn btn-primary btn-lg fw-bold" name="form_type"
+                                                value="financier" type="submit">Envoyer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade p-md-3 p-2" id="materiel-tab-pane" role="tabpanel"
+                        aria-labelledby="materiel-tab" tabindex="0">
+                        <form method="post" action="{% url 'Necessiteux:appNecessiteuxBesoinsNouveau' %}"
+                            name="besoin_materiel" class="needs-validation" enctype="multipart/form-data" novalidate>
+                            {% csrf_token %}
+                            <fieldset class="form-group border">
+                                <div class="text-center">
+                                    <legend class="pt-5 px-5">Besoin matériel</legend>
+                                </div>
+                                <div class="row gy-4 gy-xl-5 px-4 px-xl-5">
+                                    {% comment %} catégorie {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinMateriel.categorie.label_tag }}
+                                        {{ formBesoinMateriel.categorie }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} titre {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinMateriel.titre.label_tag }}
+                                        {{ formBesoinMateriel.titre }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} description {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinMateriel.description.label_tag }}
+                                        {{ formBesoinMateriel.description }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} quantité {% endcomment %}
+                                    <div class="col-12 col-md-6 mt-4">
+                                        {{ formBesoinMateriel.quantite.label_tag }}
+                                        {{ formBesoinMateriel.quantite }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} degré d'urgence {% endcomment %}
+                                    <div class="col-12 col-md-6 mt-4">
+                                        {{ formBesoinMateriel.degre_urgence.label_tag }}
+                                        {{ formBesoinMateriel.degre_urgence }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} image {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinMateriel.image.label_tag }}
+                                        {{ formBesoinMateriel.image }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} document {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinMateriel.document.label_tag }}
+                                        {{ formBesoinMateriel.document }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} video {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinMateriel.video.label_tag }}
+                                        {{ formBesoinMateriel.video }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} bouton {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        <div class="d-grid">
+                                            <button class="btn btn-primary btn-lg fw-bold" name="form_type"
+                                                value="materiel" type="submit">Envoyer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade p-md-3 p-2" id="benevolat-tab-pane" role="tabpanel"
+                        aria-labelledby="benevolat-tab" tabindex="0">
+                        <form method="post" action="{% url 'Necessiteux:appNecessiteuxBesoinsNouveau' %}"
+                            class="needs-validation" enctype="multipart/form-data" novalidate>
+                            {% csrf_token %}
+                            <fieldset class="form-group border">
+                                <div class="text-center">
+                                    <legend class="pt-5 px-5">Besoin de bénévolat</legend>
+                                </div>
+                                <div class="row gy-4 gy-xl-5 px-4 px-xl-5">
+                                    {% comment %} titre {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinBenevolat.titre.label_tag }}
+                                        {{ formBesoinBenevolat.titre }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} description {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinBenevolat.description.label_tag }}
+                                        {{ formBesoinBenevolat.description }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} durée {% endcomment %}
+                                    <div class="col-12 col-md-6 mt-4">
+                                        {{ formBesoinBenevolat.duree.label_tag }}(jours)
+                                        {{ formBesoinBenevolat.duree }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} degré d'urgence {% endcomment %}
+                                    <div class="col-12 col-md-6 mt-4">
+                                        {{ formBesoinBenevolat.degre_urgence.label_tag }}
+                                        {{ formBesoinBenevolat.degre_urgence }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} nombre de bénévoles {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinBenevolat.nombre_de_benevoles.label_tag }}
+                                        {{ formBesoinBenevolat.nombre_de_benevoles }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} compétences démandées {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        {{ formBesoinBenevolat.competences_demandees.label_tag }}
+                                        {{ formBesoinBenevolat.competences_demandees }}
+                                        <div class="invalid-feedback">
+                                            Ce champ est obligatoire!
+                                        </div>
+                                    </div>
+                                    {% comment %} bouton {% endcomment %}
+                                    <div class="col-12 mt-4">
+                                        <div class="d-grid">
+                                            <button class="btn btn-primary btn-lg fw-bold" name="form_type"
+                                                value="benevolat" type="submit">Envoyer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- trait -->
+                <hr>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

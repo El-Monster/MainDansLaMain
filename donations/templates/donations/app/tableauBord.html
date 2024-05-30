@@ -1,12 +1,13 @@
-{% extends 'communs\app_base.html' %}
+{% extends 'communs/app_base.html' %}
 {% load static %}
 
 
 {% block titre %}
-Dashboard | MainDansLaMain
+Dashboard | App - MainDansLaMain
 {% endblock titre %}
 
 {% block css %}
+<link rel="stylesheet" href="{% static 'donations/css/style.css' %}">
 {% endblock %}
 
 {% comment %} menu du sidebar {% endcomment %}
@@ -43,13 +44,29 @@ Dashboard | MainDansLaMain
         <span>Besoins</span>
     </a>
 </li>
+<!-- Messagerie -->
+<li class="sidebar-item">
+    <!-- sidebar-link -->
+    <a href="#" class="sidebar-link">
+        <i class="bi bi-chat-left-text"></i>
+        <span>Messagerie</span>
+    </a>
+</li>
+<!-- Notifications -->
+<li class="sidebar-item">
+    <!-- sidebar-link -->
+    <a href="#" class="sidebar-link">
+        <i class="bi bi-bell"></i>
+        <span>Notifications</span>
+    </a>
+</li>
 {% endblock sidebar_items %}
 
 {% comment %} chemin de la photo de profil {% endcomment %}
 {% block profil %}/media/{{ utilisateur.photo }}{% endblock profil %}
 
 {% comment %} nom de l'utilisateur {% endcomment %}
-{% block nom_utilisateur %}{{ utilisateur.prenom|upper }}{{ utilisateur.nom|upper }}{% endblock nom_utilisateur %}
+{% block nom_utilisateur %}{{ utilisateur.prenom|upper }} {{ utilisateur.nom|upper }}{% endblock nom_utilisateur %}
 
 {% comment %} role de l'utilisateur {% endcomment %}
 {% block role_utilisateur %}{{ utilisateur.role|upper }}{% endblock role_utilisateur %}
@@ -60,7 +77,7 @@ Dashboard | MainDansLaMain
     <h3 class="fw-bold fs-4 mb-3 sous-titre-page"><i class="bi bi-wallet2 me-2"></i> Mes dernières contributions</h3>
     <div class="col-12 col-md-4">
         <!-- card 1 -->
-        <div class="card border-0 h-100">
+        <div class="card top border-0 h-100">
             <div class="card-body py-4">
                 <h5 class="mb-2 fw-bold">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, quo.
@@ -81,7 +98,7 @@ Dashboard | MainDansLaMain
     </div>
     <div class="col-12 col-md-4">
         <!-- card 2 -->
-        <div class="card border-0 h-100">
+        <div class="card top border-0 h-100">
             <div class="card-body py-4">
                 <h5 class="mb-2 fw-bold">
                     Members Progress
@@ -102,7 +119,7 @@ Dashboard | MainDansLaMain
     </div>
     <div class="col-12 col-md-4">
         <!-- card 3 -->
-        <div class="card border-0 h-100">
+        <div class="card top border-0 h-100">
             <div class="card-body py-4">
                 <h5 class="mb-2 fw-bold">
                     Members Progress
@@ -125,6 +142,7 @@ Dashboard | MainDansLaMain
 <!-- nouveaux besoins -->
 <div class="row">
     <h3 class="fw-bold fs-4 mb-3 mt-5 sous-titre-page"><i class="bi bi-file-earmark-plus me-2"></i></i>Les nouveaux besoins</h3>
+    {% comment %} besoins 1 {% endcomment %}
     <div class="col-12 col-md-4">
         <div class="card">
             <div class="card-body d-flex flex-row">
@@ -140,20 +158,40 @@ Dashboard | MainDansLaMain
                     alt="besoin image" />
             </div>
             <div class="card-body">
-                <p class="card-text collapse" id="collapseContent">
+                <p class="card-text">
                     Recently, we added several exotic new dishes to our restaurant menu. They come from
                     countries such as Mexico, Argentina, and Spain. Come to us, have some wine and enjoy
                     our juicy meals from around the world.
                 </p>
                 <div class="d-flex justify-content-between">
-                    <a class="btn btn-link p-md-1 my-1" data-mdb-toggle="collapse" href="#collapseContent"
-                        role="button" aria-expanded="false" aria-controls="collapseContent">Lire plus ...</a>
-                    <div>
-                        <i class="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
-                            data-mdb-placement="top" title="Share this post"></i>
-                        <i class="fas fa-heart text-muted p-md-1 my-1 me-0" data-mdb-toggle="tooltip"
-                            data-mdb-placement="top" title="I like it"></i>
-                    </div>
+                    <a class="btn btn-link p-md-1 my-1" href="">Voir plus de details ...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% comment %} besoin 2 {% endcomment %}
+    <div class="col-12 col-md-4">
+        <div class="card">
+            <div class="card-body d-flex flex-row">
+                <img src="/media/{{ utilisateur.photo }}" class="rounded-circle me-3" height="50px" width="50px"
+                    alt="profil nécéssiteux" />
+                <div>
+                    <h5 class="card-title font-weight-bold mb-2">{{ utilisateur.nom }}</h5>
+                    <p class="card-text"><i class="bi bi-clock-history pe-2"></i>{{ utilisateur.date_creation_compte|date }}</p>
+                </div>
+            </div>
+            <div class="bg-image hover-overlay rounded-0">
+                <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/full page/2.jpg"
+                    alt="besoin image" />
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    Recently, we added several exotic new dishes to our restaurant menu. They come from
+                    countries such as Mexico, Argentina, and Spain. Come to us, have some wine and enjoy
+                    our juicy meals from around the world.
+                </p>
+                <div class="d-flex justify-content-between">
+                    <a class="btn btn-link p-md-1 my-1" href="">Voir plus de details ...</a>
                 </div>
             </div>
         </div>

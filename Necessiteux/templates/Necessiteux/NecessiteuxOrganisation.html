@@ -1,5 +1,3 @@
-
-
 {% extends 'website_part/base.html' %}
 {% load static %}
 
@@ -7,6 +5,9 @@
 Création de compte | MainDansLaMain
 {% endblock titre %}
 
+{% block js %}
+    <script src="{% static 'comptes/js/comptes.js' %}" defer></script>
+{% endblock js %}
 
 {% block main %}
 <main>

@@ -1,61 +1,65 @@
-/* Style du formulaire */
+/***********************    FONT   ***********************/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-/* Style pour le formulaire */
-form {
-    max-width: 1000px;
-    height: 500px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    
-}
-.form-row {
-    margin-bottom: 20px;
+/***********************    VARIABLES   ***********************/
+:root {
+    --color-background: #F5EFFF;
+    --nav-background: #A3ACEE;
+    --nav-background-variant: #a3acee92;
+
+    --color-primary: #111E88;
+    --color-primary-variant: #2081C3;
+    --color-danger: #FF7782;
+    --color-danger-variant: #ff7782a4;
+    --color-success: #2dd881;
+    --color-success-variant: #41F1B6;
+    --color-warning: #F6AE2D;
+    --color-warning-variant: #ffbb55c8;
+
+    --color-dark: #453F3C;
+    --color-light: #797270;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
+
+    --nav-height: 6rem;
+
+    --sidebar-min-width: 70px;
+    --sidebar-max-width: 260px;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.primary {
+    color: var(--color-primary);
 }
 
-/* Style des labels */
-label {
+.primary-v {
+    background-color: var(--color-primary-variant);
+    color: white;
+}
+
+/*
+    Content
+***************/
+.ajout i.bi::before {
+    font-size: 1.5rem;
+}
+
+/*
+    Page Nouveau besoin
+************************/
+.nav-tabs .nav-item .nav-link {
+    color: var(--color-dark);
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.nav-tabs .nav-item .nav-link.active {
+    color: var(--color-primary);
     font-weight: bold;
 }
 
-/* Style des champs de saisie */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="password"]
-select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-/* Style pour les champs de saisie de type date */
-input[type="date"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-/* Style du bouton */
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
+/* legend */
+legend {
+    line-height: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
 }

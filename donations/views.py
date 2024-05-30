@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth.hashers import make_password
 from comptes.forms import UtilisateurForm
+from donations.models import DonateurPersonne
 
 from .donateurPersonneForm import DonateurPersonneForm
 from .donateurOrganisationForm import DonateurOrganisationForm
@@ -14,7 +15,7 @@ from django.contrib import messages
 # Create your views here.
 
 #creation de la vue pour la page
-def donateurPersonne(request):
+def donateurPersonne(request: HttpRequest):
     if request.method == 'POST':
         form = DonateurPersonneForm(request.POST,request.FILES)
         if form.is_valid() :
@@ -158,6 +159,12 @@ def donateurOrganisation(request):
 
 
 # La vue qui génère le 'tableauBord' du donateur 
-def donateur_tableauBord(request: HttpRequest) -> HttpResponse:
-    context = {'active_page': 'tableauBord'}
+def donateurTableauBord(request: HttpRequest) -> HttpResponse:
+    context = request.session.get('context', {})
+
+    # Récupérer l'objet DonateurPersonne si l'ID est présent dans le contexte
+    if 'utilisateur_id' in context:
+        utilisateur_id = context['utilisateur_id']
+        context['utilisateur'] = DonateurPersonne.objects.get(id=utilisateur_id)
+
     return render(request, 'donations/app/tableauBord.html', context)

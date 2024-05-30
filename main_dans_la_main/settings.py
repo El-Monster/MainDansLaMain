@@ -162,3 +162,25 @@ DONATEUR = 'donateur'
 NECESSITEUX = 'necessiteux'
 BENEVOLE = 'benevole'
 AGENT_COLLECTE = 'agent_collecte'
+
+# Types de formulaires d'envoi de besoin
+BESOIN_FINANCIER = 'financier'
+BESOIN_MATERIEL = 'materiel'
+BESOIN_BENEVOLAT = 'benevolat'
+
+# Les status des besoins
+
+STATUT_BESOIN_EN_COURS = 'en cours'
+STATUT_BESOIN_EN_ATTENTE = 'en attente'
+STATUT_BESOIN_REJETE = 'rejete'
+STATUT_BESOIN_TRAITE = 'traite'
+
+# Configuration du serveur SMTP
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'baxel335@gmail.com'
+EMAIL_HOST_PASSWORD = 'ddpjimggszujwrls'
+DEFAULT_TO_EMAIL = ['baxel335@gmail.com', 'syllaingenieurinformaticien@gmail.com']

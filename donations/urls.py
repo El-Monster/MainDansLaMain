@@ -4,9 +4,11 @@ from .views import *
 app_name="donations"
 
 urlpatterns = [
+    # partie siteweb
     path('creation-compte/donateurPersonne/', donateurPersonne, name='donateurPersonne_compte'),
     path('creation-compte/donateurOrganisation/',donateurOrganisation, name='donateurOrganisation_compte'),
     path('creation-compte/donateurEntreprise/', donateurEntreprise, name='donateurEntreprise_compte'),
-    path('app/tableauBord/', donateur_tableauBord, name = 'donateur_tableauBord'),
+    # partie application
+    path('app/tableauBord/', donateurTableauBord, name = 'donateurTableauBord'),
 ]
     

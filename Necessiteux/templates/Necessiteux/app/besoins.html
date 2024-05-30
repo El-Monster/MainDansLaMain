@@ -1,0 +1,79 @@
+{% extends 'communs/app_base.html' %}
+{% load static %}
+
+
+{% block titre %}
+Besoins | App - MainDansLaMain
+{% endblock titre %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'Necessiteux/css/style.css' %}">
+{% endblock %}
+
+{% comment %} menu du sidebar {% endcomment %}
+{% block sidebar_items %}
+{% include 'Necessiteux/app/sidebar_items.html' %}
+{% endblock sidebar_items %}
+
+{% comment %} chemin de la photo de profil {% endcomment %}
+{% block profil %}/media/{{ utilisateur.photo }}{% endblock profil %}
+
+{% comment %} nom de l'utilisateur {% endcomment %}
+{% block nom_utilisateur %}{{ utilisateur.prenom|upper }} {{ utilisateur.nom|upper }}{% endblock nom_utilisateur %}
+
+{% comment %} role de l'utilisateur {% endcomment %}
+{% block role_utilisateur %}{{ utilisateur.role|upper }}{% endblock role_utilisateur %}
+
+{% comment %} Titre de la page {% endcomment %}
+{% block titre_page %}<h1 class="fw-bold mb-5 titre-page text-uppercase">besoins</h1>{% endblock titre_page %}
+
+{% comment %} Contenu de la page {% endcomment %}
+{% block content %}
+<div class="row mb-5">
+    <div class="ajout">
+        <a href="{% url 'Necessiteux:appNecessiteuxBesoinsNouveau' %}"
+            class="btn btn-primary border-0 primary-v btn-lg p-3 rounded-1 rounded-5 fw-medium">
+            <span class="mx-2">Nouveau besoin</span>
+            <i class="bi bi-plus-circle mx-2"></i>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <h3 class="fw-bold fs-4 mb-3 sous-titre-page"><i class="bi bi-wallet2 me-2"></i>Mes besoins</h3>
+
+</div>
+
+<div class="row align-items-md-stretch">
+    <div class="col-md-6">
+        <div class="h-100 p-5 text-white bg-primary border rounded-3">
+            <h2>Change the background</h2>
+            <p>
+                Swap the background-color utility and add a `.text-*` color
+                utility to mix up the jumbotron look. Then, mix and match with
+                additional component themes and more.
+            </p>
+            <button class="btn btn-outline-primary" type="button">
+                Example button
+            </button>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="h-100 p-5 bg-primary border rounded-3">
+            <h2>Add borders</h2>
+            <p>
+                Or, keep it light and add a border for some added definition
+                to the boundaries of your content. Be sure to look under the
+                hood at the source HTML here as we've adjusted the alignment and
+                sizing of both column's content for equal-height.
+            </p>
+            <button class="btn Swap the background-color utility and add a `.text-*` color
+                utility to mix up the jumbotron look. Then, mix and match with
+                additional component themes and more." type="button">
+                Example button
+            </button>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

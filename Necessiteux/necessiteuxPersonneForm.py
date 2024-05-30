@@ -8,32 +8,44 @@ class NecessiteuxPersonneForm(forms.ModelForm):
      )
      class Meta:
         model = NecessiteuxPersonne
-        fields = [
-            #'type_necessiteux',
-            'prenom',
-            'genre',
-            'date_naissance','email', 
-            'telephone', 'pays', 'ville', 'photo','nom','password'
-            
-        ]
         
         widgets = {
-            'nom': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
-            'telephone': forms.TextInput(attrs={'class': 'form-control'}),
-            'pays': forms.Select(attrs={'class': 'form-select'}),
-            'ville': forms.TextInput(attrs={'class': 'form-control'}),
-            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
-            'photo': forms.FileInput(attrs={'class': 'form-control-file'}),
-            'password_confirmation': forms.PasswordInput(attrs={'class': 'form-control'}),
-            'prenom': forms.TextInput(attrs={'class': 'form-control'}),
-            'genre': forms.Select(attrs={'class': 'form-select'}),
-            'date_naissance': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'prenom': forms.TextInput(attrs={'class': 'form-control  form-control-lg'}),
+            'genre': forms.Select(attrs={'class': 'form-select form-select-lg'}),
+            'date_naissance': forms.DateInput(attrs={'type': 'date', 'class': 'form-control  form-control-lg'}),
+            'nom': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control form-control-lg'}),
+            'telephone': forms.TextInput(attrs={'class': 'form-control form-control-lg', 'type': 'tel'}),
+            'pays': forms.Select(attrs={'class': 'form-select form-select-lg pays', 'id': 'pays', 'onchange': 'chargerVilles()'}),
+            'ville': forms.Select(attrs={'class': 'form-select form-select-lg villes', 'id': 'villes'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control form-control-lg'}),
+            'photo': forms.FileInput(attrs={'class': 'form-control form-control-lg'}),
+            'password_confirmation': forms.PasswordInput(attrs={'class': 'form-control form-control-lg'}),
         }
-        
+
         labels = {
             'prenom': 'Prénom',
+            'nom':'Nom',
             'genre': 'Genre',
             'date_naissance': 'Date de naissance',
+            'email': 'Adresse e-mail',
+            'telephone': 'Téléphone',
+            'pays': 'Votre pays d\'origine',
+            'ville': 'Votre ville d\'origine',
+            'photo': 'Choisissez votre photo de profil',
+            'password': 'Mot de passe'
         }
+        
+        fields = [
+            'prenom',
+            'genre',
+            'date_naissance',
+            'email', 
+            'telephone', 
+            'pays',
+            'ville', 
+            'photo',
+            'nom',
+            'password'
+        ]
         

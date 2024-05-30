@@ -5,6 +5,9 @@
 Création de compte | MainDansLaMain
 {% endblock titre %}
 
+{% block js %}
+    <script src="{% static 'comptes/js/comptes.js' %}" defer></script>
+{% endblock js %}
 
 {% block main %}
 <main>
@@ -100,7 +103,7 @@ Création de compte | MainDansLaMain
                         <!-- Pays -->
                         <div class="col-md-6 mb-3 mb-md-4">
                             <div class="form-group">
-                                {% comment %} <label for="city_validation" class="form-label">Ville</label> {%endcomment %}
+                                {% comment %} <label for="city_validation" class="form-label">Ville</label> {% endcomment %}
                                 {{ form.pays.label_tag }}
                                 {{ form.pays }}
                                 <div class="invalid-feedback">

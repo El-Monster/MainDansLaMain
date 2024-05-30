@@ -1,0 +1,14 @@
+/* card */
+.card.top {
+    background-color: var(--color-background);
+    transition: .4s;
+    cursor: pointer;
+    color: #000;
+    margin-bottom: 1rem;
+}
+
+.card.top:hover {
+    background-color: var(--nav-background);
+    color: #FFF;
+    transform: translateY(-10.5px);
+}
