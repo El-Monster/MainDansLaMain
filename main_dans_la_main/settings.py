@@ -40,14 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_countries',
-    # 'admin_interface',
-    # 'colorfield',
     'communs',
     'comptes',
     'donations',
     'website_part',
     'Necessiteux',
     'benevole',
+    'agent_collecte',
 ]
 X_FRAME_OPTIONS='SAMEORIGIN'
 MIDDLEWARE = [

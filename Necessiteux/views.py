@@ -2,11 +2,9 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render,redirect
 
 from Necessiteux.besoinForm import BesoinDeBenevolesForm, BesoinFinancierForm, BesoinMaterielForm
-from Necessiteux.models import BesoinMateriel, NecessiteuxOrganisation, NecessiteuxPersonne
+from Necessiteux.models import Besoin, BesoinDeBenevoles, BesoinFinancier, BesoinMateriel, NecessiteuxOrganisation, NecessiteuxPersonne
 from donations.views import is_secure_password
-#from comptes.forms import UtilisateurForm
-from .necessiteuxPersonneForm import NecessiteuxPersonneForm
-from .necessiteuxOrganisationForm import NecessiteuxOrganisationForm
+from .forms import NecessiteuxPersonneForm,  NecessiteuxOrganisationForm
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import get_user_model
@@ -295,3 +293,23 @@ def creer_besoin_benevoles(request):
     else:
         form = BesoinDeBenevolesForm()
     return render(request, 'website_part/besoinBenevoles.html', {'form': form})
+
+
+def besoins_en_cours(request):
+    # Récupérer tous les besoins en cours
+    besoins = Besoin.objects.filter(statut=settings.STATUT_BESOIN_EN_COURS)
+
+    # Récupérer les besoins matériels en cours
+    besoins_materiels = BesoinMateriel.objects.filter(statut=settings.STATUT_BESOIN_EN_COURS)
+
+    # Récupérer les besoins financiers en cours
+    besoins_financiers = BesoinFinancier.objects.filter(statut=settings.STATUT_BESOIN_EN_COURS)
+
+    # Récupérer les besoins de bénévoles en cours
+    besoins_benevoles = BesoinDeBenevoles.objects.filter(statut=settings.STATUT_BESOIN_EN_COURS)
+
+    # Fusionner toutes les listes de besoins
+    tous_les_besoins =  list(besoins_materiels) + list(besoins_financiers) + list(besoins_benevoles)
+
+    # Renvoyer les besoins au template
+    return render(request, 'website_part/besoins_en_cours.html', {'tous_les_besoins': tous_les_besoins})
