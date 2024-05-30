@@ -54,18 +54,19 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-11 col-md-9">
-                            <form action=""
+                            <form action="" method="post" action="{% url 'website_part:faire_don' besoin.id %}" enctype="multipart/form-data"
                                 class="row needs-validation bg-white shadow-lg py-md-5 py-4 px-lg-4 rounded rounded-4 justify-content-center"
                                 novalidate>
+                                {% csrf_token %}
                                 <!-- coordonnées personnelles -->
                                 <div class="row">
                                     <h2 class="fw-medium mb-3 mb-md-5">Vos coordonnées</h2>
                                     <!-- Prénom(s) -->
                                     <div class="col-md-6 mb-3 mb-md-4">
                                         <div class="form-group">
-                                            <label for="firstname_validation" class="form-label">Prénom(s)</label>
-                                            <input type="text" class="form-control form-control-lg"
-                                                id="firstname_validation" value="" required>
+                                            {{visiteur_form.prenom.label_tag}}
+                                            {{visiteur_form.prenom}}
+
 
                                             <div class="invalid-feedback">
                                                 Ce champ est obligatoire!
@@ -75,9 +76,8 @@
                                     <!-- Nom(s) -->
                                     <div class="col-md-6 mb-3 mb-md-4">
                                         <div class="form-group">
-                                            <label for="lastname_validation" class="form-label">Nom(s)</label>
-                                            <input type="text" class="form-control form-control-lg"
-                                                id="lastname_validation" value="" required>
+                                            {{visiteur_form.nom.label_tag}}
+                                            {{visiteur_form.nom}}
 
                                             <div class="invalid-feedback">
                                                 Ce champ est obligatoire!
@@ -87,9 +87,8 @@
                                     <!-- E-mail -->
                                     <div class="col-md-6 mb-3 mb-md-4">
                                         <div class="form-group">
-                                            <label for="email_validation" class="form-label">E-mail</label>
-                                            <input type="email" class="form-control form-control-lg"
-                                                id="email_validation" value="" required>
+                                            {{visiteur_form.email.label_tag}}
+                                            {{visiteur_form.email}}
                                             <div class="invalid-feedback">
                                                 Ce champ est obligatoire!
                                             </div>
@@ -98,83 +97,58 @@
                                     <!-- Téléphone -->
                                     <div class="col-md-6 mb-3 mb-md-4">
                                         <div class="form-group">
-                                            <label for="phone_validation" class="form-label">Téléphone</label>
-                                            <input type="tel" class="form-control form-control-lg" id="phone_validation"
-                                                value="" required>
+                                            {{visiteur_form.telephone.label_tag}}
+                                            {{visiteur_form.telephone}}
                                             <div class="invalid-feedback">
                                                 Ce champ est obligatoire!
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Ville -->
-                                    <div class="col-md-4 mb-3 mb-md-4">
+                                    <!-- pays -->
+                                    <div class="col-md-6 mb-3 mb-md-4">
                                         <div class="form-group">
-                                            <label for="city_validation" class="form-label">Ville</label>
-                                            <select class="form-select form-select-lg" id="city_validation" required>
-                                                <option selected disabled value="">ville actuelle</option>
-                                                <option>Bofa</option>
-                                                <option>Boké</option>
-                                                <option>Dabola</option>
-                                                <option>Dalaba</option>
-                                                <option>Conakry</option>
-                                                <option>Farannah</option>
-                                                <option>Fria</option>
-                                                <option>Kankan</option>
-                                                <option>Kindia</option>
-                                                <option>Kissidougou</option>
-                                            </select>
+                                            {{visiteur_form.pays.label_tag}}
+                                            {{visiteur_form.pays}}
                                             <div class="invalid-feedback">
                                                 Ce champ est obligatoire!
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Commune -->
-                                    <div class="col-md-4 mb-3 mb-md-4">
+                                    <!-- ville-->
+                                    <div class="col-md-6 mb-3 mb-md-4">
                                         <div class="form-group">
-                                            <label for="commune_validation" class="form-label">Commune</label>
-                                            <select class="form-select form-select-lg" id="commune_validation" required>
-                                                <option selected disabled value="">commune actuelle</option>
-                                                <option>...</option>
-                                            </select>
+                                            {{visiteur_form.ville.label_tag}}
+                                            {{visiteur_form.ville}}
                                             <div class="invalid-feedback">
                                                 Ce champ est obligatoire!
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Quartier -->
-                                    <div class="col-md-4 mb-3 mb-md-4">
+                                    <!-- genre -->
+                                    <div class="col-md-6 mb-3 mb-md-4">
                                         <div class="form-group">
-                                            <label for="quarter_validation" class="form-label">Quartier</label>
-                                            <select class="form-select form-select-lg" id="quarter_validation" required>
-                                                <option selected disabled value="">quartier actuel</option>
-                                                <option>...</option>
-                                            </select>
+                                            {{visiteur_form.genre.label_tag}}
+                                            {{visiteur_form.genre}}
                                             <div class="invalid-feedback">
                                                 Ce champ est obligatoire!
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Date de Naissance -->
+                                    <div class="col-md-6 mb-3 mb-md-4">
+                                        <div class="form-group">
+                                            {{visiteur_form.date_naissance.label_tag}}
+                                            {{visiteur_form.date_naissance}}
+                                            <div class="invalid-feedback">
+                                                Ce champ est obligatoire!
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
-                                <!-- Motif -->
-                                <div class="row">
-                                    <div class="my-5">
-                                        <div class="form-group">
-                                            <label for="motif" class="form-label">Motif</label>
-                                            <select class="form-select form-select-lg" id="motif" required>
-                                                <option selected disabled value="">choisissez un motif</option>
-                                                <option>don pour le fonctionnement de l'organisation</option>
-                                                <option>don pour la construction du puit à Kiroti</option>
-                                                <option>don pour collecte de fonds pour situations diverses</option>
-                                                <option>don pour distribution de fournitures de première nécessité
-                                                </option>
-                                            </select>
-                                            <div class="invalid-feedback">
-                                                Ce champ est obligatoire!
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            
+                            
 
                                 <div class="row">
                                     <div class="fs-5">
@@ -188,6 +162,7 @@
                                             </li>
                                         </ul>
                                         <div class="tab-content">
+                                            
                                             <!-- Don financier -->
                                             <div class="tab-pane fade show active p-md-3 p-2" id="financier">
                                                 <!-- frequence de payement -->
@@ -265,38 +240,26 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <!-- Don matériel -->
                                             <div class="tab-pane fade p-md-3 p-2" id="materiel">
                                                 <form id="don_form" action="#" method="POST">
-                                                    <!-- nature du don -->
+                                                    <!-- description du don -->
                                                     <div class="mb-3">
                                                         <div class="form-group">
-                                                            <label for="nature_don" class="form-label">Nature du
-                                                                don</label>
-                                                            <select class="form-select form-select-lg form-select-sm"
-                                                                id="nature_don" name="nature_don" required>
-                                                                <option value="">Sélectionner la nature du don</option>
-                                                                <option value="nourriture">Nourriture</option>
-                                                                <option value="vetement">Vêtements</option>
-                                                                <option value="hygiene">Produits d'Hygiène</option>
-                                                                <option value="medicament">Produits pharmaceutiques
-                                                                </option>
-                                                                <option value="scolaire">Fournitures Scolaires</option>
-                                                                <option value="autre">Autres ...</option>
-                                                            </select>
+                                                            {{ donation_form.description.label_tag}}
+                                                            {{ donation_form.description}}
+                                                            
                                                             <div class="invalid-feedback">
                                                                 Veuillez sélectionner la nature du don.
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- description du don -->
+                                                    <!-- categorie  -->
                                                     <div class="mb-3 mb-md-4">
                                                         <div class="form-group">
-                                                            <label for="description_don" class="form-label">Description
-                                                                du don</label>
-                                                            <textarea class="form-control form-control-lg"
-                                                                id="description_don" name="description_don"
-                                                                rows="5"></textarea>
+                                                            {{ donation_form.categorie.label_tag}}
+                                                            {{ donation_form.categorie}}
                                                             <div class="invalid-feedback">
                                                                 Ce champ est obligatoire!
                                                             </div>
@@ -304,61 +267,30 @@
                                                     </div>
                                                     <!-- quantité -->
                                                     <div class="mb-3 mb-md-4">
-                                                        <div class="form-group">
-                                                            <label for="quantite_don"
-                                                                class="form-label">Quantité</label>
-                                                            <input type="number" class="form-control form-control-lg"
-                                                                id="quantite_don" name="quantite_don" min="1" required>
-                                                            <div class="invalid-feedback">
-                                                                Veuillez fournir la quantité des articles donnés.
-                                                            </div>
+                                                        {{ donation_form.quantite.label_tag}}
+                                                        {{ donation_form.quantite}}
+                                                        <div class="invalid-feedback">
+                                                            Veuillez fournir la quantité des articles donnés.
                                                         </div>
                                                     </div>
                                                     <!-- date de collecte -->
-                                                    <div class="mb-3 mb-md-4">
+                                                    <div class="mb-6 mb-md-4">
                                                         <div class="form-group">
-                                                            <label for="date_disponibilite" class="form-label">Date de
-                                                                disponibilité</label>
-                                                            <input type="date" class="form-control form-control-lg"
-                                                                id="date_disponibilite" name="date_disponibilite"
-                                                                required>
+                                                            {{ donation_form.date_reception.label_tag}}
+                                                            {{ donation_form.date_reception}}
                                                             <div class="invalid-feedback">
                                                                 Veuillez fournir la date de disponibilité des articles.
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- lieu de collecte -->
-                                                    <div class="mb-3 mb-md-4">
+                                                    <!-- image de la donation  -->
+                                                    <div class="mb-6 mb-md-4">
                                                         <div class="form-group">
-                                                            <label for="preference_collecte" class="form-label">Lieu
-                                                                de collecte</label>
-                                                            <select class="form-select form-select-lg"
-                                                                id="preference_collecte" name="preference_collecte"
-                                                                required>
-                                                                <option value="">Sélectionner la préférence de collecte
-                                                                </option>
-                                                                <option value="domicile">Ramassage à domicile</option>
-                                                                <option value="depot_lieu_collecte">Dépôt dans un lieu
-                                                                    de
-                                                                    collecte
-                                                                </option>
-                                                                <option value="autre_lieu_collecte">Autre lieu de
-                                                                    collecte
-                                                                </option>
-                                                            </select>
+                                                            {{ donation_form.image.label_tag}}
+                                                            {{ donation_form.image}}
                                                             <div class="invalid-feedback">
                                                                 Veuillez sélectionner votre préférence de collecte.
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- informations supplémentaires -->
-                                                    <div class="mb-3 mb-md-4">
-                                                        <div class="form-group">
-                                                            <label for="info_sup_don" class="form-label">Informations
-                                                                supplémentaires</label>
-                                                            <textarea class="form-control form-control-lg"
-                                                                id="info_sup_don" name="info_sup_don" rows="3"
-                                                                placeholder="Autre chose à ajouter ?"></textarea>
                                                         </div>
                                                     </div>
                                                     <!-- bouton envoyer -->

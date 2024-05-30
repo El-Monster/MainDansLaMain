@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('website_part.urls')),
     path('', include('Necessiteux.urls')),
     path('', include('benevole.urls')),
+    path('', include('besoin.urls')),
 
 ]
 if settings.DEBUG:

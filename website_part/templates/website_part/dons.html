@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Faire un don</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h2>Faire un don</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+            <h3>Formulaire de donation matérielle</h3>
+            {{ donation_form.as_p }}
+        {% else %}
+            <h3>Formulaire de visiteur</h3>
+            {{ visiteur_form.as_p }}
+            <h3>Formulaire de donation matérielle</h3>
+            {{ donation_form.as_p }}
+        {% endif %}
+        <button type="submit" class="btn btn-primary">Soumettre</button>
+    </form>
+</div>
+</body>
+</html>

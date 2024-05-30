@@ -4,10 +4,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.shortcuts import render, redirect
+from donations.donation import DonationMaterielleForm
+from benevole.visiteurForm import VisiteurForm
+from donations.models import Visiteur,DonateurEntreprise,DonateurPersonne,DonateurOrganisation
+from donations.models import DonateurPersonne
 from .besoinForm import BesoinMaterielForm, BesoinFinancierForm,BesoinDeBenevolesForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import BesoinMateriel,BesoinFinancier
+from .models import BesoinMateriel,BesoinFinancier,Besoin
 from django.conf import settings
 from website_part.forms import LoginForm
 
@@ -48,12 +52,22 @@ def se_connecter(request: HttpRequest) -> HttpResponse:
             if user is not None:
                 login(request, user)
                 messages.success(request, 'Vous êtes connecté avec succès.')
+                '''
                 context = {
                     'active_menu': 'tableauBord',
                     'user': user
                 }
                 if(user.role == settings.PERSONNE_DONATEUR):
                     return redirect('donations:donateur_tableauBord')
+                '''
+                if (user.role == settings.PERSONNE_DONATEUR):
+                    donateur = DonateurPersonne.objects.get(id=user.id)
+                    context = {
+                        'active_menu': 'tableauBord',
+                        'donateur': donateur
+                    }
+                    return render(request, 'donations/app/tableauBord.html', context)
+                    
                 return redirect('website_part:index')
             else:
                 form = LoginForm()
@@ -133,4 +147,67 @@ def creer_besoin_benevoles(request):
         
         form = BesoinDeBenevolesForm()
     return render(request, 'website_part/besoinBenevoles.html', {'form': form})
+#view de donation  
 
+
+
+
+def get_donateur(user):
+    try:
+        if hasattr(user, 'donateurpersonne'):
+            return user.donateurpersonne
+        elif hasattr(user, 'donateurentreprise'):
+            return user.donateurentreprise
+        elif hasattr(user, 'donateurorganisation'):
+            return user.donateurorganisation
+        elif hasattr(user, 'visiteur'):
+            return user.visiteur
+    except (DonateurPersonne.DoesNotExist, DonateurEntreprise.DoesNotExist, DonateurOrganisation.DoesNotExist, Visiteur.DoesNotExist):
+        return None
+    return None
+
+def faire_don(request, besoin_id=None):
+    besoin = get_object_or_404(Besoin, id=besoin_id)
+    print(f"Identifiant du besoin est {besoin}")
+    if request.user.is_authenticated:
+        donateur = get_donateur(request.user)
+        if not donateur:
+            # Gérer le cas où l'utilisateur connecté n'est pas un donateur
+            logout(request)
+            messages.error(request, "Vous devez être un donateur pour faire un don.")
+            return redirect('website_part:se_connecter')  # Remplacez 'profile_creation_url' par l'URL appropriée
+
+        if request.method == 'POST':
+            donation_form = DonationMaterielleForm(request.POST, request.FILES)
+            if donation_form.is_valid():
+                donation = donation_form.save(commit=False)
+                donation.donateur = donateur
+                donation.besoin = besoin  # Associez la donation au besoin
+                donation.save()
+                messages.success(request, "Votre don a été enregistré avec succès.")
+                return redirect('success_url')  # Remplacez 'success_url' par l'URL de redirection souhaitée
+        else:
+            donation_form = DonationMaterielleForm()
+        return render(request, 'website_part/faire_donation.html', {'donation_form': donation_form, 'besoin': besoin})
+    else:
+        # L'utilisateur n'est pas connecté
+        if request.method == 'POST':
+            visiteur_form = VisiteurForm(request.POST)
+            print(visiteur_form.errors)
+            donation_form = DonationMaterielleForm(request.POST, request.FILES)
+            print(donation_form.errors)
+            if visiteur_form.is_valid() and donation_form.is_valid():
+                visiteur = visiteur_form.save(commit=False)
+                visiteur.save()
+                donation = donation_form.save(commit=False)
+                #donation.donateur.type="Anonyme"
+                donation.donateur = visiteur # Associez la donation au visiteur créé
+                donation.besoin = besoin  # Associez la donation au besoin
+                donation.save()
+                messages.success(request, "Votre don a été enregistré avec succès.")
+                return redirect('besoin:besoins_en_cours')  # Remplacez 'success_url' par l'URL de redirection souhaitée
+        else:
+            visiteur_form = VisiteurForm()
+            donation_form = DonationMaterielleForm()
+
+        return render(request, 'website_part/faire_donation.html', {'visiteur_form': visiteur_form, 'donation_form': donation_form, 'besoin': besoin})

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'website_part',
     'Necessiteux',
     'benevole',
+    'besoin'
 ]
 X_FRAME_OPTIONS='SAMEORIGIN'
 MIDDLEWARE = [

@@ -1,0 +1,64 @@
+<!-- templates/besoins_en_cours.html -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des besoins en cours</title>
+    <!-- Inclure la bibliothèque Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Inclure jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Liste des besoins en cours</h1>
+        {% if tous_les_besoins %}
+            <div class="row">
+                {% for besoin in tous_les_besoins %}
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <img src="{{ besoin.image.url }}" class="card-img-top" alt="{{ besoin.titre }}" width="200" height="500">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ besoin.titre }}</h5>
+                                <!-- Limiter la description -->
+                                <p class="card-text description">{{ besoin.description }}</p>
+                                <!-- Bouton Lire la suite -->
+                                <a href="#" class="btn btn-primary lire-suite">Lire la suite</a>
+                                <!-- Bouton Soutenir -->
+                                <a href="{% url 'website_part:faire_don' besoin.id %}" class="btn btn-primary mt-3">Soutenir</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="mt-4">Aucun besoin en cours pour le moment.</p>
+        {% endif %}
+    </div>
+
+    <!-- Inclure la bibliothèque Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            // Limiter la description et ajouter un lien "Lire la suite"
+            $('.description').each(function(){
+                var max_length = 20; // Nombre maximal de caractères
+                if($(this).text().length > max_length){
+                    var short_text = $(this).text().substring(0, max_length);
+                    var long_text = $(this).text().substring(max_length);
+                    $(this).html(short_text + '<span class="more-text">' + long_text + '</span>' + '<a href="#" class="more-link">Lire la suite</a>');
+                }
+            });
+
+            // Gérer le clic sur "Lire la suite"
+            $('.more-link').click(function(e){
+                e.preventDefault();
+                $(this).prev('.more-text').show();
+                $(this).remove();
+            });
+        });
+    </script>
+</body>
+</html>
